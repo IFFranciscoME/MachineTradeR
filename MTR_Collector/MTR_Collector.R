@@ -50,3 +50,8 @@ ON_Ls <- data.frame(InstrumentsList(ONAT,ONAK,ONAI))[,c(1,3)]
 ON_Ph <- HisPrices(ONAT,ON_Gt,ON_Da,ON_Ta,ONAK,ON_In,Ini,Fin)
 # Peticion de precio actual
 ON_Pa <- ActualPrice(ONAT,ONAK,ON_In)
+
+# -- Almacenar Environment ----------------------------------------------------------- #
+
+save.image("~/Documents/GitHub/MachineTradeR/MTR_Collector/MTR_Collector_Data.RData")
+
