@@ -1,2 +1,2 @@
-consumer_key, consumer_secret, access_token, access_token_secret
-4TJeb1mqGw22VmxWd8w7gf3Tk, uvwY6vtdfxzbsbUOS14sHQMfZgKX0cRyAi7041XbdEkZWVKXhc, 3288299311-sk9rkLFG0bXoeZbVbV4mJN7lmLCuUqweMhkO7BV, FhGj0ab2j7b7UN5LLjgeZ3ZBeTyCrkt0T6dGe6IeYAoVj
+account_type,account_id,token
+"practice",1742531,"ada4a61b0d5bc0e5939365e01450b614-4121f84f01ad78942c46fc3ac777baa6"

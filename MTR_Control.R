@@ -10,7 +10,7 @@
 pkg <- c("base","downloader","fBasics","forecast","grid","gridExtra",
          "httr","jsonlite","lubridate","moments","PerformanceAnalytics","plyr",
          "quantmod","reshape2","RCurl","stats","scales","tree","tseries",
-         "TTR","TSA","xts","xlsx","zoo")
+         "TTR","TSA","twitteR","xts","xlsx","zoo")
 
 inst <- pkg %in% installed.packages()
 if(length(pkg[!inst]) > 0) install.packages(pkg[!inst])
@@ -24,3 +24,9 @@ Sys.setlocale(category = "LC_ALL", locale = "")
 # -- Source MTR_Collector --------------------------------------------------------- -- #
 
 source('~/Documents/GitHub/MachineTradeR/MTR_Collector/MTR_Collector.R', echo=TRUE)
+
+source('~/Documents/GitHub/MachineTradeR/MTR_Algos/MTR_Algo_0.R', echo=TRUE)
+
+source('~/Documents/GitHub/MachineTradeR/MTR_Trader/MTR_Trader.R', echo=TRUE)
+
+
