@@ -65,8 +65,3 @@ InfoNuevaOp
 #(AccountType, AccountID, Token, OrderID, Units, Price, Expiry, StopLoss, TakeProfit, TrailingStop)
 #ModifyOrder(ONAT, ONAI, ONAK, ON_Oi, ON_Ct, ON_Pr, ON_Ex, ON_Sl, ON_Tp, ON_Ts)
 
-# iffranciscome / Periodo00O.
-# iffranciscome / Periodo00OP.
-# iffranciscome / Periodo0O.
-
-
