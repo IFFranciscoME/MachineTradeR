@@ -5,6 +5,8 @@
 # -- License: MIT ----------------------------------------------------------------- -- #
 # ------------------------------------------------------------------------------------ #
 
+options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
+
 # -- Autorizaciones y Llaves --------------------------------------------------------- #
 
 OnTokens <- read.csv("~/Documents/GitHub/MachineTradeR/MTR_Tokens/OandaTokens.csv")
@@ -42,19 +44,19 @@ ON_Oi <- 10086591560 # Orden ID (Si aplica)
 # -- Revisión de Estado de Cuenta ---------------------------------------------------- #
 
 # AccountInfo
-InfoCuenta  <- AccountInfo(ON_At,ON_Ai,ON_Ak) # Balance Disponible en Cuenta
+#InfoCuenta  <- AccountInfo(ON_At,ON_Ai,ON_Ak) # Balance Disponible en Cuenta
 
 # Peticion de Ordenes Abiertas 
 InfoOrdenes <- AccountOrders(ON_At,ON_Ai,ON_Ak,ON_In)       # Ordenes Abiertas
-
+InfoOrdenes
 # -- Colocacion de Operacion --------------------------------------------------------- #
 
 # Nueva Orden de Mercado
 
-InfoNuevaOp <- NewOrder(AccountType=ON_At, AccountID=ON_Ai, Token=ON_Ak, OrderType=ON_Ot,
-                        Instrument=ON_In, Count=ON_Ct, Side=ON_Sd, Expiry=ON_Ex,
-                        Price=ON_Pr, SL=ON_Sl, TP=ON_Tp, TS=ON_Ts)
-InfoNuevaOp
+#InfoNuevaOp <- NewOrder(AccountType=ON_At, AccountID=ON_Ai, Token=ON_Ak, OrderType=ON_Ot,
+                        #Instrument=ON_In, Count=ON_Ct, Side=ON_Sd, Expiry=ON_Ex,
+                        #Price=ON_Pr, SL=ON_Sl, TP=ON_Tp, TS=ON_Ts)
+#InfoNuevaOp
 
 # Nueva Orden Limite / marketIfTouched / Stop
 #NewOrder(ONAT,ONAI,ONAK,ON_Ot,ON_In,ON_Ct,ON_Sd, ON_Ex, ON_Pr, ON_Sl, ON_Tp, ON_Ts)

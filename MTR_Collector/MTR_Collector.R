@@ -28,10 +28,11 @@ TWAS <- as.character(TwTokens[1,4])  # Access Token Secret
 
 # -- Parametros para Recolectar Datos ------------------------------------------------ #
 
-Ini <- Sys.Date()-500  # Fecha Inicial
+Ini <- Sys.Date()-550  # Fecha Inicial
 Fin <- Sys.Date()      # Fecha Final
 
-ON_Gt <- "D"        # Granularity: Frecuencia de muestre de precio.
+# Granularity: Frecuencia de muestre de precio.
+ON_Gt <- c("W","D","H8","H4","H1")
 ON_In <- "AUD_USD"  # Instrument: Instrumento Financiero a utilizar.
 ON_Da <- 17
 ON_Ta <- "America%2FMexico_City" # Uso horario
@@ -40,12 +41,27 @@ ON_Ta <- "America%2FMexico_City" # Uso horario
 
 # Lista de instrumentos disponibles
 ON_Ls <- data.frame(InstrumentsList(ON_At,ON_Ak,ON_Ai))[,c(1,3)]
-# Peticion de precios historicos
-ON_Ph <- HisPrices(ON_At,ON_Gt,ON_Da,ON_Ta,ON_Ak,ON_In,Ini,Fin)
+
+# Peticion de precios historicos: W "Every Week"
+ON_PhW  <- HisPrices(ON_At,ON_Gt[1],ON_Da,ON_Ta,ON_Ak,ON_In,Ini,Fin)
+
+# Peticion de precios historicos: D "Every Day"
+ON_PhD <- HisPrices(ON_At,ON_Gt[2],ON_Da,ON_Ta,ON_Ak,ON_In,Ini,Fin)
+
+# Peticion de precios historicos: H8 "Every 8 hours"
+ON_PhH8 <- HisPrices(ON_At,ON_Gt[3],ON_Da,ON_Ta,ON_Ak,ON_In,Ini,Fin)
+
+# Peticion de precios historicos: H4 "Every 4 Hours"
+ON_PhH4 <- HisPrices(ON_At,ON_Gt[4],ON_Da,ON_Ta,ON_Ak,ON_In,Ini,Fin)
+
+# Peticion de precios historicos: H1 "Every 1 Hour" Parte 1
+ON_PhH1a <- HisPrices(ON_At,ON_Gt[5],ON_Da,ON_Ta,ON_Ak,ON_In,Ini,Fin-275)
+# Peticion de precios historicos: H1 "Every 1 Hour" Parte 2
+ON_PhH1b <- HisPrices(ON_At,ON_Gt[5],ON_Da,ON_Ta,ON_Ak,ON_In,Fin-274,Fin)
+
 # Peticion de precio actual
 ON_Pa <- ActualPrice(ON_At,ON_Ak,ON_In)
 
 # -- Almacenar Environment ----------------------------------------------------------- #
 
 save.image("~/Documents/GitHub/MachineTradeR/MTR_Collector/MTR_Collector_Data.RData")
-

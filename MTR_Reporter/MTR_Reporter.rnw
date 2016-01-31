@@ -1,8 +1,21 @@
-\documentclass{article}
-
+\documentclass[a4paper ]{ article}
+\usepackage{url}
+\usepackage{float}
+\usepackage{nextpage}
+\pagestyle{headings}
+\title{
+!!
+Basic R Exercises
+''
+and
+!!
+Further  Practice  with R
+''
+}
+\author{John  Maindonald}
 \begin{document}
+\maketitle
 
-
-
+\tableofcontents
 
 \end{document}

@@ -11,16 +11,16 @@ load("~/Documents/GitHub/MachineTradeR/MTR_Collector/MTR_Collector_Data.RData")
 
 # -- Parametros de Algo_0 ------------------------------------------------------------ #
 
-Par1 <- 28
-Par2 <- .90
-Par3 <- 1000
+Par1 <- c(4,28,80,80,80) # Resagos Maximos  c("W","D","H8","H4","H1")
+Par2 <- .90  # Nivel de Confianza para pruebas de HO
+Par3 <- 1000 # Auxiliar
 Reg  <- c()
 PipValue <- 1
 Comision <- 0
 
 # -- Ajuste Datos Entrada ------------------------------------------------------------ #
 
-PrecioCl  <- data.frame(ON_Ph$TimeStamp, round(ON_Ph$Close,4))
+PrecioCl  <- data.frame(ON_PhD$TimeStamp, round(ON_PhD$Close,4))
 colnames(PrecioCl) <- c("TimeStamp","PrecioCl")
 PrecioAct <- ON_Pa
 
