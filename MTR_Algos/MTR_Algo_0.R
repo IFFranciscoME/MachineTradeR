@@ -11,18 +11,17 @@ load("~/Documents/GitHub/MachineTradeR/MTR_Collector/MTR_Collector_Data.RData")
 
 # -- Parametros de Algo_0 ------------------------------------------------------------ #
 
-Par1 <- c(4,28,80,80,80) # Resagos Maximos  c("W","D","H8","H4","H1")
+Par0 <- Elec[1,3]             # Granularity c("W","D","H8","H4","H1") 
+Par1 <- as.numeric(Elec[2,3]) # Resagos Maximos c(6, 28, 80, 80, 80)
 Par2 <- .90  # Nivel de Confianza para pruebas de HO
-Par3 <- 1000 # Auxiliar
 Reg  <- c()
 PipValue <- 1
 Comision <- 0
 
 # -- Ajuste Datos Entrada ------------------------------------------------------------ #
 
-PrecioCl  <- data.frame(ON_PhD$TimeStamp, round(ON_PhD$Close,4))
+PrecioCl  <- data.frame(get(Par0)$TimeStamp, round(get(Par0)$Close,4))
 colnames(PrecioCl) <- c("TimeStamp","PrecioCl")
-PrecioAct <- ON_Pa
 
 # -- Generacion de Variables --------------------------------------------------------- #
 
@@ -50,50 +49,29 @@ for(i in 1:length(CoefSign)) DatosPrep[,2+i] <- round(diff(log(ResagosCl[,
 which(colnames(ResagosCl) == CoefSign[i])])),4)
 colnames(DatosPrep) <- c("TimeStamp","PrecioCl",CoefSign)
 
-# -- ------------------------------------------------------------------------------ -- %
-# -- Construccion Renglones de entrada para prueba -------------------------------- -- #
-# -- ------------------------------------------------------------------------------ -- %
+# -- Ajuste a datos conocidos y medicion de error ------------------------------------ #
 
-CoefSign <- row.names(SumRegMultCl$coefficients)
-Resagos  <- c()
-for(i in 1:length(CoefSign)) Resagos[i] <- as.numeric(substr(CoefSign[i],start=5,stop=6))
-ResagosClVal <- data.frame(cbind(PrecioCl[,1:2],Lag(x=PrecioCl$PrecioCl,k=Resagos)))
-ResagosClVal <- ResagosClVal[-c(1:max(Resagos)),]
+DatosPred <- data.frame(ResagosCl[,1:2],predict(RegMultCl,ResagosCl,
+                                                interval="predict",level=Par2))
+Errors   <- (DatosPred$PrecioCl - DatosPred$fit)^2
+MSE <- sqrt(sum(Errors)/length(Errors-1))
+MaxError <- max(DatosPred$PrecioCl - DatosPred$fit)
+MinError <- min(DatosPred$PrecioCl - DatosPred$fit)
 
-# -- ------------------------------------------------------------------------------ -- %
-# -- Construccion Tabla de Estrategias de Trading --------------------------------- -- #
-# -- ------------------------------------------------------------------------------ -- %
+# -- Creacion de filas para pronosticos ---------------------------------------------- #
 
-TradeStrat <- ResagosClVal[,c(1,3,2)]
-colnames(TradeStrat) <- c("TimeStamp","Close_Pasado","Close_Presente")
+NPRES <- length(ResagosCl$TimeStamp)
+EcuacionRLM <- TotalCoefs
 
-TradeStrat$Close_Futuro <- 0
+HoraPron  <- as.POSIXct((last(DatosPred$TimeStamp) + 2*60*60*24), origin = "1970-01-01")
+PrecioAct <- ON_Pa$Bid
 
-for(i in 1:length(ResagosClVal[,1])) 
-  TradeStrat$Close_Futuro[i] <- predict(RegMultCl,
-  ResagosClVal[i,c(1,3:length(ResagosClVal[1,]))],interval="predict",level=Par2)[1]
+EcuacionRLM <- ResagosCl[NPRES,2+1]*TotalCoefs[i]
 
-for(i in 1:length(ResagosClVal[,1])) TradeStrat$Accion[i] <- 
-  ifelse(TradeStrat$Close_Futuro[i] > TradeStrat$Close_Presente[i],"Compra","Venta")
+# -- Datos Finales a entregar a siguiente etapa -------------------------------------- #
 
-TradeStrat$Balance[1] <- Par3
-TradeStrat$PeriodPL   <- 0
-
-for(i in 2:length(ResagosClVal[,1]))  {
-  TradeStrat$PeriodPL[i] <- ifelse(TradeStrat$Accion[i-1] == "Venta",
-  (TradeStrat$Close_Presente[i-1] - TradeStrat$Close_Presente[i]),
-  ((TradeStrat$Close_Presente[i] - TradeStrat$Close_Presente[i-1])))  }
-
-for(i in 2:length(ResagosClVal[,1]))  {
-  TradeStrat$PeriodPL[i] <- ifelse(TradeStrat$Accion[i-1] == "Venta",
-  ((TradeStrat$Close_Presente[i-1] - TradeStrat$Close_Presente[i]))*PipValue, 
-  ((TradeStrat$Close_Presente[i] - TradeStrat$Close_Presente[i-1]))*PipValue)
-  TradeStrat$Balance[i]  <- TradeStrat$Balance[i-1] + TradeStrat$PeriodPL[i]  }
-
-PrecioPron <- as.numeric(round(last(DatosPrep)$PrecioCl - 
-  last(DatosPrep)$PrecioCl * predict(RegMultCl,last(DatosPrep)),4))
-HoraPron   <- last(DatosPrep)$TimeStamp + 2*60*60*24
-
+Estim_Algo0 <- predict(RegMultCl,ResagosCl,interval="predict",level=Par2)
+Estim_Algo0 <- last(Estim_Algo0[,1])
 
 # -- Datos a Exportar ---------------------------------------------------------------- #
 

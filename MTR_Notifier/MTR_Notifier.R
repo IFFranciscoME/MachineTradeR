@@ -22,7 +22,7 @@ Http1 <- paste("https://", Auth, sep="")
 Http2 <- paste(Http1,"@api.twilio.com/2010-04-01/Accounts", sep="")
 Http3 <- paste(paste(Http2,TL_Ai,sep="/"),"/Messages.XML",sep="")
 
-postForm(Http3, .params = c(From = TL_Nm, To = "523314681138", 
+postForm(Http3, .params = c(From = "525549998149", To = "523314681138", 
                             Body = "Se Ejecuto Operacion en EC2"))
 
 options(RCurlOptions = list(

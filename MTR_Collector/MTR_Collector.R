@@ -37,6 +37,10 @@ ON_In <- "AUD_USD"  # Instrument: Instrumento Financiero a utilizar.
 ON_Da <- 17
 ON_Ta <- "America%2FMexico_City" # Uso horario
 
+Elec <- data.frame(matrix(nrow=2,ncol=5))
+Elec[1,] <- c("ON_PhW","ON_PhD","ON_PhH8","ON_PhH4","ON_PhH1")
+Elec[2,] <- c(6,28,80,80,80)
+
 # -- Funciones de Peticion Necesarias ------------------------------------------------ #
 
 # Lista de instrumentos disponibles
@@ -54,10 +58,9 @@ ON_PhH8 <- HisPrices(ON_At,ON_Gt[3],ON_Da,ON_Ta,ON_Ak,ON_In,Ini,Fin)
 # Peticion de precios historicos: H4 "Every 4 Hours"
 ON_PhH4 <- HisPrices(ON_At,ON_Gt[4],ON_Da,ON_Ta,ON_Ak,ON_In,Ini,Fin)
 
-# Peticion de precios historicos: H1 "Every 1 Hour" Parte 1
-ON_PhH1a <- HisPrices(ON_At,ON_Gt[5],ON_Da,ON_Ta,ON_Ak,ON_In,Ini,Fin-275)
-# Peticion de precios historicos: H1 "Every 1 Hour" Parte 2
-ON_PhH1b <- HisPrices(ON_At,ON_Gt[5],ON_Da,ON_Ta,ON_Ak,ON_In,Fin-274,Fin)
+# Peticion de precios historicos: H1 "Every 1 Hour"
+ON_PhH1  <- rbind(HisPrices(ON_At,ON_Gt[5],ON_Da,ON_Ta,ON_Ak,ON_In,Ini,Fin-275),
+                  HisPrices(ON_At,ON_Gt[5],ON_Da,ON_Ta,ON_Ak,ON_In,Fin-274,Fin))
 
 # Peticion de precio actual
 ON_Pa <- ActualPrice(ON_At,ON_Ak,ON_In)
