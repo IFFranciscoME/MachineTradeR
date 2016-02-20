@@ -68,3 +68,5 @@ ON_Pa <- ActualPrice(ON_At,ON_Ak,ON_In)
 # -- Almacenar Environment ----------------------------------------------------------- #
 
 save.image("~/Documents/GitHub/MachineTradeR/MTR_Collector/MTR_Collector_Data.RData")
+
+

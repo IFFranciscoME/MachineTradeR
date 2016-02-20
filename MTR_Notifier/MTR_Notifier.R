@@ -22,8 +22,34 @@ Http1 <- paste("https://", Auth, sep="")
 Http2 <- paste(Http1,"@api.twilio.com/2010-04-01/Accounts", sep="")
 Http3 <- paste(paste(Http2,TL_Ai,sep="/"),"/Messages.XML",sep="")
 
-postForm(Http3, .params = c(From = "525549998149", To = "523314681138", 
-                            Body = "Se Ejecuto Operacion en EC2"))
+
+MensajeGen <- paste("Precio Actual: ",ON_Pa$Bid,sep="")
+Mensaje0   <- paste(", ALGO_0 predice:",round(Estim_Algo0,4),sep="")
+Mensaje1   <- paste(", ALGO_1 predice:",round(Estim_Algo1,4),sep="")
+
+MensajeF0 <- paste("Se ejecuto EC2 para AUD_USD", MensajeGen, sep=" ")
+MensajeF1 <- paste(MensajeF0, Mensaje0)
+MensajeF2 <- paste(MensajeF1, Mensaje1)
+
+
+# -- Notificacion en SMS con Twilio -------------------------------------------------- #
+
+postForm(Http3, .params = c(From = "525549998149", To = "523338217275", 
+                            Body = MensajeF2))
 
 options(RCurlOptions = list(
   cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
+
+# -- Notificacion en Email ----------------------------------------------------------- #
+
+sender <- "if.francisco.me@gmail.com"
+recipients <- c("luisgmo25@gmail.com")
+send.mail(from = sender,
+          to = recipients,
+          subject="Como hacer dinero con R",
+          body = MensajeF2,
+          smtp = list(host.name = "smtp.gmail.com", port = 465,
+                      user.name="if.francisco.me@gmail.com", passwd="Periodo00G.",
+                      ssl=TRUE), authenticate = TRUE, send = TRUE)
+
+

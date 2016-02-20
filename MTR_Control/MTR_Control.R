@@ -12,9 +12,10 @@
 rm(list=ls())
 
 pkg <- c("base","downloader","dplyr","fBasics","forecast","googlesheets","grid",
-         "gridExtra","httr","jsonlite","knitr","lubridate","moments",
-         "PerformanceAnalytics","plyr","quantmod","reshape2","RCurl","stats","scales",
-         "tree","tseries","TTR","TSA","twitteR","XML","xts","xlsx","zoo")
+         "gridExtra","httr","h2o","jsonlite","knitr","lubridate","moments","matrixStats",
+         "PerformanceAnalytics","plyr","quantmod","randomForest","reshape2","RCurl","stats","scales",
+         "sendmailR", "mailR","tree","tseries","TTR","TSA","twitteR","XML","xts","xlsx",
+         "zoo")
 
 inst <- pkg %in% installed.packages()
 if(length(pkg[!inst]) > 0) install.packages(pkg[!inst])
