@@ -7,7 +7,7 @@
 
 # -- Cargar Datos Necesarios --------------------------------------------------------- #
 
-load("~/Documents/GitHub/MachineTradeR/MTR_Collector/MTR_Collector_Data.RData")
+load("~/Documents/GitHub/MachineTradeR/MTR_Collector/MTR_Collector(Data).Rdata")
 
 Par0 <- Elec[1,2]             # Granularity c("W","D","H8","H4","H1") 
 Par1 <- as.numeric(Elec[2,2]) # Resagos Maximos c(6, 28, 80, 80, 80)

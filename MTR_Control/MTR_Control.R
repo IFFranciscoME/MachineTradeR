@@ -5,6 +5,12 @@
 # -- License: MIT ----------------------------------------------------------------- -- #
 # ------------------------------------------------------------------------------------ #
 
+# -- ETAPA 0 ---------------------------------------------------------------------- -- #
+# -- Información de cuentas a utilizar -------------------------------- MTR_Control -- #
+# -- ------------------------------------------------------------------------------ -- #
+
+Cta0 <- c("FranciscoME","Oanda")
+
 # -- ETAPA 1 ---------------------------------------------------------------------- -- #
 # -- Inicializador general de sistema --------------------------------- MTR_Control -- #
 # -- ------------------------------------------------------------------------------ -- #
@@ -13,9 +19,9 @@ rm(list=ls())
 
 pkg <- c("base","downloader","dplyr","fBasics","forecast","googlesheets","grid",
          "gridExtra","httr","h2o","jsonlite","knitr","lubridate","moments","matrixStats",
-         "PerformanceAnalytics","plyr","quantmod","randomForest","reshape2","RCurl","stats","scales",
-         "sendmailR", "mailR","tree","tseries","TTR","TSA","twitteR","XML","xts","xlsx",
-         "zoo")
+         "PerformanceAnalytics","plyr","quantmod","randomForest","reshape2","RCurl",
+         "stats","scales","sendmailR", "mailR","tree","tseries","TTR","TSA","twitteR",
+         "XML","xts","xlsx","zoo")
 
 inst <- pkg %in% installed.packages()
 if(length(pkg[!inst]) > 0) install.packages(pkg[!inst])
@@ -30,16 +36,12 @@ Sys.setlocale(category = "LC_ALL", locale = "")
 source('~/Documents/GitHub/MachineTradeR/MTR_Collector/MTR_Collector.R', echo=FALSE)
 
 # -- ETAPA 3 ---------------------------------------------------------------------- -- #
-# -- Ejecutar Algoritmo para generacion de señales --------------------- MTR_Algo_0 -- #
+# -- Ejecutar Algoritmos para generacion de señales --------------------- MTR_Algos -- #
 # -- ------------------------------------------------------------------------------ -- #
 
 source('~/Documents/GitHub/MachineTradeR/MTR_Algos/MTR_Algo_0.R', echo=FALSE)
-
-# -- ETAPA 3 ---------------------------------------------------------------------- -- #
-# -- Ejecutar Algoritmo para generacion de señales --------------------- MTR_Algo_1 -- #
-# -- ------------------------------------------------------------------------------ -- #
-
 source('~/Documents/GitHub/MachineTradeR/MTR_Algos/MTR_Algo_1.R', echo=FALSE)
+source('~/Documents/GitHub/MachineTradeR/MTR_Algos/MTR_Algo_2.R', echo=FALSE)
 
 # -- ETAPA 4 ---------------------------------------------------------------------- -- #
 # -- Generar y Enviar señal a traves de SMS y Email ------------------ MTR_Notifier -- #

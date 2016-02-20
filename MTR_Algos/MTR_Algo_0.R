@@ -7,7 +7,7 @@
 
 # -- Cargar Datos Necesarios --------------------------------------------------------- #
 
-load("~/Documents/GitHub/MachineTradeR/MTR_Collector/MTR_Collector_Data.RData")
+load("~/Documents/GitHub/MachineTradeR/MTR_Collector/MTR_Collector(Data).Rdata")
 
 # -- Parametros de Algo_0 ------------------------------------------------------------ #
 
