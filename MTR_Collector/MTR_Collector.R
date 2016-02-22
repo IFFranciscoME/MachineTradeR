@@ -67,7 +67,8 @@ OA_Pa <- ActualPrice(OA_At,OA_Ak,OA_In)
 
 save(OA_Pa, OA_PhH1, OA_PhH4, OA_PhH8, OA_PhD, OA_PhW, OA_Ls, OA_El, OA_Ta, OA_Da,
             OA_In, OA_Gt, OA_Ak, OA_Ai, OA_At, OA_Ini, OA_Fin, TW_Ck, TW_Cs,
-            TW_At, TW_As, file = "MTR_Collector(Data).Rdata")
+            TW_At, TW_As,
+     file = "~/Documents/GitHub/MachineTradeR/MTR_RDatas/MTR_Collector(Data).Rdata")
 
 # -- Borrar datos no necesarios ------------------------------------------------------ #
 

@@ -41,7 +41,6 @@ source('~/Documents/GitHub/MachineTradeR/MTR_Collector/MTR_Collector.R', echo=FA
 
 source('~/Documents/GitHub/MachineTradeR/MTR_Algos/MTR_Algo_0.R', echo=FALSE)
 source('~/Documents/GitHub/MachineTradeR/MTR_Algos/MTR_Algo_1.R', echo=FALSE)
-source('~/Documents/GitHub/MachineTradeR/MTR_Algos/MTR_Algo_2.R', echo=FALSE)
 
 # -- ETAPA 4 ---------------------------------------------------------------------- -- #
 # -- Generar y Enviar señal a traves de SMS y Email ------------------ MTR_Notifier -- #
