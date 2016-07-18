@@ -20,15 +20,18 @@ Http1 <- paste("https://", Auth, sep="")
 Http2 <- paste(Http1,"@api.twilio.com/2010-04-01/Accounts", sep="")
 Http3 <- paste(paste(Http2,TL_Ai,sep="/"),"/Messages.XML",sep="")
 
-MensajeF2 <- "Señal Generada. [Algoritmo] ha detectado una oportunidad de 
-[Sentido] para el [Instrumento] Valida hasta [Fecha:Hora]. TradingPal.com"
+MensajeF2 <- "Señal Generada. BENDER ha detectado una oportunidad de 
+COMPRA para EURUSD Valida hasta 2016-07-18 16:00:00. www.TradingPal.com"
 
 # -- Notificacion en SMS con Twilio -------------------------------------------------- #
 
-postForm(Http3, .params = c(From = "+14072701470", To = "+528115343753", 
+postForm(Http3, .params = c(From = "+14072701470", To = Donald, 
                             Body = MensajeF2))
 
-"+528115343753"
+Francisco <- "+528124168894"
+Marcelo   <- "+528115343753"
+Donald    <- "+528118807691"
+
 options(RCurlOptions = list(
   cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
 
