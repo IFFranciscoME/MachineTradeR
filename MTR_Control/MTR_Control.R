@@ -6,12 +6,6 @@
 # ------------------------------------------------------------------------------------ #
 
 # -- ETAPA 0 ---------------------------------------------------------------------- -- #
-# -- Información de cuentas a utilizar -------------------------------- MTR_Control -- #
-# -- ------------------------------------------------------------------------------ -- #
-
-Cta0 <- c("FranciscoME","Oanda")
-
-# -- ETAPA 1 ---------------------------------------------------------------------- -- #
 # -- Inicializador general de sistema --------------------------------- MTR_Control -- #
 # -- ------------------------------------------------------------------------------ -- #
 
@@ -29,18 +23,29 @@ instpackages <- lapply(pkg, library, character.only=TRUE)
 
 Sys.setlocale(category = "LC_ALL", locale = "")
 
+RawGitHub <- "https://raw.githubusercontent.com/IFFranciscoME/"
+RTradingPal <- paste(RawGitHub,"RTradingPalAPI/master/RTradingPalAPI.R",sep="")
+downloader::source_url(RTradingPal,prompt=FALSE,quiet=TRUE)
+
+# -- ETAPA 1 ---------------------------------------------------------------------- -- #
+# -- Información de cuentas a utilizar ------------------------------- MTR_Registro -- #
+# -- ------------------------------------------------------------------------------ -- #
+
+source("~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Registro/MTR_Registro.R")
+
 # -- ETAPA 2 ---------------------------------------------------------------------- -- #
 # -- Recolectar Datos para uso en Sistema --------------------------- MTR_Collector -- #
 # -- ------------------------------------------------------------------------------ -- #
 
-source('~/Documents/GitHub/MachineTradeR/MTR_Collector/MTR_Collector.R', echo=FALSE)
+source('~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Collector/MTR_Collector.R')
 
 # -- ETAPA 3 ---------------------------------------------------------------------- -- #
 # -- Ejecutar Algoritmos para generacion de señales --------------------- MTR_Algos -- #
 # -- ------------------------------------------------------------------------------ -- #
 
-source('~/Documents/GitHub/MachineTradeR/MTR_Algos/MTR_Algo_0.R', echo=FALSE)
-source('~/Documents/GitHub/MachineTradeR/MTR_Algos/MTR_Algo_1.R', echo=FALSE)
+#source('~/Documents/GitHub/MachineTradeR/MTR_Algos/MTR_Algo_0.R', echo=FALSE)
+#source('~/Documents/GitHub/MachineTradeR/MTR_Algos/MTR_Algo_1.R', echo=FALSE)
+#source('~/Documents/GitHub/MachineTradeR/MTR_Algos/MTR_Algo_2.R', echo=FALSE)
 
 # -- ETAPA 4 ---------------------------------------------------------------------- -- #
 # -- Generar y Enviar señal a traves de SMS y Email ------------------ MTR_Notifier -- #

@@ -10,33 +10,25 @@ options(RCurlOptions = list(
   httpauth=AUTH_BASIC ))
 
 # -- Autorizaciones y Llaves --------------------------------------------------------- #
-
-TLTokens <- read.csv("~/Documents/GitHub/MachineTradeR/MTR_Tokens/TwilioTokens.csv")
-
-TL_Ai <- as.character(TLTokens[1,1])  # Account_Sid
-TL_At <- as.character(TLTokens[1,2])  # Auth_Token
-TL_Nm <- as.numeric(TLTokens[1,3])    # Twilio Number
+sid1 <- "PN2dab4af531f5f72ad35a668e261aae44"
+TL_Ai <- "AC626c69e6d0580d17958045a16f96437e"  # Test_Account_Sid
+TL_At <- "27be4f1e50ce1683f2e50c3096bad102"    # Test_Auth_Token
+TN    <- 14072701470 # Twilio Number
 
 Auth  <- paste(TL_Ai, TL_At, sep=":")
 Http1 <- paste("https://", Auth, sep="") 
 Http2 <- paste(Http1,"@api.twilio.com/2010-04-01/Accounts", sep="")
 Http3 <- paste(paste(Http2,TL_Ai,sep="/"),"/Messages.XML",sep="")
 
-
-MensajeGen <- paste("Precio Actual: ",ON_Pa$Bid,sep="")
-Mensaje0   <- paste(", ALGO_0 predice:",round(Estim_Algo0,4),sep="")
-Mensaje1   <- paste(", ALGO_1 predice:",round(Estim_Algo1,4),sep="")
-
-MensajeF0 <- paste("Se ejecuto EC2 para AUD_USD", MensajeGen, sep=" ")
-MensajeF1 <- paste(MensajeF0, Mensaje0)
-MensajeF2 <- paste(MensajeF1, Mensaje1)
-
+MensajeF2 <- "Señal Generada. [Algoritmo] ha detectado una oportunidad de 
+[Sentido] para el [Instrumento] Valida hasta [Fecha:Hora]. TradingPal.com"
 
 # -- Notificacion en SMS con Twilio -------------------------------------------------- #
 
-postForm(Http3, .params = c(From = "525549998149", To = "523338217275", 
+postForm(Http3, .params = c(From = "+14072701470", To = "+528115343753", 
                             Body = MensajeF2))
 
+"+528115343753"
 options(RCurlOptions = list(
   cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
 
