@@ -2,14 +2,23 @@
 # ------------------------------------------------------------------------------------ #
 # -- Initial Developer: FranciscoME ----------------------------------------------- -- #
 # -- Code: MachineTradeR Main Control --------------------------------------------- -- #
-# -- License: MIT ----------------------------------------------------------------- -- #
+# -- License: TradingPal ---------------------------------------------------------- -- #
 # ------------------------------------------------------------------------------------ #
 
 # -- ETAPA 0 ---------------------------------------------------------------------- -- #
-# -- Información de cuentas a utilizar -------------------------------- MTR_Control -- #
+# -- Informacion de cuentas a utilizar -------------------------------- MTR_Control -- #
 # -- ------------------------------------------------------------------------------ -- #
 
-Cta0 <- c("FranciscoME","Oanda")
+# -- Leer Archivos con Tokens
+Dir <- "C:/TradingPal/BitBucket/MachineTradeR/MTR_Control/"
+TPTokens <- read.csv(paste(Dir,"TradingPalTokens.csv",sep=""), header = FALSE)
+
+TP_Em <- as.character(TPTokens[1,1])  # Account Email
+TP_Ps <- as.character(TPTokens[1,2])  # Account Pass
+
+RawGitHub <- "https://raw.githubusercontent.com/IFFranciscoME/"
+RTradingPalAPI <- paste(RawGitHub,"RTradingPalAPI/master/RTradingPalAPI.R",sep = "")
+downloader::source_url(RTradingPalAPI,prompt=FALSE,quiet=TRUE)
 
 # -- ETAPA 1 ---------------------------------------------------------------------- -- #
 # -- Inicializador general de sistema --------------------------------- MTR_Control -- #
