@@ -1,93 +1,55 @@
 
-# ------------------------------------------------------------------------------------ #
-# -- Initial Developer: FranciscoME ----------------------------------------------- -- #
-# -- Code: MachineTradeR Machine Trading R -- Trader ------------------------------ -- #
-# -- License: MIT ----------------------------------------------------------------- -- #
-# ------------------------------------------------------------------------------------ #
+# ------------------------------------------------------------------------------------- #
+# -- Initial Developer: FranciscoME ------------------------------------------------ -- #
+# -- Code: MachineTradeR Machine Trading R -- Trader ------------------------------- -- #
+# -- License: MIT ------------------------------------------------------------------ -- #
+# ------------------------------------------------------------------------------------- #
 
-# -- Autorizaciones y Llaves --------------------------------------------------------- #
+# -- ---------------------------------------------------- Generate Trading Pal Token -- #
 
-OnTokens <- read.csv("~/Documents/GitHub/MachineTradeR/MTR_Tokens/OandaTokens.csv")
+GetToken(Email,
+         Pass)
 
-ONAT <- as.character(OnTokens[1,1])  # Account Type
-ONAI <- as.numeric(OnTokens[1,2])    # Account ID
-ONAK <- as.character(OnTokens[1,3])  # Account Token
+# -- ------------------------------------------------------------------- Close Trade -- #
 
-TwTokens <- read.csv("~/Documents/GitHub/MachineTradeR/MTR_Tokens/TwitterTokens.csv")
+CloseTrade(P0_Token,
+           P1_symbol,
+           P2_sl,
+           P3_tp,
+           P4_lots,
+           P5_op_type)
 
-TWCK <- as.character(TwTokens[1,1])  # Consumer Key
-TWCS <- as.character(TwTokens[1,2])  # Consumer Secret
-TWAT <- as.character(TwTokens[1,3])  # Access Token
-TWAS <- as.character(TwTokens[1,4])  # Access Token Secret
+# -- -------------------------------------------------------------------- Open Trade -- #
 
-# -- Preparacion de Orden Algo_0 ----------------------------------------------------- #
+OpenTrade(P0_Token,
+          P1_symbol,
+          P2_sl,
+          P3_tp,
+          P4_lots,
+          P5_op_type)
 
-Algo_0PrecioAct <- ActualPrice(ON_At, ON_Ak, ON_In)$Bid
-Algo_0PrecioPro <- as.numeric(Estim_Algo0)
-Algo_0HoraAct <- as.POSIXct(Sys.timeDate(), origin = "1970-01-01")
-Algo_0HoraPro <- HoraPron
+# -- ---------------------------------------------------------------- Get Trade Info -- #
 
-Algo_0ON_Sd <- ifelse(Algo_0PrecioAct < Algo_0PrecioPro, Algo_0ON_Sd <- "buy", Algo_0ON_Sd <- "sell")
-Algo_0ON_Sd <- Algo_0ON_Sd
-Algo_0ON_Ex <- "2016-01-28 19:00:00"  # Fecha de Caducidad para ejecucion (Si aplica)
-Algo_0ON_Ts <- 50       # Trailing Stop
-Algo_0ON_Ct <- 10       # Cantidad de Titulos para Operacion 
-Algo_0ON_Ot <- "market" # Tipo de Operacion
+GetTradeInfo(P0_Token = ,
+             P1_tradeID = ,
+             P2_userID = )
 
-Algo_0ON_Pr <- Algo_0PrecioAct  # Precio para Operacion
-Algo_0ON_Sl <- ifelse(Algo_0ON_Sd=="sell",Algo_0PrecioAct+0.0030,Algo_0PrecioAct-0.0030) # Stop Loss
-Algo_0ON_Tp <- ifelse(Algo_0ON_Sd=="sell",Algo_0PrecioAct-0.0030,Algo_0PrecioAct+0.0030) # Take Profit
-Algo_0ON_Oi <- 10086591560 # Orden ID (Si aplica) 
+# -- ------------------------------------------------------------- Modify Trade Info -- #
 
-# -- Preparacion de Orden Algo_1 ----------------------------------------------------- #
+ModifyTrade(P0_Token = ,
+            P1_tradeID = ,
+            P2_SL = ,
+            P3_TP = )
 
-Algo_1PrecioAct <- ActualPrice(ON_At, ON_Ak, ON_In)$Bid
-Algo_1PrecioPro <- as.numeric(Estim_Algo1)
-Algo_1HoraAct <- as.POSIXct(Sys.timeDate(), origin = "1970-01-01")
-Algo_1HoraPro <- HoraPron
+# -- ----------------------------------------------------- Get Actual Trades of User -- #
 
-Algo_1ON_Sd <- ifelse(Algo_1PrecioAct < Algo_1PrecioPro, Algo_1ON_Sd <- "buy", Algo_1ON_Sd <- "sell")
-Algo_1ON_Sd <- Algo_1ON_Sd
-Algo_1ON_Ex <- "2016-01-28 19:00:00"  # Fecha de Caducidad para ejecucion (Si aplica)
-Algo_1ON_Ts <- 50       # Trailing Stop
-Algo_1ON_Ct <- 10       # Cantidad de Titulos para Operacion 
-Algo_1ON_Ot <- "market" # Tipo de Operacion
+GetTrades(UserID = )
 
-Algo_1ON_Pr <- Algo_1PrecioAct  # Precio para Operacion
-Algo_1ON_Sl <- ifelse(Algo_1ON_Sd=="sell",Algo_1PrecioAct+0.0030,Algo_1PrecioAct-0.0030) # Stop Loss
-Algo_1ON_Tp <- ifelse(Algo_1ON_Sd=="sell",Algo_1PrecioAct-0.0030,Algo_1PrecioAct+0.0030) # Take Profit
-Algo_1ON_Oi <- 10086591560 # Orden ID (Si aplica) 
+# -- -------------------------------------------------- Get Actual Prices For Symbol -- #
 
-# -- Revisión de Estado de Cuenta ---------------------------------------------------- #
+GetSymbol(Instrument = )
 
-# AccountInfo
-InfoCuenta  <- AccountInfo(ON_At,ON_Ai,ON_Ak) # Balance Disponible en Cuenta
-InfoCuenta
+# -- ------------------------------------------------- Get History Prices For Symbol -- #
 
-# Peticion de Ordenes Abiertas 
-InfoOrdenes <- AccountOrders(ON_At,ON_Ai,ON_Ak,ON_In)       # Ordenes Abiertas
-InfoOrdenes
 
-# -- Colocacion de Operacion --------------------------------------------------------- #
-
-# Nueva Orden de Mercado: Algo_0
-InfoNuevaOp0 <- NewOrder(AccountType=ON_At, AccountID=ON_Ai, Token=ON_Ak,
-                        OrderType=Algo_0ON_Ot, Instrument=ON_In, Count=Algo_0ON_Ct,
-                        Side=Algo_0ON_Sd,  SL=Algo_0ON_Sl, TP=Algo_0ON_Tp,
-                        TS=Algo_0ON_Ts)
-InfoNuevaOp0
-
-InfoNuevaOp1 <- NewOrder(AccountType=ON_At, AccountID=ON_Ai, Token=ON_Ak,
-                        OrderType=Algo_1ON_Ot, Instrument=ON_In, Count=Algo_1ON_Ct,
-                        Side=Algo_1ON_Sd,  SL=Algo_1ON_Sl, TP=Algo_1ON_Tp,
-                        TS=Algo_1ON_Ts)
-InfoNuevaOp1
-
-# Nueva Orden Limite / marketIfTouched / Stop
-#NewOrder(ONAT,ONAI,ONAK,ON_Ot,ON_In,ON_Ct,ON_Sd, ON_Ex, ON_Pr, ON_Sl, ON_Tp, ON_Ts)
-
-# Cerrar Orden especifica  Error: NOT_FOUND
-#CloseOrder(ONAT, ONAI, ONAK,a[[1]]$id[1])
-
-#ModifyOrder(ONAT, ONAI, ONAK, ON_Oi, ON_Ct, ON_Pr, ON_Ex, ON_Sl, ON_Tp, ON_Ts)
 
