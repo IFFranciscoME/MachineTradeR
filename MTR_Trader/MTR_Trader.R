@@ -5,23 +5,6 @@
 # -- License: MIT ------------------------------------------------------------------ -- #
 # ------------------------------------------------------------------------------------- #
 
-# -- ---------------------------------------------------- Generate Trading Pal Token -- #
-
-Francisco <- GetToken(Email = "francisco@tradingpal.com",
-                        Pass = "Periodo00TP.")
-
-SONNY$Token <- GetToken(Email = SONNY$Email,
-                       Pass = SONNY$TPPass)
-
-ROBBY$Token <- GetToken(Email = ROBBY$Email,
-                         Pass = ROBBY$TPPass)
-
-# -- -------------------------------------------------- Get Actual Prices For Symbol -- #
-
-EURUSD <- GetSymbol(Instrument = "EURUSD")
-EURUSD$Bid
-EURUSD$Ask
-
 # -- -------------------------------------------------------------------- Open Trade -- #
 
 TradeSONNY <- OpenTrade(P0_Token = as.character(SONNY$Token$Token),

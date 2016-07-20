@@ -14,7 +14,20 @@ TP_Gral_Trades <- list("BENDER" = GetTrades(BENDER$TPUID),
                        "ROBBY" = GetTrades(ROBBY$TPUID),
                        "SONNY" = GetTrades(SONNY$TPUID))
 
+# -- ---------------------------------------------------- Generate Trading Pal Token -- #
 
+SONNY$Token <- GetToken(Email = SONNY$Email,
+                        Pass = SONNY$TPPass)
+
+ROBBY$Token <- GetToken(Email = ROBBY$Email,
+                        Pass = ROBBY$TPPass)
+
+BENDER$Token <- GetToken(Email = BENDER$Email,
+                         Pass = BENDER$TPPass)
+
+# -- -------------------------------------------------- Get Actual Prices For Symbol -- #
+
+EURUSD <- GetSymbol(Instrument = "EURUSD")
 
 
 
