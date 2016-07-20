@@ -7,5 +7,5 @@
 
 # -- ---------------------------------------------------- Generate Trading Pal Token -- #
 
-GetToken(SONNY$Email, SONNY$TPPass)
+
 
