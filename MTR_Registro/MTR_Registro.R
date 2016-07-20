@@ -14,6 +14,15 @@
 # -- -------------------------------------------------------- BENDER (Benito Derman) -- #
 # -- Regresion Lineal Multiple de Variables Endogenas ------------------------------ -- #
 
+KARENM <- list(Email = "",
+               EmailPass = "",
+               TPName = "",
+               TPPass = "",
+               TPUID = "03b2f97d-020d-4bcd-bdda-5a575bda4a48")
+
+# -- -------------------------------------------------------- BENDER (Benito Derman) -- #
+# -- Regresion Lineal Multiple de Variables Endogenas ------------------------------ -- #
+
 BENDER <- list(Email = "benito.derman@gmail.com",
                EmailPass = "BENDER1.",
                TPName = "Benito Derman",

@@ -18,4 +18,3 @@ TP_Gral_Trades <- list("BENDER" = GetTrades(BENDER$TPUID),
 
 
 
-

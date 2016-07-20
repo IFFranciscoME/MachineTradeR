@@ -33,27 +33,33 @@ TradeSONNY <- OpenTrade(P0_Token = as.character(SONNY$Token$Token),
 
 TradeROBBY <- OpenTrade(P0_Token = as.character(ROBBY$Token$Token),
                         P1_symbol = "EURUSD",
-                        P2_sl =  2,
-                        P3_tp = 1,
+                        P2_sl = 1,
+                        P3_tp = 2,
                         P4_lots = 0.1,
-                        P5_op_type = "sell")
+                        P5_op_type = "buy")
 
 # -- ------------------------------------------------------------------- Close Trade -- #
 
 CloseTrade(P0_Token = SONNY$Token$Token,
            P1_tradeID = TradeSONNY$id,
-           P2_userID =  SONNY$TPUID
-           )
+           P2_userID =  SONNY$TPUID )
 
 CloseTrade(P0_Token = ROBBY$Token$Token,
            P1_tradeID = TradeROBBY$id,
-           P2_userID =  ROBBY$TPUID
-           )
+           P2_userID =  ROBBY$TPUID )
 
 # -- ------------------------------------------------------------------- Open Trades -- #
 
-GetTrades(SONNY$TPUID)
-GetTrades(ROBBY$TPUID)
+TradeSONNY <- GetTrades(SONNY$TPUID)
+TradeROBBY <- GetTrades(ROBBY$TPUID)
+
+# -- --------------------------------------------------------------- Account Balance -- #
+
+AccBalSONNY <- GetAccountBalance(P0_Token = SONNY$Token$Token,
+                                 P1_userID = SONNY$TPUID)
+
+AccBalROBBY <- GetAccountBalance(P0_Token = ROBBY$Token$Token,
+                                 P1_userID = ROBBY$TPUID)
 
 # -- ---------------------------------------------------------------- Get Trade Info -- #
 
@@ -75,4 +81,11 @@ View(GetTrades(UserID = ROBBY$TPUID))
 
 # -- ------------------------------------------------- Get History Prices For Symbol -- #
 
+# -- -------------------------------------------------------------- Get Account Info -- #
+
+AccInfoSONNY <- GetAccountInfo(P0_Token = SONNY$Token$Token,
+                               P1_userID = SONNY$TPUID)
+
+AccInfoROBBY <- GetAccountInfo(P0_Token = ROBBY$Token$Token,
+                               P1_userID = ROBBY$TPUID)
 
