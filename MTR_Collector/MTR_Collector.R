@@ -13,3 +13,9 @@ TP_Gral_Precios <- list("EURUSD" = GetSymbol("EURUSD")[3:4],
 TP_Gral_Trades <- list("BENDER" = GetTrades(BENDER$TPUID),
                        "ROBBY" = GetTrades(ROBBY$TPUID),
                        "SONNY" = GetTrades(SONNY$TPUID))
+
+
+
+
+
+

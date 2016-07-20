@@ -43,6 +43,10 @@ source('~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Collector/MTR_Collect
 # -- Ejecutar Algoritmos para generacion de señales --------------------- MTR_Algos -- #
 # -- ------------------------------------------------------------------------------ -- #
 
+source('~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_Algo_BENDER.R')
+source('~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_Algo_SONNY.R')
+source('~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_Algo_ROBBY.R')
+
 #source('~/Documents/GitHub/MachineTradeR/MTR_Algos/MTR_Algo_0.R', echo=FALSE)
 #source('~/Documents/GitHub/MachineTradeR/MTR_Algos/MTR_Algo_1.R', echo=FALSE)
 #source('~/Documents/GitHub/MachineTradeR/MTR_Algos/MTR_Algo_2.R', echo=FALSE)

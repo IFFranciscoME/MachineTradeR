@@ -16,22 +16,6 @@ SONNY$Token <- GetToken(Email = SONNY$Email,
 ROBBY$Token <- GetToken(Email = ROBBY$Email,
                          Pass = ROBBY$TPPass)
 
-# -- ------------------------------------------------------------------- Close Trade -- #
-
-CloseTrade(P0_Token = ,
-           P1_symbol = ,
-           P2_sl =  ,
-           P3_tp = ,
-           P4_lots = ,
-           P5_op_type = )
-
-CloseTrade(P0_Token = ,
-           P1_symbol = ,
-           P2_sl =  ,
-           P3_tp = ,
-           P4_lots = ,
-           P5_op_type = )
-
 # -- -------------------------------------------------- Get Actual Prices For Symbol -- #
 
 EURUSD <- GetSymbol(Instrument = "EURUSD")
@@ -40,40 +24,42 @@ EURUSD$Ask
 
 # -- -------------------------------------------------------------------- Open Trade -- #
 
-OpenTrade(P0_Token = as.character(SONNY$Token$Token),
-          P1_symbol = "EURUSD",
-          P2_sl = EURUSD$Bid - 0.0010 ,
-          P3_tp = EURUSD$Bid + 0.0013,
-          P4_lots = 0.1,
-          P5_op_type = "sell")
+TradeSONNY <- OpenTrade(P0_Token = as.character(SONNY$Token$Token),
+                        P1_symbol = "EURUSD",
+                        P2_sl = 2 ,
+                        P3_tp = 1,
+                        P4_lots = 0.1,
+                        P5_op_type = "sell")
 
-OpenTrade(P0_Token = as.character(ROBBY$Token$Token),
-          P1_symbol = "EURUSD",
-          P2_sl =  EURUSD$Ask - 0.0010,
-          P3_tp = EURUSD$Ask  + 0.0013,
-          P4_lots = 0.1,
-          P5_op_type = "sell")
+TradeROBBY <- OpenTrade(P0_Token = as.character(ROBBY$Token$Token),
+                        P1_symbol = "EURUSD",
+                        P2_sl =  2,
+                        P3_tp = 1,
+                        P4_lots = 0.1,
+                        P5_op_type = "sell")
 
-P0_Token = as.character(SONNY$Token$Token)
-P1_symbol = "EURUSD"
-P2_sl = EURUSD$Ask - 0.0010
-P3_tp = EURUSD$Ask  + 0.0013
-P4_lots = 0.1
-P5_op_type = "buy"
+# -- ------------------------------------------------------------------- Close Trade -- #
 
-http  <- "www.tradingpal.com/api/trades/?token="
-http2 <- paste(http,P0_Token,sep="")
-Param <- c(symbol=P1_symbol,sl=P2_sl,tp=P3_tp,lots=P4_lots,op_type=P5_op_type)
-PF <- postForm(http2, style="POST", .params=Param,
-               .opts=list(ssl.verifypeer = TRUE))
-RetJson <- fromJSON(PF, simplifyDataFrame = TRUE)
+CloseTrade(P0_Token = SONNY$Token$Token,
+           P1_tradeID = TradeSONNY$id,
+           P2_userID =  SONNY$TPUID
+           )
 
+CloseTrade(P0_Token = ROBBY$Token$Token,
+           P1_tradeID = TradeROBBY$id,
+           P2_userID =  ROBBY$TPUID
+           )
+
+# -- ------------------------------------------------------------------- Open Trades -- #
+
+GetTrades(SONNY$TPUID)
+GetTrades(ROBBY$TPUID)
 
 # -- ---------------------------------------------------------------- Get Trade Info -- #
 
-GetTradeInfo(P0_Token = ,
-             P1_tradeID = ,
-             P2_userID = )
+GetTradeInfo(P0_Token = SONNY$Token$Token,
+             P1_tradeID = "dc68bca7-a8ff-4eb2-8e97-a2aef5642f4b-1469018679325",
+             P2_userID = SONNY$TPUID)
 
 # -- ------------------------------------------------------------- Modify Trade Info -- #
 
@@ -88,6 +74,5 @@ View(GetTrades(UserID = SONNY$TPUID))
 View(GetTrades(UserID = ROBBY$TPUID))
 
 # -- ------------------------------------------------- Get History Prices For Symbol -- #
-
 
 
