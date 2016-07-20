@@ -25,30 +25,30 @@ EURUSD$Ask
 # -- -------------------------------------------------------------------- Open Trade -- #
 
 TradeSONNY <- OpenTrade(P0_Token = as.character(SONNY$Token$Token),
-                        P1_symbol = "EURUSD",
+                        P1_symbol = "AUDUSD",
                         P2_sl = 2 ,
                         P3_tp = 1,
                         P4_lots = 0.5,
                         P5_op_type = "sell")
 
 TradeROBBY <- OpenTrade(P0_Token = as.character(ROBBY$Token$Token),
-                        P1_symbol = "EURUSD",
+                        P1_symbol = "AUDUSD",
                         P2_sl = 1,
                         P3_tp = 2,
                         P4_lots = 0.5,
                         P5_op_type = "buy")
 
 TradeSONNY <- OpenTrade(P0_Token = as.character(SONNY$Token$Token),
-                        P1_symbol = "GBPUSD",
-                        P2_sl = 1 ,
-                        P3_tp = 2,
+                        P1_symbol = "NZDUSD",
+                        P2_sl = 0 ,
+                        P3_tp = 0,
                         P4_lots = 0.5,
                         P5_op_type = "buy")
 
 TradeROBBY <- OpenTrade(P0_Token = as.character(ROBBY$Token$Token),
-                        P1_symbol = "GBPUSD",
-                        P2_sl = 2,
-                        P3_tp = 1,
+                        P1_symbol = "NZDUSD",
+                        P2_sl = 0,
+                        P3_tp = 0,
                         P4_lots = 0.5,
                         P5_op_type = "sell")
 
@@ -85,10 +85,7 @@ GetTradeInfo(P0_Token = SONNY$Token$Token,
 
 # -- ------------------------------------------------------------- Modify Trade Info -- #
 
-ModifyTrade(P0_Token = ,
-            P1_tradeID = ,
-            P2_SL = ,
-            P3_TP = )
+ModifyTrade(P0_Token, P1_tradeID, P2_SL, P3_TP)
 
 # -- ----------------------------------------------------- Get Actual Trades of User -- #
 
@@ -102,4 +99,3 @@ AccInfoSONNY <- GetAccountInfo(P0_Token = SONNY$Token$Token,
 
 AccInfoROBBY <- GetAccountInfo(P0_Token = ROBBY$Token$Token,
                                P1_userID = ROBBY$TPUID)
-
