@@ -28,38 +28,54 @@ TradeSONNY <- OpenTrade(P0_Token = as.character(SONNY$Token$Token),
                         P1_symbol = "EURUSD",
                         P2_sl = 2 ,
                         P3_tp = 1,
-                        P4_lots = 0.1,
+                        P4_lots = 0.5,
                         P5_op_type = "sell")
 
 TradeROBBY <- OpenTrade(P0_Token = as.character(ROBBY$Token$Token),
                         P1_symbol = "EURUSD",
                         P2_sl = 1,
                         P3_tp = 2,
-                        P4_lots = 0.1,
+                        P4_lots = 0.5,
                         P5_op_type = "buy")
+
+TradeSONNY <- OpenTrade(P0_Token = as.character(SONNY$Token$Token),
+                        P1_symbol = "GBPUSD",
+                        P2_sl = 1 ,
+                        P3_tp = 2,
+                        P4_lots = 0.5,
+                        P5_op_type = "buy")
+
+TradeROBBY <- OpenTrade(P0_Token = as.character(ROBBY$Token$Token),
+                        P1_symbol = "GBPUSD",
+                        P2_sl = 2,
+                        P3_tp = 1,
+                        P4_lots = 0.5,
+                        P5_op_type = "sell")
 
 # -- ------------------------------------------------------------------- Close Trade -- #
 
 CloseTrade(P0_Token = SONNY$Token$Token,
-           P1_tradeID = TradeSONNY$id,
+           P1_tradeID = TradeSONNY$id[1],
            P2_userID =  SONNY$TPUID )
 
 CloseTrade(P0_Token = ROBBY$Token$Token,
-           P1_tradeID = TradeROBBY$id,
+           P1_tradeID = TradeROBBY$id[1],
            P2_userID =  ROBBY$TPUID )
 
-# -- ------------------------------------------------------------------- Open Trades -- #
+# -- -------------------------------------------------------------------- Get Trades -- #
 
 TradeSONNY <- GetTrades(SONNY$TPUID)
 TradeROBBY <- GetTrades(ROBBY$TPUID)
 
-# -- --------------------------------------------------------------- Account Balance -- #
+# -- ----------------------------------------------------------- Get Account Balance -- #
 
 AccBalSONNY <- GetAccountBalance(P0_Token = SONNY$Token$Token,
                                  P1_userID = SONNY$TPUID)
+AccBalSONNY$balance
 
 AccBalROBBY <- GetAccountBalance(P0_Token = ROBBY$Token$Token,
                                  P1_userID = ROBBY$TPUID)
+AccBalROBBY$balance
 
 # -- ---------------------------------------------------------------- Get Trade Info -- #
 
@@ -78,8 +94,6 @@ ModifyTrade(P0_Token = ,
 
 View(GetTrades(UserID = SONNY$TPUID))
 View(GetTrades(UserID = ROBBY$TPUID))
-
-# -- ------------------------------------------------- Get History Prices For Symbol -- #
 
 # -- -------------------------------------------------------------- Get Account Info -- #
 
