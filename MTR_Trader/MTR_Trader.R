@@ -21,19 +21,12 @@ TradeROBBY <- OpenTrade(P0_Token = as.character(ROBBY$Token$Token),
                         P4_lots = 0.5,
                         P5_op_type = "buy")
 
-TradeSONNY <- OpenTrade(P0_Token = as.character(SONNY$Token$Token),
-                        P1_symbol = "NZDUSD",
+TradeBENDER <- OpenTrade(P0_Token = as.character(BENDER$Token$Token),
+                        P1_symbol = "USDCAD",
                         P2_sl = 0 ,
                         P3_tp = 0,
-                        P4_lots = 0.5,
+                        P4_lots = 0.1,
                         P5_op_type = "buy")
-
-TradeROBBY <- OpenTrade(P0_Token = as.character(ROBBY$Token$Token),
-                        P1_symbol = "NZDUSD",
-                        P2_sl = 0,
-                        P3_tp = 0,
-                        P4_lots = 0.5,
-                        P5_op_type = "sell")
 
 # -- ------------------------------------------------------------------- Close Trade -- #
 

@@ -8,9 +8,9 @@
 PrecioCl  <- data.frame(OA_PHM15$TimeStamp, round(OA_PHM15$Close,4))
 colnames(PrecioCl) <- c("TimeStamp","PrecioCl")
 
-Reg  <- c()
-Par1 <- 60
-Par2 <- .90
+Reg  <- c() # Auxiliar
+Par1 <- 60  # Resago Maximo
+Par2 <- .90 # Nivel de Confianza Coeficientes de RLM
 
 ResagosCl  <- data.frame(cbind(PrecioCl[,1:2],Lag(x=PrecioCl$PrecioCl,k=1:Par1)))
 ResagosCl  <- ResagosCl[complete.cases(ResagosCl),]
@@ -54,6 +54,20 @@ EcuacionRLM$VResago <- as.numeric(EcuacionRLM$VResago)
 EcuacionRLM$VCoeficiente <- as.numeric(EcuacionRLM$VCoeficiente)
 EcuacionRLM$Nombre <- names(TotalCoefs)
 
+# -- Extraccion de Valor Final -------------------------------------------------------- #
+
 Valor <- sum(as.numeric(EcuacionRLM[,1])*as.numeric(EcuacionRLM[,2]))
+MTR_Algo_BENDER_S <- data.frame(
+  ifelse(PrecioCl$PrecioCl[length(PrecioCl$TimeStamp)] < Valor, "buy","sell"),
+  round(abs(PrecioCl$PrecioCl[length(PrecioCl$TimeStamp)] - Valor),5),
+  "1 = Compra, 0 = Venta",
+  OA_In,OA_Gn)
+
+colnames(MTR_Algo_BENDER_S) <- c("Accion","(Est - Ult)",
+                                 "Explicacion","Instrumento","Periodicidad")
+
+# -- Colocacion de orden ------------------------------------------------------------- #
+
+TradesBENDER <- GetTrades(BENDER$TPUID)
 
 
