@@ -48,3 +48,12 @@ EcuacionRLM <- data.frame(matrix(ncol = 2, nrow = NCoefs))  # Data.Frame para Ec
 colnames(EcuacionRLM) <- c("VCoeficiente","VResago")
 
 EcuacionRLM$VCoeficiente  <- CoefSign
+
+for(i in 1:NCoefs) EcuacionRLM$VResago[i] <- last(ResagosCl)[,-c(1,2)][i]
+EcuacionRLM$VResago <- as.numeric(EcuacionRLM$VResago)
+EcuacionRLM$VCoeficiente <- as.numeric(EcuacionRLM$VCoeficiente)
+EcuacionRLM$Nombre <- names(TotalCoefs)
+
+Valor <- sum(as.numeric(EcuacionRLM[,1])*as.numeric(EcuacionRLM[,2]))
+
+

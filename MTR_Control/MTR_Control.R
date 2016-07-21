@@ -34,22 +34,23 @@ downloader::source_url(ROandaAPI,prompt=FALSE,quiet=TRUE)
 # -- Informacion de cuentas a utilizar -------------------------------- MTR_Registro -- #
 # -- ------------------------------------------------------------------------------- -- #
 
-source("C:/TradingPal/BitBucket/MachineTradeR/MTR_Registro/MTR_Registro.R")
-#source("~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Registro/MTR_Registro.R")
+#source("C:/TradingPal/BitBucket/MachineTradeR/MTR_Registro/MTR_Registro.R")
+source("~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Registro/MTR_Registro.R")
 
 # -- ETAPA 2 ----------------------------------------------------------------------- -- #
 # -- Recolectar Datos para uso en Sistema ---------------------------- MTR_Collector -- #
 # -- ------------------------------------------------------------------------------- -- #
 
 #source("C:/TradingPal/BitBucket/MachineTradeR/MTR_Collector/MTR_Collector.R")
-#source('~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Collector/MTR_Collector.R')
+source('~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Collector/MTR_Collector.R')
 
 # -- ETAPA 3 ----------------------------------------------------------------------- -- #
 # -- Ejecutar Algoritmos para generacion de senales ---------------------- MTR_Algos -- #
 # -- ------------------------------------------------------------------------------- -- #
 
-source("C:/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_Algo_BENDER.R")
-#source('~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_Algo_BENDER.R')
+#source("C:/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_Algo_BENDER.R")
+source('~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_Algo_BENDER.R')
+
 #source('~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_Algo_SONNY.R')
 #source('~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_Algo_ROBBY.R')
 
