@@ -72,11 +72,11 @@ colnames(MTR_Algo_BENDER_S) <- c("Accion","(Est - Ult)",
 
 # -- Checar por operacion abierta y cerrarla ------------------------------------------ #
 
-TradesBENDER <- GetTrades(BENDER$TPUID)
+TradeBENDER <- GetTrades(BENDER$TPUID)
 
-if(TradesBENDER != "NA") {
+if(TradesBENDER$id == 0) {
   
-  NTrades <- as.numeric(length(TradesBENDER$id))
+  NTrades <- as.numeric(TradesBENDER$id)
 
 for(i in 1:NTrades)  {
   CloseTrade(P0_Token = BENDER$Token$Token,

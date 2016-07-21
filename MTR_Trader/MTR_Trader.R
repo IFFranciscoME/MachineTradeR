@@ -44,8 +44,9 @@ CloseTrade(P0_Token = BENDER$Token$Token,
 
 # -- -------------------------------------------------------------------- Get Trades -- #
 
-TradeSONNY <- GetTrades(SONNY$TPUID)
-TradeROBBY <- GetTrades(ROBBY$TPUID)
+TradeSONNY  <- GetTrades(SONNY$TPUID)
+TradeROBBY  <- GetTrades(ROBBY$TPUID)
+TradeBENDER <- GetTrades(BENDER$TPUID)
 
 # -- ----------------------------------------------------------- Get Account Balance -- #
 
