@@ -38,6 +38,10 @@ CloseTrade(P0_Token = ROBBY$Token$Token,
            P1_tradeID = TradeROBBY$id[1],
            P2_userID =  ROBBY$TPUID )
 
+CloseTrade(P0_Token = BENDER$Token$Token,
+           P1_tradeID = TradeBENDER$id[1],
+           P2_userID =  BENDER$TPUID )
+
 # -- -------------------------------------------------------------------- Get Trades -- #
 
 TradeSONNY <- GetTrades(SONNY$TPUID)

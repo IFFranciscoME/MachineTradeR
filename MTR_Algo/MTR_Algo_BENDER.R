@@ -63,11 +63,45 @@ MTR_Algo_BENDER_S <- data.frame(
   "1 = Compra, 0 = Venta",
   OA_In,OA_Gn)
 
+Instrumento <- paste(substr(OA_In,1,3),substr(OA_In,5,7),sep="")
+      
 colnames(MTR_Algo_BENDER_S) <- c("Accion","(Est - Ult)",
                                  "Explicacion","Instrumento","Periodicidad")
 
-# -- Colocacion de orden ------------------------------------------------------------- #
+# -- Preparacion de orden ------------------------------------------------------------- #
+
+# -- Checar por operacion abierta y cerrarla ------------------------------------------ #
 
 TradesBENDER <- GetTrades(BENDER$TPUID)
 
+if(TradesBENDER != "NA") {
+  
+  NTrades <- as.numeric(length(TradesBENDER$id))
 
+for(i in 1:NTrades)  {
+  CloseTrade(P0_Token = BENDER$Token$Token,
+             P1_tradeID = TradesBENDER$id[i],
+             P2_userID =  BENDER$TPUID)  }
+
+} else NTrades <- 0
+
+# -- Pedir Precio Actual 
+Act_Precio  <- GetSymbol("USDCAD") 
+# -- Obtener Precio Promedio de BID-ASK
+Prom_Precio <- (Act_Precio$Bid + Act_Precio$Ask)/2
+# -- Margen de Ganancia (En Pips)
+MargenGanancia <- 0.0020
+# -- Niveles c(TakeProfit, StopLoss) segun Senal
+ifelse(MTR_Algo_BENDER_S$Accion == "sell",
+       Niveles <- c(Prom_Precio - MargenGanancia, Prom_Precio + 0.0010), # sell
+       Niveles <- c(Prom_Precio + MargenGanancia, Prom_Precio - 0.0010)  # buy
+       )
+
+# -- Enviar Operacion ----------------------------------------------------------------- #
+
+TradeBENDER <- OpenTrade(P0_Token = as.character(BENDER$Token$Token),
+                         P1_symbol = Instrumento,
+                         P2_sl = Niveles[2] ,
+                         P3_tp = Niveles[1],
+                         P4_lots = 0.1,
+                         P5_op_type = MTR_Algo_BENDER_S$Accion)
