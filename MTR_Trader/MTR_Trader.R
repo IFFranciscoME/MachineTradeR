@@ -40,7 +40,7 @@ CloseTrade(P0_Token = ROBBY$Token$Token,
 
 CloseTrade(P0_Token = BENDER$Token$Token,
            P1_tradeID = TradeBENDER$id[1],
-           P2_userID =  BENDER$TPUID )
+           P2_userID =  BENDER$TPUID)
 
 # -- -------------------------------------------------------------------- Get Trades -- #
 
@@ -58,6 +58,10 @@ AccBalROBBY <- GetAccountBalance(P0_Token = ROBBY$Token$Token,
                                  P1_userID = ROBBY$TPUID)
 AccBalROBBY$balance
 
+AccBalBENDER <- GetAccountBalance(P0_Token = BENDER$Token$Token,
+                                 P1_userID = BENDER$TPUID)
+AccBalBENDER$balance
+
 # -- ---------------------------------------------------------------- Get Trade Info -- #
 
 GetTradeInfo(P0_Token = SONNY$Token$Token,
@@ -72,6 +76,7 @@ ModifyTrade(P0_Token, P1_tradeID, P2_SL, P3_TP)
 
 View(GetTrades(UserID = SONNY$TPUID))
 View(GetTrades(UserID = ROBBY$TPUID))
+View(GetTrades(UserID = BENDERY$TPUID))
 
 # -- -------------------------------------------------------------- Get Account Info -- #
 

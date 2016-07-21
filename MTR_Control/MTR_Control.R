@@ -40,7 +40,7 @@ source("~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Registro/MTR_Registro
 # -- ETAPA 2 ----------------------------------------------------------------------- -- #
 # -- Recolectar Datos para uso en Sistema ---------------------------- MTR_Collector -- #
 # -- ------------------------------------------------------------------------------- -- #
-
+OA_In <- "NZD_USD"
 #source("C:/TradingPal/BitBucket/MachineTradeR/MTR_Collector/MTR_Collector.R")
 source('~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Collector/MTR_Collector.R')
 

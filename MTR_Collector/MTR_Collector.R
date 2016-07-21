@@ -11,7 +11,7 @@ OA_At <- "practice"  # Account Type
 OA_Ai <- 1742531     # Account ID
 OA_Ak <- "ada4a61b0d5bc0e5939365e01450b614-4121f84f01ad78942c46fc3ac777baa6" # Acc Token
 
-OA_In <- "USD_CAD"  # Instrument: Instrumento OA_Financiero a utilizar.
+#OA_In <- "AUD_USD"  # Instrument: Instrumento OA_Financiero a utilizar.
 OA_Da <- 17
 OA_Ta <- "America%2FMexico_City" # Uso horario
 OA_Gn <- "H4"
@@ -44,6 +44,5 @@ BENDER$Token <- GetToken(Email = BENDER$Email,
 # -- -------------------------------------------------- Get Actual Prices For Symbol -- #
 
 EURUSD <- GetSymbol(Instrument = "EURUSD")
-
-
-
+AUDUSD <- GetSymbol(Instrument = "AUDUSD")
+NZDUSD <- GetSymbol(Instrument = "NZDUSD")
