@@ -5,9 +5,6 @@
 # -- License: MIT ----------------------------------------------------------------- -- #
 # ------------------------------------------------------------------------------------ #
 
-Fechas  <- c(as.numeric(as.POSIXct("2016-06-01", origin ="1970-01-01")), tz="UTC",
-             as.numeric(as.POSIXct("2016-06-05", origin ="1970-01-01")), tz="UTC")
-
 PrecioCl  <- data.frame(OA_PHM15$TimeStamp, round(OA_PHM15$Close,4))
 colnames(PrecioCl) <- c("TimeStamp","PrecioCl")
 

@@ -7,11 +7,9 @@
 
 # -- Inicializacion y Precios Historicos con OANDA --------------------------------- -- #
 
-OaTokens <- read.csv("C:/TradingPal/BitBucket/H00-BasePrecios/OandaTokens.csv")
-
-OA_At <- as.character(OaTokens[1,1])  # Account Type
-OA_Ai <- as.numeric(OaTokens[1,2])    # Account ID
-OA_Ak <- as.character(OaTokens[1,3])  # Account Token
+OA_At <- "practice"  # Account Type
+OA_Ai <- 1742531     # Account ID
+OA_Ak <- "ada4a61b0d5bc0e5939365e01450b614-4121f84f01ad78942c46fc3ac777baa6" # Acc Token
 
 OA_In <- "USD_CAD"  # Instrument: Instrumento OA_Financiero a utilizar.
 OA_Da <- 17
