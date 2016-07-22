@@ -16,7 +16,7 @@ OA_Da <- 17
 OA_Ta <- "America%2FMexico_City" # Uso horario
 OA_Gn <- "H4"
 
-OA_PHM15 <- HisPrices(OA_At,OA_Gn,OA_Da,OA_Ta,OA_Ak,OA_In,"2016-06-01", "2016-07-01")
+OA_PHM15 <- HisPrices(OA_At,OA_Gn,OA_Da,OA_Ta,OA_Ak,OA_In,"2016-06-01", "2016-07-21")
 
 
 # -- Precios Actuales con RTradingPalAPI ------------------------------------------- -- #

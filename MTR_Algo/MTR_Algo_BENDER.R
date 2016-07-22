@@ -99,7 +99,9 @@ ifelse(MTR_Algo_BENDER_S$Accion == "sell",
        Niveles <- c(Prom_Precio - MargenGanancia, Prom_Precio + MargenGanancia), # sell
        Niveles <- c(Prom_Precio + MargenGanancia, Prom_Precio - 0.0010)  # buy
        )
+
 MTR_Algo_BENDER_S$Accion
+
 # -- Enviar Operacion ----------------------------------------------------------------- #
 
 TradeBENDER <- OpenTrade(P0_Token = as.character(BENDER$Token$Token),
@@ -107,4 +109,4 @@ TradeBENDER <- OpenTrade(P0_Token = as.character(BENDER$Token$Token),
                          P2_sl = Niveles[2] ,
                          P3_tp = Niveles[1],
                          P4_lots = 0.1,
-                         P5_op_type = MTR_Algo_BENDER_S$Accion)
+                         P5_op_type = as.character(MTR_Algo_BENDER_S$Accion))
