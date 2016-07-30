@@ -5,12 +5,12 @@
 # -- License: MIT ----------------------------------------------------------------- -- #
 # ------------------------------------------------------------------------------------ #
 
-PrecioCl  <- data.frame(OA_PHM15$TimeStamp, round(OA_PHM15$Close,4))
+PrecioCl  <- data.frame(OA_PH$TimeStamp, round(OA_PH$Close,4))
 colnames(PrecioCl) <- c("TimeStamp","PrecioCl")
 
 Reg  <- c() # Auxiliar
-Par1 <- 60  # Resago Maximo
-Par2 <- .90 # Nivel de Confianza Coeficientes de RLM
+Par1 <- 98  # Resago Maximo
+Par2 <- .95 # Nivel de Confianza Coeficientes de RLM
 
 ResagosCl  <- data.frame(cbind(PrecioCl[,1:2],Lag(x=PrecioCl$PrecioCl,k=1:Par1)))
 ResagosCl  <- ResagosCl[complete.cases(ResagosCl),]
@@ -100,13 +100,23 @@ ifelse(MTR_Algo_BENDER_S$Accion == "sell",
        Niveles <- c(Prom_Precio + MargenGanancia, Prom_Precio - 0.0010)  # buy
        )
 
-MTR_Algo_BENDER_S$Accion
+as.character(MTR_Algo_BENDER_S$Instrumento)
+as.character(MTR_Algo_BENDER_S$Periodicidad)
+as.character(MTR_Algo_BENDER_S$Accion)
 
 # -- Enviar Operacion ----------------------------------------------------------------- #
 
 TradeBENDER <- OpenTrade(P0_Token = as.character(BENDER$Token$Token),
-                         P1_symbol = Instrumento,
-                         P2_sl = Niveles[2] ,
-                         P3_tp = Niveles[1],
+                         P1_symbol = "NZDUSD",
+                         P2_sl = 1 ,
+                         P3_tp = 0.5,
                          P4_lots = 0.1,
-                         P5_op_type = as.character(MTR_Algo_BENDER_S$Accion))
+                         P5_op_type = "sell")
+
+TradeBENDER <- OpenTrade(P0_Token = as.character(BENDER$Token$Token),
+                         P1_symbol = "NZDUSD",
+                         P2_sl = 0 ,
+                         P3_tp = 1,
+                         P4_lots = 0.1,
+                         P5_op_type = "buy")
+

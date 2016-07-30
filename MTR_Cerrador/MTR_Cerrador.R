@@ -38,45 +38,34 @@ downloader::source_url(RTradingPalAPI,prompt=FALSE,quiet=TRUE)
 # -- Pedir Informacion de Cuenta Maestra ---------------------------------- ETAPA 2 -- #
 # -- ------------------------------------------------------------------------------ -- #
 
-Arturo_H_ID <- "cb0d02c0-ad0d-4d89-bdf3-06e53b50a497"
-Arturo_O_ID <- "829510a1-ee7d-4f89-b4da-47571d554fe9"
-Jorge_H_ID  <- "5441b58e-b028-4e5c-8ad5-68390d1829b2"
-Luis_P_ID   <- "7a415842-c908-45c1-a1cf-f4bebda36d3c"
-Martin_A_ID <- "7a3ea650-5da0-4ca0-a339-68d31194221f"
+ArturoH_ID <- "cb0d02c0-ad0d-4d89-bdf3-06e53b50a497"
+ArturoO_ID <- "829510a1-ee7d-4f89-b4da-47571d554fe9"
+JorgeH_ID  <- "5441b58e-b028-4e5c-8ad5-68390d1829b2"
+LuisP_ID   <- "7a415842-c908-45c1-a1cf-f4bebda36d3c"
+MartinA_ID <- "7a3ea650-5da0-4ca0-a339-68d31194221f"
 
-BENDER_ID <- "a30fef87-e347-47d6-ad34-1d56c22dd2e7"
-ROBBY_ID  <- "25a0a507-eb09-4daa-ba9b-7e46e28447d7"
-SONNY_ID  <- "dc68bca7-a8ff-4eb2-8e97-a2aef5642f4b"
+ArturoH_Copiers <- GetAutoCopyUsers(ArturoH_ID)
+ArturoO_Copiers <- GetAutoCopyUsers(ArturoO_ID)
+JorgeH_Copiers  <- GetAutoCopyUsers(JorgeH_ID)
+LuisP_Copiers   <- GetAutoCopyUsers(LuisP_ID)
+MartinA_Copiers <- GetAutoCopyUsers(MartinA_ID)
 
-Copy1 <- GetAutoCopyUsers(Arturo_H_ID)
-Copy2 <- GetAutoCopyUsers(Arturo_O_ID)
-Copy3 <- GetAutoCopyUsers(Jorge_H_ID)
-Copy4 <- GetAutoCopyUsers(Luis_P_ID)
-Copy5 <- GetAutoCopyUsers(Martin_A_ID)
-Copy6 <- GetAutoCopyUsers(BENDER_ID)
-Copy7 <- GetAutoCopyUsers(ROBBY_ID)
-Copy8 <- GetAutoCopyUsers(SONNY_ID)
+ArturoH_Trades <- GetTrades(ArturoH_ID)
+ArturoO_Trades <- GetTrades(ArturoO_ID)
+JorgeH_Trades  <- GetTrades(JorgeH_ID)
+LuisP_Trades   <- GetTrades(LuisP_ID)
+MartinA_Trades <- GetTrades(MartinA_ID)
 
-Trades1 <- GetTrades(Arturo_H_ID)
-Trades2 <- GetTrades(Arturo_O_ID)
-Trades3 <- GetTrades(Jorge_H_ID)
-Trades4 <- GetTrades(Luis_P_ID)
-Trades6 <- GetTrades(BENDER_ID)
-Trades7 <- GetTrades(ROBBY_ID)
-Trades8 <- GetTrades(SONNY_ID)
+CerrarCopyOps <- function(Trader,OpID)  {
 
-
-Trades5 <- GetTrades(Martin_A_ID)
-
-CerrarCopyOps <- function(Trader,OpID){
-  
-  Trader <- Arturo_H_ID
-  OpID   <- 
-  
 return()
-}
+
+  }
 
 
+#BENDER_ID <- "a30fef87-e347-47d6-ad34-1d56c22dd2e7"
+#ROBBY_ID  <- "25a0a507-eb09-4daa-ba9b-7e46e28447d7"
+#SONNY_ID  <- "dc68bca7-a8ff-4eb2-8e97-a2aef5642f4b"
 # -- Cerrar todas las operaciones en la cuenta que sean copiadas desde cta primaria -- #
 
 # -- Paso 1) Solicitar Operaciones Abiertas -- #

@@ -23,8 +23,8 @@ TradeROBBY <- OpenTrade(P0_Token = as.character(ROBBY$Token$Token),
 
 TradeBENDER <- OpenTrade(P0_Token = as.character(BENDER$Token$Token),
                         P1_symbol = "NZDUSD",
-                        P2_sl = 0 ,
-                        P3_tp = 0,
+                        P2_sl = 0.5 ,
+                        P3_tp = 1,
                         P4_lots = 0.1,
                         P5_op_type = "sell")
 
@@ -47,8 +47,7 @@ CloseTrade(P0_Token = BENDER$Token$Token,
 TradeSONNY  <- GetTrades(SONNY$TPUID)
 TradeROBBY  <- GetTrades(ROBBY$TPUID)
 TradeBENDER <- GetTrades(BENDER$TPUID)
-Arturo_Hernandez_ID <- "cb0d02c0-ad0d-4d89-bdf3-06e53b50a497"
-Trades <- GetTrades(Arturo_Hernandez_ID)
+
 # -- ----------------------------------------------------------- Get Account Balance -- #
 
 AccBalSONNY <- GetAccountBalance(P0_Token = SONNY$Token$Token,

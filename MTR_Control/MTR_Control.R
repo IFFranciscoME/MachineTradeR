@@ -12,10 +12,10 @@
 rm(list=ls())
 
 pkg <- c("base","downloader","dplyr","fBasics","forecast","googlesheets","grid",
-         "gridExtra","httr","h2o","jsonlite","knitr","lubridate","moments","matrixStats",
-         "PerformanceAnalytics","plyr","quantmod","randomForest","reshape2","RCurl",
-         "stats","scales","sendmailR", "mailR","tree","tseries","TTR","TSA","twitteR",
-         "XML","xts","xlsx","zoo")
+         "gridExtra","httr","h2o","jsonlite","knitr","lmtest","lubridate","moments",
+         "matrixStats", "PerformanceAnalytics","plyr","quantmod","randomForest",
+         "reshape2","RCurl","stats","scales","sendmailR", "mailR","tree","tseries",
+         "TTR","TSA","twitteR","XML","xts","xlsx","zoo")
 
 inst <- pkg %in% installed.packages()
 if(length(pkg[!inst]) > 0) install.packages(pkg[!inst])
@@ -40,7 +40,7 @@ source("~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Registro/MTR_Registro
 # -- ETAPA 2 ----------------------------------------------------------------------- -- #
 # -- Recolectar Datos para uso en Sistema ---------------------------- MTR_Collector -- #
 # -- ------------------------------------------------------------------------------- -- #
-OA_In <- "NZD_USD"
+
 #source("C:/TradingPal/BitBucket/MachineTradeR/MTR_Collector/MTR_Collector.R")
 source('~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Collector/MTR_Collector.R')
 
@@ -49,7 +49,7 @@ source('~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Collector/MTR_Collect
 # -- ------------------------------------------------------------------------------- -- #
 
 #source("C:/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_Algo_BENDER.R")
-source('~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_Algo_BENDER.R')
+#source('~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_Algo_BENDER.R')
 
 #source('~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_Algo_SONNY.R')
 #source('~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_Algo_ROBBY.R')
