@@ -81,11 +81,11 @@ rm(list=setdiff(ls(), c("Datos","Reg","Par1","Par2")))
 load("~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_BENDER_BackTest(Data).RData")
 
 Reg  <- c() # Auxiliar
-Par1 <- 30  # Resago Maximo
+Par1 <- 150  # Resago Maximo
 Par2 <- .90 # Nivel de Confianza Coeficientes de RLM
 
 BENDER00  <- function(DatosEntrada){
- 
+
   DatosE  <- DatosEntrada
   RendCl  <- data.frame(DatosE$TimeStamp[-1], round(diff(log(DatosE$Close)),4))
   colnames(RendCl) <- c("TimeStamp","RendCl")
@@ -113,29 +113,48 @@ BENDER00  <- function(DatosEntrada){
   
   DatosRLM[,3:5] <- round(DatosRLM[,3:5],4)
   colnames(DatosRLM) <- c("TimeStamp","RendCl","fit","lwr","upr")
-  DatosRLM$RealSide  <- ifelse(DatosRLM$RendCl > 0, 1, 0)
-  DatosRLM$PronSide  <- ifelse(DatosRLM$fit > 0, 1, 0)
-  
+
   NCoefs      <- as.numeric(length(CoefSign))
   EcuacionRLM <- data.frame(matrix(ncol = 2, nrow = NCoefs))
   colnames(EcuacionRLM) <- c("VCoeficiente","VResago")
   
   EcuacionRLM$VCoeficiente <- CoefSign
   
-  for(i in 1:NCoefs) EcuacionRLM$VResago[i] <- last(DatosRLM)[,-c(1,2)][i]
+  for(i in 1:NCoefs) EcuacionRLM$VResago[i] <- last(RendLag)[,-c(1,2)][i]
   EcuacionRLM$VResago <- as.numeric(EcuacionRLM$VResago)
   EcuacionRLM$VCoeficiente <- as.numeric(EcuacionRLM$VCoeficiente)
   EcuacionRLM$Nombre  <- names(TotalCoefs)
-
+  
 return(EcuacionRLM)
 }
 
-DatosE <- rbind(data.frame(Datos$Datos10[1]),data.frame(Datos$Datos10[2]))
-Res1   <- BENDER00(DatosE)
-Valor  <- ifelse(sum(as.numeric(Res1[,1])*as.numeric(Res1[,2]))>0,1,0)
+# -- Con datos de 2010-02-22 00:00:00 hasta 2010-03-31 23:00:00 se hace construye la 
+# -- ecuacion lineal para hacer la prediccion del precio de cierre para el siguiente 
+# -- periodo que es 2010-04-01 00:00:00
 
-DatosN <- data.frame(Datos$Datos10[3])
-first(DatosN$Close) - first(DatosN$Open)
+# -- Datos de entrada para algoritmo -- #
+Datos_Ent  <- rbind(data.frame(Datos$Datos10[1]),data.frame(Datos$Datos10[2]))
+# -- Ecuacion resultante de algoritmo
+Modelo_Ent <- BENDER00(DatE)
 
+# -- Datos para prueba fuera de muestra
 
+Datos_Val  <- rbind(data.frame(Datos$Datos10[1]),data.frame(Datos$Datos10[2]),
+                    data.frame(Datos$Datos10[3])[1,])
+
+Datos_Val <- data.frame(Datos_Val$TimeStamp[-1], round(diff(log(Datos_Val$Close)),4))
+colnames(Datos_Val) <- c("TimeStamp","RendCl")
+Datos_Val <- data.frame(cbind(Datos_Val[,1:2],Lag(x=Datos_Val$RendCl,k=1:Par1)))
+Datos_Val <- Datos_Val[complete.cases(Datos_Val),]
+
+Datos_Val_Modelo <- c()
+
+for(i in 1:length(Modelo_Ent[,1]))
+{
+  Datos_Val_Modelo[i] <- which(colnames(Datos_Val) == Modelo_Ent$Nombre[i])
+}
+
+Datos_Val <- last(Datos_Val[,c(1,2,Datos_Val_Modelo)])
+
+Valor <- sum(as.numeric(EcuacionRLM[,1])*as.numeric(EcuacionRLM[,2]))
 
