@@ -40,10 +40,6 @@ OA_In <- "AUD_USD"
 OA_Fi <- "2013-01-01" # Fecha Inicial
 OA_Ff <- "2016-07-01" # Fecha Final
 
-Reg  <- c() # Auxiliar
-Par1 <- 98  # Resago Maximo
-Par2 <- .95 # Nivel de Confianza Coeficientes de RLM
-
 # -- ------------------------------------------------------------------------ --------- #
 # -- -- Datos de Entrada y Calculos Basicos --------------------------------- -- 2.0 -- #
 # -- ------------------------------------------------------------------------ --------- #
@@ -76,34 +72,70 @@ for(i in 1:12) {
                               month(OA_PH$TimeStamp) == Months[i]), ] }
 }
 
-rm(list=ls(Datos, OA_PH))
+rm(list=setdiff(ls(), c("Datos","Reg","Par1","Par2")))
 
 # -- ------------------------------------------------------------------------ --------- #
 # -- -- Algoritmo ----------------------------------------------------------- -- 4.0 -- #
 # -- ------------------------------------------------------------------------ --------- #
 
-PreciosCl  <- data.frame(DatosG$Datos2014[1],DatosG$Datos2014[1])
-PreciosCl  <- data.frame(PrecioCl$TimeStamp, PrecioCl$PrecioCl)
-colnames(PrecioCl) <- c("TimeStamp","PrecioCl")
+load("~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_BENDER_BackTest(Data).RData")
 
-RCl  <- data.frame(cbind(PrecioCl[,1:2],Lag(x=PrecioCl$PrecioCl,k=1:Par1)))
+Reg  <- c() # Auxiliar
+Par1 <- 30  # Resago Maximo
+Par2 <- .90 # Nivel de Confianza Coeficientes de RLM
 
-RCl  <- RCl[complete.cases(RCl),]
-RCl$TimeStamp <- RCl$TimeStamp
-
-
-for(i in 1:Par1){
-  RegMultCl <- lm(PrecioCl ~. -TimeStamp -1, data = RCL, method = "qr")
-  SumRegMultCl <- summary(RegMultCl)
-  TotalCoefs   <- coef(SumRegMultCl)[, "Pr(>|t|)"]
+BENDER00  <- function(DatosEntrada){
+ 
+  DatosE  <- DatosEntrada
+  RendCl  <- data.frame(DatosE$TimeStamp[-1], round(diff(log(DatosE$Close)),4))
+  colnames(RendCl) <- c("TimeStamp","RendCl")
   
-  if(any(TotalCoefs >= (1-Par2))){
-    MaxCoef   <- which(colnames(RCL)==names(TotalCoefs[
-      which(TotalCoefs==max(TotalCoefs))]))
-    RCL <- subset(RCL, select = -MaxCoef , drop = TRUE )
-    Reg[i]    <- names(TotalCoefs[which(TotalCoefs == max(TotalCoefs))])
-  }}
+  RendLag <- data.frame(cbind(RendCl[,1:2],Lag(x=RendCl$RendCl,k=1:Par1)))
+  RendLag <- RendLag[complete.cases(RendLag),]
+  
+  for(i in 1:Par1)
+  {
+    RegMultCl    <- lm(RendCl~. -TimeStamp -1, data = RendLag)
+    SumRegMultCl <- summary(RegMultCl)
+    TotalCoefs   <- coef(SumRegMultCl)[, "Pr(>|t|)"]
+  
+    if(any(TotalCoefs >= (1-Par2)))
+    {
+      MaxCoef <- which(colnames(RendLag) == names(TotalCoefs[which.max(TotalCoefs)]))
+      RendLag <- subset(RendLag, select = -MaxCoef , drop = TRUE )
+      Reg[i]  <- names(TotalCoefs[which(TotalCoefs == max(TotalCoefs))])
+    }
+  }
+  
+  CoefSign <- SumRegMultCl$coefficients[1:length(TotalCoefs)]
+  DatosRLM <- data.frame(RendLag$TimeStamp, round(RendLag$RendCl,5),
+                         predict(RegMultCl, RendLag, interval="predict", level=Par2))
+  
+  DatosRLM[,3:5] <- round(DatosRLM[,3:5],4)
+  colnames(DatosRLM) <- c("TimeStamp","RendCl","fit","lwr","upr")
+  DatosRLM$RealSide  <- ifelse(DatosRLM$RendCl > 0, 1, 0)
+  DatosRLM$PronSide  <- ifelse(DatosRLM$fit > 0, 1, 0)
+  
+  NCoefs      <- as.numeric(length(CoefSign))
+  EcuacionRLM <- data.frame(matrix(ncol = 2, nrow = NCoefs))
+  colnames(EcuacionRLM) <- c("VCoeficiente","VResago")
+  
+  EcuacionRLM$VCoeficiente <- CoefSign
+  
+  for(i in 1:NCoefs) EcuacionRLM$VResago[i] <- last(DatosRLM)[,-c(1,2)][i]
+  EcuacionRLM$VResago <- as.numeric(EcuacionRLM$VResago)
+  EcuacionRLM$VCoeficiente <- as.numeric(EcuacionRLM$VCoeficiente)
+  EcuacionRLM$Nombre  <- names(TotalCoefs)
 
-CoefSign <- SumRegMultCl$coefficients[1:length(TotalCoefs)]
+return(EcuacionRLM)
+}
+
+DatosE <- rbind(data.frame(Datos$Datos10[1]),data.frame(Datos$Datos10[2]))
+Res1   <- BENDER00(DatosE)
+Valor  <- ifelse(sum(as.numeric(Res1[,1])*as.numeric(Res1[,2]))>0,1,0)
+
+DatosN <- data.frame(Datos$Datos10[3])
+first(DatosN$Close) - first(DatosN$Open)
+
 
 
