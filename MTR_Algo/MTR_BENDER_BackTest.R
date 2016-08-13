@@ -138,7 +138,6 @@ Datos_Ent  <- rbind(data.frame(Datos$Datos10[1]),data.frame(Datos$Datos10[2]))
 Modelo_Ent <- BENDER00(DatE)
 
 # -- Datos para prueba fuera de muestra
-
 Datos_Val  <- rbind(data.frame(Datos$Datos10[1]),data.frame(Datos$Datos10[2]),
                     data.frame(Datos$Datos10[3])[1,])
 
@@ -149,12 +148,8 @@ Datos_Val <- Datos_Val[complete.cases(Datos_Val),]
 
 Datos_Val_Modelo <- c()
 
-for(i in 1:length(Modelo_Ent[,1]))
-{
-  Datos_Val_Modelo[i] <- which(colnames(Datos_Val) == Modelo_Ent$Nombre[i])
-}
+for(i in 1:length(Modelo_Ent[,1])) {
+  Datos_Val_Modelo[i] <- which(colnames(Datos_Val) == Modelo_Ent$Nombre[i]) }
 
 Datos_Val <- last(Datos_Val[,c(1,2,Datos_Val_Modelo)])
-
 Valor <- sum(as.numeric(EcuacionRLM[,1])*as.numeric(EcuacionRLM[,2]))
-

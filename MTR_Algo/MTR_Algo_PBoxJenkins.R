@@ -65,4 +65,3 @@ p <- as.numeric(which.max(AutoCorrelation(DatoModel1[,2], "partial", 60)[,3]))
 q <- as.numeric(which.max(AutoCorrelation(DatoModel1[,2], "correlation", 60)[,3]))
 
 Modelo <- arima(DatoModel1[,2], order=c(p,d,q),method = "CSS")
-
