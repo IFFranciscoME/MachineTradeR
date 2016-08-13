@@ -11,14 +11,14 @@
 # -- TRADING PAL WEB --------------------------------------------------------------- -- #
 # ------------------------------------------------------------------------------------- #
 
-# -- -------------------------------------------------------- BENDER (Benito Derman) -- #
-# -- Regresion Lineal Multiple de Variables Endogenas ------------------------------ -- #
+# -- ------------------------------------------------ PBOXJENKINS (Pelham B Jenkins) -- #
+# -- Metodologia BoxJenkins para Pronostico de Serie de tiempo --------------------- -- #
 
-KARENM <- list(Email = "",
-               EmailPass = "",
-               TPName = "",
-               TPPass = "",
-               TPUID = "03b2f97d-020d-4bcd-bdda-5a575bda4a48")
+PBOXJENKINS <- list(Email = "P.Box.Jenkins@gmail.com",
+                    EmailPass = "BoxJenkins1.",
+                    TPName = "Pelham Box Jenkins",
+                    TPPass = "BoxJenkins1.",
+                    TPUID = "03b2f97d-020d-4bcd-bdda-5a575bda4a48")
 
 # -- -------------------------------------------------------- BENDER (Benito Derman) -- #
 # -- Regresion Lineal Multiple de Variables Endogenas ------------------------------ -- #
