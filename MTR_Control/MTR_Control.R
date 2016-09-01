@@ -33,15 +33,13 @@ downloader::source_url(ROandaAPI,prompt=FALSE,quiet=TRUE)
 # -- Informacion de cuentas a utilizar -------------------------------- MTR_Registro -- #
 # -- ------------------------------------------------------------------------------- -- #
 
-#source("C:/TradingPal/BitBucket/MachineTradeR/MTR_Registro/MTR_Registro.R")
-source("~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Registro/MTR_Registro.R")
+source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Registro/MTR_Registro.R', echo=TRUE)
 
 # -- ETAPA 2 ----------------------------------------------------------------------- -- #
 # -- Recolectar Datos para uso en Sistema ---------------------------- MTR_Collector -- #
 # -- ------------------------------------------------------------------------------- -- #
 
-#source("C:/TradingPal/BitBucket/MachineTradeR/MTR_Collector/MTR_Collector.R")
-source('~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Collector/MTR_Collector.R')
+source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Collector/MTR_Collector.R', echo=TRUE)
 
 # -- ETAPA 3 ----------------------------------------------------------------------- -- #
 # -- Ejecutar Algoritmos para generacion de senales ---------------------- MTR_Algos -- #

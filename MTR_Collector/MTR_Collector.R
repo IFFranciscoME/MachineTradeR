@@ -11,14 +11,13 @@ OA_In <- "WTICO_USD"           # Instrument: Instrumento OA_Financiero a utiliza
 OA_Da <- 17
 OA_Ta <- "America/Mexico_City" # Uso horario
 
-# Precios para Algoritmo PBoxJenkins
-FechaIni <- Sys.Date()-40
-FechaFin <- Sys.Date()
-OA_PHH4 <-HisPrices(OA_At,"H4",OA_Da,OA_Ta,OA_Ak,OA_In,FechaIni,FechaFin,Count=NULL)
+# -- PBoxJenkins ---------------------------------------------------------------------- #
 
-# -- Precios Actuales con RTradingPalAPI ------------------------------------------- -- #
+A01_FechaIni <- Sys.Date()-40
+A01_FechaFin <- Sys.Date()
+A01_PreciosHis <-HisPrices(OA_At,"H4",OA_Da,OA_Ta,OA_Ak,OA_In,FechaIni,FechaFin,NULL)
 
-TP_Gral_Precios <- list("FT_CL-Sep!!" = GetSymbol("EURUSD")[3:4])
+A01_PreciosAct <- list("FT_CL-Sep!!" = GetSymbol("EURUSD")[3:4])
 
 # -- ---------------------------------------------------- Generate Trading Pal Token -- #
 
