@@ -45,6 +45,8 @@ source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Collector/MTR_Collector.R', ec
 # -- Ejecutar Algoritmos para generacion de senales ---------------------- MTR_Algos -- #
 # -- ------------------------------------------------------------------------------- -- #
 
+source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_A01_PBoxJenkins.R', echo=TRUE)
+
 #source("C:/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_Algo_BENDER.R")
 #source('~/Documents/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_Algo_BENDER.R')
 
@@ -65,7 +67,7 @@ source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Collector/MTR_Collector.R', ec
 # -- Colocar operaciones con parametros generados por Algoritmos -------- MTR_Trader -- #
 # -- ------------------------------------------------------------------------------- -- #
 
-#source('~/Documents/GitHub/MachineTradeR/MTR_Trader/MTR_Trader.R', echo=FALSE)
+source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Trader/MTR_Trader.R', echo=TRUE)
 
 # -- ETAPA 6 ----------------------------------------------------------------------- -- #
 # -- Almacenar datos de transacciones en la nube  ----------------------- MTR_BackUp -- #

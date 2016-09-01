@@ -7,20 +7,17 @@
 
 # -- Traer Valores y Datos de Entrada ------------------------------------------------ #
 
+Tam_Ventana <- 144
+TakeProfit <- 11
+StopLoss   <- 26
+Lotes <- .10
 
+V1 <- length(A01_PreciosHis[,1]) - Tam_Ventana
+V2 <- length(A01_PreciosHis[,1])
 
-DatosHistRends_C1_Tm1 <-list(list())
-for(i in 1:Num_Ventanas)
-{
-  DatosHistRends_C1_Tm1[[i]] <- list(
-    Fechas  = c(DatosHistRends$TimeStamp[(FIni_Hist+i)],
-                DatosHistRends$TimeStamp[(FIni_Hist+Tam_Ventana+i)]),
-    
-    Datos   = DatosHistRends[(FIni_Hist+i) : (FIni_Hist+Tam_Ventana+i),])
-}
-names(DatosHistRends_C1_Tm1) <- paste("V",seq(1,Num_Ventanas,1),sep="")
-
-Valores <- list(list())
+Datos <- A01_PreciosHis[V1:V2,]
+Datos <- data.frame(Datos$TimeStamp[-1], diff(log(Datos$Close)))
+colnames(Datos) <- c("TimeStamp","RendClose")
 
 # -- ------------------------------------------------------------------------------- -- #
 # -- Modelo de Prediccion -------------------------------------------------- ETAPA 2 -- #
@@ -69,7 +66,6 @@ AutoCorrelation <- function(x, type, LagMax, IncPlot) {
   ciline <- 2/sqrt(length(x))
   bacf   <- acf(x, plot = IncPlot, lag.max = LagMax, type = type)
   bacfdf <- with(bacf, data.frame(lag, acf))
-  #bacfdf <- bacfdf[-seq(1, 0),]
   Sig_nc <- (abs(bacfdf[,2]) > abs(ciline))^2
   bacfdf <- cbind(bacfdf, Sig_nc)
   return(bacfdf) }
@@ -77,10 +73,22 @@ AutoCorrelation <- function(x, type, LagMax, IncPlot) {
 # -- ------------------------------------------------------------------------ -- 2.2 -- #
 # -- -------------------------------------------------------- Construccion de Modelo -- #
 
-  d <- ADFTestedSeries(Datos,5,0.90)[1,3]
-  p <- as.numeric(which.max(AutoCorrelation(Datos$RendClose, "partial", Tam_Ventana,
-                                            FALSE)[,3]))
-  q <- as.numeric(which.max(AutoCorrelation(Datos$RendClose, "correlation", Tam_Ventana,
-                                            FALSE)[,3]))
-  Modelo <- arima(Datos$RendClose, order=c(p,d,q), method = "CSS")
-  
+d <- ADFTestedSeries(Datos,2,0.90)[1,3]
+p <- as.numeric(which.max(AutoCorrelation(Datos$RendClose, "partial", Tam_Ventana,
+                                          FALSE)[,3]))
+q <- as.numeric(which.max(AutoCorrelation(Datos$RendClose, "correlation", Tam_Ventana,
+                                          FALSE)[,3]))
+Modelo <- arima(Datos$RendClose, order=c(p,d,q), method = "CSS")
+
+PastRend <- round(last(Datos$RendClose),6)
+PredRend <- round(predict(Modelo, n.ahead = 1)$pred[1],6)
+
+# -- Valor Final ---------------------------------------------------------------------- #
+
+A01_Trade <- ifelse(PredRend > PastRend, "buy","sell")
+A01_Inst  <- "FT_CL-Oct!!"
+A01_TP <- ifelse(A01_Trade == "buy", GetSymbol("FT_CL-Oct!!")$Bid + TakeProfit/100,
+                 GetSymbol("FT_CL-Oct!!")$Ask - TakeProfit/100)
+A01_SL <- ifelse(A01_Trade == "buy", GetSymbol("FT_CL-Oct!!")$Bid - StopLoss/100,
+                 GetSymbol("FT_CL-Oct!!")$Ask + StopLoss/100)
+A01_LT <- Lotes
