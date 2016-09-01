@@ -5,15 +5,12 @@
 # -- License: MIT ----------------------------------------------------------------- -- #
 # ------------------------------------------------------------------------------------ #
 
-Fechas  <- c(as.numeric(as.POSIXct("2016-06-01", origin ="1970-01-01")), tz="UTC",
-             as.numeric(as.POSIXct("2016-06-05", origin ="1970-01-01")), tz="UTC")
-
-PrecioCl  <- data.frame(OA_PHM15$TimeStamp, round(OA_PHM15$Close,4))
+PrecioCl  <- data.frame(OA_PH$TimeStamp, round(OA_PH$Close,4))
 colnames(PrecioCl) <- c("TimeStamp","PrecioCl")
 
-Reg  <- c()
-Par1 <- 60
-Par2 <- .90
+Reg  <- c() # Auxiliar
+Par1 <- 98  # Resago Maximo
+Par2 <- .95 # Nivel de Confianza Coeficientes de RLM
 
 ResagosCl  <- data.frame(cbind(PrecioCl[,1:2],Lag(x=PrecioCl$PrecioCl,k=1:Par1)))
 ResagosCl  <- ResagosCl[complete.cases(ResagosCl),]
@@ -51,3 +48,75 @@ EcuacionRLM <- data.frame(matrix(ncol = 2, nrow = NCoefs))  # Data.Frame para Ec
 colnames(EcuacionRLM) <- c("VCoeficiente","VResago")
 
 EcuacionRLM$VCoeficiente  <- CoefSign
+
+for(i in 1:NCoefs) EcuacionRLM$VResago[i] <- last(ResagosCl)[,-c(1,2)][i]
+EcuacionRLM$VResago <- as.numeric(EcuacionRLM$VResago)
+EcuacionRLM$VCoeficiente <- as.numeric(EcuacionRLM$VCoeficiente)
+EcuacionRLM$Nombre <- names(TotalCoefs)
+
+# -- Extraccion de Valor Final -------------------------------------------------------- #
+
+Valor <- sum(as.numeric(EcuacionRLM[,1])*as.numeric(EcuacionRLM[,2]))
+MTR_Algo_BENDER_S <- data.frame(
+  ifelse(PrecioCl$PrecioCl[length(PrecioCl$TimeStamp)] < Valor, "buy","sell"),
+  round(abs(PrecioCl$PrecioCl[length(PrecioCl$TimeStamp)] - Valor),5),
+  "1 = Compra, 0 = Venta",
+  OA_In,OA_Gn)
+
+Instrumento <- paste(substr(OA_In,1,3),substr(OA_In,5,7),sep="")
+      
+colnames(MTR_Algo_BENDER_S) <- c("Accion","(Est - Ult)",
+                                 "Explicacion","Instrumento","Periodicidad")
+
+# -- Preparacion de orden ------------------------------------------------------------- #
+
+# -- Checar por operacion abierta y cerrarla ------------------------------------------ #
+
+TradesBENDER <- GetTrades(BENDER$TPUID)
+
+if(TradesBENDER$id == 0) {
+  
+  NTrades <- as.numeric(TradesBENDER$id)
+
+for(i in 1:NTrades)  {
+  CloseTrade(P0_Token = BENDER$Token$Token,
+             P1_tradeID = TradesBENDER$id[i],
+             P2_userID =  BENDER$TPUID)  }
+
+} else NTrades <- 0
+
+# -- Pedir Precio Actual 
+Act_Precio  <- GetSymbol(Instrumento) 
+
+# -- Obtener Precio Promedio de BID-ASK
+Prom_Precio <- (Act_Precio$Bid + Act_Precio$Ask)/2
+
+# -- Margen de Ganancia (En Pips)
+MargenGanancia <- 0.0020
+
+# -- Niveles c(TakeProfit, StopLoss) segun Senal
+ifelse(MTR_Algo_BENDER_S$Accion == "sell",
+       Niveles <- c(Prom_Precio - MargenGanancia, Prom_Precio + MargenGanancia), # sell
+       Niveles <- c(Prom_Precio + MargenGanancia, Prom_Precio - 0.0010)  # buy
+       )
+
+as.character(MTR_Algo_BENDER_S$Instrumento)
+as.character(MTR_Algo_BENDER_S$Periodicidad)
+as.character(MTR_Algo_BENDER_S$Accion)
+
+# -- Enviar Operacion ----------------------------------------------------------------- #
+
+TradeBENDER <- OpenTrade(P0_Token = as.character(BENDER$Token$Token),
+                         P1_symbol = "NZDUSD",
+                         P2_sl = 1 ,
+                         P3_tp = 0.5,
+                         P4_lots = 0.1,
+                         P5_op_type = "sell")
+
+TradeBENDER <- OpenTrade(P0_Token = as.character(BENDER$Token$Token),
+                         P1_symbol = "NZDUSD",
+                         P2_sl = 0 ,
+                         P3_tp = 1,
+                         P4_lots = 0.1,
+                         P5_op_type = "buy")
+

@@ -19,10 +19,6 @@ OA_PHH4 <-HisPrices(OA_At,"H4",OA_Da,OA_Ta,OA_Ak,OA_In,FechaIni,FechaFin,Count=N
 # -- Precios Actuales con RTradingPalAPI ------------------------------------------- -- #
 
 TP_Gral_Precios <- list("FT_CL-Sep!!" = GetSymbol("EURUSD")[3:4])
-# 
-# TP_Gral_Trades <- list("BENDER" = GetTrades(BENDER$TPUID),
-#                        "ROBBY" = GetTrades(ROBBY$TPUID),
-#                        "SONNY" = GetTrades(SONNY$TPUID))
 
 # -- ---------------------------------------------------- Generate Trading Pal Token -- #
 
@@ -37,5 +33,3 @@ PBoxJenkins$Token <- GetToken(Email = PBoxJenkins$Email,
 # 
 # BENDER$Token <- GetToken(Email = BENDER$Email,
 #                          Pass = BENDER$TPPass)
-
-# -- -------------------------------------------------- Get Actual Prices For Symbol -- #

@@ -21,18 +21,11 @@ TradeROBBY <- OpenTrade(P0_Token = as.character(ROBBY$Token$Token),
                         P4_lots = 0.5,
                         P5_op_type = "buy")
 
-TradeSONNY <- OpenTrade(P0_Token = as.character(SONNY$Token$Token),
+TradeBENDER <- OpenTrade(P0_Token = as.character(BENDER$Token$Token),
                         P1_symbol = "NZDUSD",
-                        P2_sl = 0 ,
-                        P3_tp = 0,
-                        P4_lots = 0.5,
-                        P5_op_type = "buy")
-
-TradeROBBY <- OpenTrade(P0_Token = as.character(ROBBY$Token$Token),
-                        P1_symbol = "NZDUSD",
-                        P2_sl = 0,
-                        P3_tp = 0,
-                        P4_lots = 0.5,
+                        P2_sl = 0.5 ,
+                        P3_tp = 1,
+                        P4_lots = 0.1,
                         P5_op_type = "sell")
 
 # -- ------------------------------------------------------------------- Close Trade -- #
@@ -45,11 +38,21 @@ CloseTrade(P0_Token = ROBBY$Token$Token,
            P1_tradeID = TradeROBBY$id[1],
            P2_userID =  ROBBY$TPUID )
 
+CloseTrade(P0_Token = BENDER$Token$Token,
+           P1_tradeID = TradeBENDER$id[1],
+           P2_userID =  BENDER$TPUID)
+
 # -- -------------------------------------------------------------------- Get Trades -- #
 
+<<<<<<< HEAD
 TradeSONNY <- GetTrades(FCO$TPUID)
 TradeSONNY <- GetTrades(FCO$TPUID)
 TradeROBBY <- GetTrades(ROBBY$TPUID)
+=======
+TradeSONNY  <- GetTrades(SONNY$TPUID)
+TradeROBBY  <- GetTrades(ROBBY$TPUID)
+TradeBENDER <- GetTrades(BENDER$TPUID)
+>>>>>>> e050b4113c342395c93b79fb6c8348c564ae0796
 
 # -- ----------------------------------------------------------- Get Account Balance -- #
 
@@ -60,6 +63,10 @@ AccBalSONNY$balance
 AccBalROBBY <- GetAccountBalance(P0_Token = ROBBY$Token$Token,
                                  P1_userID = ROBBY$TPUID)
 AccBalROBBY$balance
+
+AccBalBENDER <- GetAccountBalance(P0_Token = BENDER$Token$Token,
+                                 P1_userID = BENDER$TPUID)
+AccBalBENDER$balance
 
 # -- ---------------------------------------------------------------- Get Trade Info -- #
 
@@ -75,6 +82,7 @@ ModifyTrade(P0_Token, P1_tradeID, P2_SL, P3_TP)
 
 View(GetTrades(UserID = SONNY$TPUID))
 View(GetTrades(UserID = ROBBY$TPUID))
+View(GetTrades(UserID = BENDER$TPUID))
 
 # -- -------------------------------------------------------------- Get Account Info -- #
 
