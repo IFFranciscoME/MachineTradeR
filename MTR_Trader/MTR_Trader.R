@@ -47,7 +47,8 @@ CloseTrade(P0_Token = ROBBY$Token$Token,
 
 # -- -------------------------------------------------------------------- Get Trades -- #
 
-TradeSONNY <- GetTrades(SONNY$TPUID)
+TradeSONNY <- GetTrades(FCO$TPUID)
+TradeSONNY <- GetTrades(FCO$TPUID)
 TradeROBBY <- GetTrades(ROBBY$TPUID)
 
 # -- ----------------------------------------------------------- Get Account Balance -- #

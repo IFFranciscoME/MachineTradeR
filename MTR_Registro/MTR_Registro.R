@@ -14,15 +14,6 @@
 # -- -------------------------------------------------------- BENDER (Benito Derman) -- #
 # -- Regresion Lineal Multiple de Variables Endogenas ------------------------------ -- #
 
-KARENM <- list(Email = "",
-               EmailPass = "",
-               TPName = "",
-               TPPass = "",
-               TPUID = "03b2f97d-020d-4bcd-bdda-5a575bda4a48")
-
-# -- -------------------------------------------------------- BENDER (Benito Derman) -- #
-# -- Regresion Lineal Multiple de Variables Endogenas ------------------------------ -- #
-
 BENDER <- list(Email = "benito.derman@gmail.com",
                EmailPass = "BENDER1.",
                TPName = "Benito Derman",
@@ -41,19 +32,28 @@ ROBBY <- list(Email = "Robby.R.Bay@gmail.com",
 # -- ---------------------------------------------------------- SONNY (Sonny Romano) -- #
 # -- Comprador en EurUsd ----------------------------------------------------------- -- #
 
-SONNY <-list(Email = "Sonny.Romano.B@gmail.com",
+SONNY <-list(Email  = "Sonny.Romano.B@gmail.com",
              EmailPass = "Sonny.Romano.Bay.",
              TPName = "Sonny Romano",
              TPPass = "Sonny.Romano.Bay.",
-             TPUID = "dc68bca7-a8ff-4eb2-8e97-a2aef5642f4b")
+             TPUID  = "dc68bca7-a8ff-4eb2-8e97-a2aef5642f4b")
+
+# -- -------------------------------------------------- PBoxJenkins (Pelham Jenkins) -- #
+# -- Procesos ARMA y ARIMA --------------------------------------------------------- -- #
+
+PBoxJenkins <-list(Email  = "P.Box.Jenkins@gmail.com",
+                   EmailPass = "BoxJenkins1.",
+                   TPName = "Pelham Jenkins",
+                   TPPass = "BoxJenkins1.",
+                   TPUID  = "0e2bc5fb-35ee-4b4f-869c-ae94d5e40eae")
 
 # ------------------------------------------------------------------------------------- #
 # -- OANDA API --------------------------------------------------------------------- -- #
 # ------------------------------------------------------------------------------------- #
 
-account_type <- "practice"
-account_id   <- 1742531
-token <- "ada4a61b0d5bc0e5939365e01450b614-4121f84f01ad78942c46fc3ac777baa6"
+OA_At <- "practice"
+OA_Ai <- 1742531
+OA_Ak <- "ada4a61b0d5bc0e5939365e01450b614-4121f84f01ad78942c46fc3ac777baa6"
 
 # ------------------------------------------------------------------------------------- #
 # -- TWILIO ------------------------------------------------------------------------ -- #

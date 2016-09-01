@@ -11,7 +11,7 @@
 
 rm(list=ls())
 
-pkg <- c("base","downloader","dplyr","fBasics","forecast","googlesheets","grid",
+pkg <- c("base","downloader","dplyr","fBasics","forecast","googlesheets","grid","gdata",
          "gridExtra","httr","h2o","jsonlite","knitr","lubridate","moments","matrixStats",
          "PerformanceAnalytics","plyr","quantmod","randomForest","reshape2","RCurl",
          "stats","scales","sendmailR", "mailR","tree","tseries","TTR","TSA","twitteR",
@@ -21,9 +21,8 @@ inst <- pkg %in% installed.packages()
 if(length(pkg[!inst]) > 0) install.packages(pkg[!inst])
 instpackages <- lapply(pkg, library, character.only=TRUE)
 
-Sys.setlocale(category = "LC_ALL", locale = "")
-
 RawGitHub <- "https://raw.githubusercontent.com/IFFranciscoME/"
+
 RTradingPal <- paste(RawGitHub,"RTradingPalAPI/master/RTradingPalAPI.R",sep="")
 downloader::source_url(RTradingPal,prompt=FALSE,quiet=TRUE)
 
