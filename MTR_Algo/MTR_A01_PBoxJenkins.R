@@ -80,6 +80,9 @@ q <- as.numeric(which.max(AutoCorrelation(Datos$RendClose, "correlation", Tam_Ve
                                           FALSE)[,3]))
 Modelo <- arima(Datos$RendClose, order=c(p,d,q), method = "CSS")
 
+ModeloTexto <- ifelse(d == 0, paste("ARMA(",paste(p,d,q,sep=","),")",sep=""), 
+                      paste("ARIMA(",paste(p,d,q,sep=","),")",sep=""))
+
 PastRend <- round(last(Datos$RendClose),6)
 PredRend <- round(predict(Modelo, n.ahead = 1)$pred[1],6)
 
@@ -92,3 +95,4 @@ A01_TP <- ifelse(A01_Trade == "buy", GetSymbol("FT_CL-Oct!!")$Bid + TakeProfit/1
 A01_SL <- ifelse(A01_Trade == "buy", GetSymbol("FT_CL-Oct!!")$Bid - StopLoss/100,
                  GetSymbol("FT_CL-Oct!!")$Ask + StopLoss/100)
 A01_LT <- Lotes
+A01_MD <- ModeloTexto
