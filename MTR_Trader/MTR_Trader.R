@@ -8,8 +8,8 @@
 OpenTradesPBoxJenkins  <- GetTrades(PBoxJenkins$TPUID)
 
 CloseTradesPBoxJenkins <- CloseTrade(P0_Token   = PBoxJenkins$Token$Token,
-                                     P1_tradeID = TradeOpenTradesPBoxJenkins$id[1],
-                                     P2_userID  = OpenTradesPBoxJenkins$TPUID)
+                                     P1_tradeID = OpenTradesPBoxJenkins$id[1],
+                                     P2_userID  = PBoxJenkins$TPUID)
 
 # -- -------------------------------------------------------------------- Open Trade -- #
 

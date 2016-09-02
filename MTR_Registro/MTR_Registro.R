@@ -41,11 +41,17 @@ SONNY <-list(Email  = "Sonny.Romano.B@gmail.com",
 # -- -------------------------------------------------- PBoxJenkins (Pelham Jenkins) -- #
 # -- Procesos ARMA y ARIMA --------------------------------------------------------- -- #
 
-PBoxJenkins <-list(Email  = "P.Box.Jenkins@gmail.com",
-                   EmailPass = "BoxJenkins1.",
-                   TPName = "Pelham Jenkins",
-                   TPPass = "BoxJenkins1.",
-                   TPUID  = "0e2bc5fb-35ee-4b4f-869c-ae94d5e40eae")
+PBoxJenkins <-list(Email  = "Sonny.Romano.B@gmail.com",
+                   EmailPass = "Sonny.Romano.Bay.",
+                   TPName = "Sonny Romano",
+                   TPPass = "Sonny.Romano.Bay.",
+                   TPUID  = "dc68bca7-a8ff-4eb2-8e97-a2aef5642f4b")
+
+# PBoxJenkins <-list(Email  = "P.Box.Jenkins@gmail.com",
+#                    EmailPass = "BoxJenkins1.",
+#                    TPName = "Pelham Jenkins",
+#                    TPPass = "BoxJenkins1.",
+#                    TPUID  = "0e2bc5fb-35ee-4b4f-869c-ae94d5e40eae")
 
 # ------------------------------------------------------------------------------------- #
 # -- OANDA API --------------------------------------------------------------------- -- #

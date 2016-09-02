@@ -21,7 +21,7 @@ Http2 <- paste(Http1,"@api.twilio.com/2010-04-01/Accounts", sep="")
 Http3 <- paste(paste(Http2,TL_Ai,sep="/"),"/Messages.XML",sep="")
 
 MensajeF2 <- paste(paste(paste(paste(paste(paste(paste(paste(
-             paste("Operacion Abierta A01-BoxJenkins / Inst:", A01_Inst),"/ TP:"),
+             paste("Operacion Abierta A01 / Inst:", A01_Inst),"/ TP:"),
              A01_TP), "/ SL:"),A01_SL), "/ Modelo:"),A01_MD),"/ Direccion:",A01_Trade))
 
 MensajeF2
@@ -29,12 +29,16 @@ MensajeF2
 # -- Notificacion en SMS con Twilio -------------------------------------------------- #
 
 Francisco <- "+528124168894"
+Luis      <- "+523314889409"
 Marcelo   <- "+528115343753"
 Donald    <- "+528118807691"
 Chadi <- "+528180855830"
 Chapa <- "+528112769382"
 
 postForm(Http3, .params = c(From = "+14072701470", To = Francisco, Body = MensajeF2))
+
+postForm(Http3, .params = c(From = "+14072701470", To = Luis, Body = MensajeF2))
+
 
 options(RCurlOptions = list(
   cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))

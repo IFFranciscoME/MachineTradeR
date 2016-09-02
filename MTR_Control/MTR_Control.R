@@ -23,11 +23,12 @@ instpackages <- lapply(pkg, library, character.only=TRUE)
 
 RawGitHub <- "https://raw.githubusercontent.com/IFFranciscoME/"
 
+ROandaAPI <- paste(RawGitHub,"ROandaAPI/master/ROandaAPI.R",sep = "")
+downloader::source_url(ROandaAPI,prompt=FALSE,quiet=TRUE)
+
 RTradingPal <- paste(RawGitHub,"RTradingPalAPI/master/RTradingPalAPI.R",sep="")
 downloader::source_url(RTradingPal,prompt=FALSE,quiet=TRUE)
 
-ROandaAPI <- paste(RawGitHub,"ROandaAPI/master/ROandaAPI.R",sep = "")
-downloader::source_url(ROandaAPI,prompt=FALSE,quiet=TRUE)
 
 # -- ETAPA 1 ----------------------------------------------------------------------- -- #
 # -- Informacion de cuentas a utilizar -------------------------------- MTR_Registro -- #
