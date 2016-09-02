@@ -34,10 +34,11 @@ Marcelo   <- "+528115343753"
 Donald    <- "+528118807691"
 Chadi <- "+528180855830"
 Chapa <- "+528112769382"
+JorgeH <- "+528118013609"
 
 postForm(Http3, .params = c(From = "+14072701470", To = Francisco, Body = MensajeF2))
 
-postForm(Http3, .params = c(From = "+14072701470", To = Luis, Body = MensajeF2))
+postForm(Http3, .params = c(From = "+14072701470", To = Marcelo, Body = MensajeF2))
 
 
 options(RCurlOptions = list(

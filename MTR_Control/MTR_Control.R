@@ -5,11 +5,14 @@
 # -- License: TradingPal ---------------------------------------------------------- -- #
 # ------------------------------------------------------------------------------------ #
 
+rm(list=ls())
+
 # -- ETAPA 0 ---------------------------------------------------------------------- -- #
 # -- Inicializador general de sistema --------------------------------- MTR_Control -- #
 # -- ------------------------------------------------------------------------------ -- #
 
-rm(list=ls())
+Hora_H1  <- c(23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0)
+Horas_H4 <- c(18,22,2,6,10,14,18)
 
 pkg <- c("base","downloader","dplyr","fBasics","forecast","googlesheets","grid",
          "gridExtra","httr","h2o","jsonlite","knitr","lmtest","lubridate","moments",
@@ -29,7 +32,6 @@ downloader::source_url(ROandaAPI,prompt=FALSE,quiet=TRUE)
 RTradingPal <- paste(RawGitHub,"RTradingPalAPI/master/RTradingPalAPI.R",sep="")
 downloader::source_url(RTradingPal,prompt=FALSE,quiet=TRUE)
 
-
 # -- ETAPA 1 ----------------------------------------------------------------------- -- #
 # -- Informacion de cuentas a utilizar -------------------------------- MTR_Registro -- #
 
@@ -43,7 +45,11 @@ source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Collector/MTR_Collector.R', ec
 # -- ETAPA 3 ----------------------------------------------------------------------- -- #
 # -- Ejecutar Algoritmos para generacion de senales ---------------------- MTR_Algos -- #
 
+Hora <- hour(as.POSIXct(Sys.timeDate(), origin = "1970-01-01",tz = "America/Mexico_City"))
+
+if(any(c(Hora == Horas_H4))) {
 source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_A01_PBoxJenkins.R', echo=TRUE)
+} else "A01 En Espera"
 
 # -- ETAPA 5 ----------------------------------------------------------------------- -- #
 # -- Colocar operaciones con parametros generados por Algoritmos -------- MTR_Trader -- #
@@ -52,7 +58,6 @@ source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Trader/MTR_Trader.R', echo=TRU
 
 # -- ETAPA 4 ----------------------------------------------------------------------- -- #
 # -- Generar y Enviar senal a traves de SMS y Email ------------------- MTR_Notifier -- #
-# -- ------------------------------------------------------------------------------- -- #
 
 source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Notifier/MTR_Notifier.R', echo=TRUE)
 
