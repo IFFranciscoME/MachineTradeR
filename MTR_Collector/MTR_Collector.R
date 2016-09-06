@@ -21,8 +21,8 @@ A01_PreciosAct <- list("FT_CL-Oct!!" = GetSymbol("EURUSD")[3:4])
 
 # -- ---------------------------------------------------- Generate Trading Pal Token -- #
 
-PBoxJenkins$Token <- GetToken(Email = SONNY$Email,
-                              Pass = SONNY$TPPass)
+PBoxJenkins$Token <- GetToken(Email = PBoxJenkins$Email,
+                              Pass = PBoxJenkins$TPPass)
 
 # SONNY$Token <- GetToken(Email = SONNY$Email,
 #                         Pass = SONNY$TPPass)

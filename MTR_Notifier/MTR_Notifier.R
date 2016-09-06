@@ -20,9 +20,11 @@ Http1 <- paste("https://", Auth, sep="")
 Http2 <- paste(Http1,"@api.twilio.com/2010-04-01/Accounts", sep="")
 Http3 <- paste(paste(Http2,TL_Ai,sep="/"),"/Messages.XML",sep="")
 
+ifelse(A01_Bandera == 1,
 MensajeF2 <- paste(paste(paste(paste(paste(paste(paste(paste(
              paste("Operacion Abierta A01 / Inst:", A01_Inst),"/ TP:"),
-             A01_TP), "/ SL:"),A01_SL), "/ Modelo:"),A01_MD),"/ Direccion:",A01_Trade))
+             A01_TP), "/ SL:"),A01_SL), "/ Modelo:"),A01_MD),"/ Direccion:",A01_Trade)),
+MensajeF2 <- A01_Mensaje)
 
 MensajeF2
 

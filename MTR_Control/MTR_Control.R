@@ -49,7 +49,7 @@ Hora <- hour(as.POSIXct(Sys.timeDate(), origin = "1970-01-01",tz = "America/Mexi
 
 if(any(c(Hora == Horas_H4))) {
 source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_A01_PBoxJenkins.R', echo=TRUE)
-} else "A01 En Espera"
+} else "A01 En Espera, Periodicidad de tiempo no alcanzada"
 
 # -- ETAPA 5 ----------------------------------------------------------------------- -- #
 # -- Colocar operaciones con parametros generados por Algoritmos -------- MTR_Trader -- #

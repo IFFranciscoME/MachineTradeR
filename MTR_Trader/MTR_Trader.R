@@ -5,14 +5,20 @@
 # -- License: MIT ------------------------------------------------------------------ -- #
 # ------------------------------------------------------------------------------------- #
 
+RawGitHub <- "https://raw.githubusercontent.com/IFFranciscoME/"
+
+RTradingPal <- paste(RawGitHub,"RTradingPalAPI/master/RTradingPalAPI.R",sep="")
+downloader::source_url(RTradingPal,prompt=FALSE,quiet=TRUE)
+
 Hora_H1  <- c(23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0)
-Horas_H4 <- c(18,22,2,6,10,14,18)
+Horas_H4 <- c(2,6,10,14,18,22)
 
 # ------------------------------------------------------------------------------------- #
 # -- Trading para A01 ----------------------------------------------------------------- #
 # ------------------------------------------------------------------------------------- #
 
-Hora <- hour(as.POSIXct(Sys.timeDate(), origin = "1970-01-01",tz = "America/Mexico_City"))
+Hora <- as.numeric(hour(as.POSIXct(Sys.timeDate(), origin = "1970-01-01",
+                                   tz = "America/Mexico_City")))
 
 if(any(c(Hora == Horas_H4))) { 
 
@@ -32,40 +38,10 @@ TradeOpenPBoxJenkins <- OpenTrade(P0_Token = as.character(PBoxJenkins$Token$Toke
                                   P4_lots = A01_LT,
                                   P5_op_type = A01_Trade)
 
-RawGitHub <- "https://raw.githubusercontent.com/IFFranciscoME/"
-
-ROandaAPI <- paste(RawGitHub,"ROandaAPI/master/ROandaAPI.R",sep = "")
-downloader::source_url(ROandaAPI,prompt=FALSE,quiet=TRUE)
-
-Opens  <- OpenTrades(AccountType = "live",
-                     AccountID = "001-004-981051-003",
-                     Token = "78e0814657f4a1a0a0f32e8e81119dd1-e3f70ed97a06deeca74b8b74fa91441f",
-                     Instrument = OA_In)
-Opens
-
-Trade  <- as.numeric(Opens$trades$id[1])
-
-Closes <- CloseTrade(AccountType = OA_At,
-                     AccountID = OA_Ai,
-                     Token = OA_Ak,
-                     TradeID = Trade)
-
-Orders <- NewOrder(AccountType = "live",
-                   AccountID  = OA_Ai,
-                   Token = OA_Ak,
-                   OrderType  = "market",
-                   Instrument = "WTICO_USD",
-                   Count = 1,
-                   Side  = "buy",
-                   SL = 41,
-                   TP = 45,
-                   TS = 100)
-
-UsersAccounts("practice",OA_Ak,"IFFranciscoME")
-UsersAccounts("live","78e0814657f4a1a0a0f32e8e81119dd1-e3f70ed97a06deeca74b8b74fa91441f",
-              "IFFranciscoME")
-
-} else "A01 En Espera"
+} else {
+  A01_Bandera <- 0
+  A01_Mensaje <- "A01 en espera, periodicida de tiempo no alcanzada (2:00, 6:00, 10:00,
+  14:00, 18:00, 22:00)" }
 
 # -- -------------------------------------------------------------------- Open Trade -- #
 

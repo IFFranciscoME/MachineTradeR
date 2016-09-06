@@ -8,8 +8,8 @@
 # -- Traer Valores y Datos de Entrada ------------------------------------------------ #
 
 Tam_Ventana <- 144
-TakeProfit <- 11
-StopLoss   <- 26
+TakeProfit <- 26
+StopLoss   <- 12
 Lotes <- .10
 
 V1 <- length(A01_PreciosHis[,1]) - Tam_Ventana
@@ -92,6 +92,7 @@ A01_Trade <- ifelse(PredRend > PastRend, "buy","sell")
 A01_Inst  <- "FT_CL-Oct!!"
 A01_TP <- ifelse(A01_Trade == "buy", GetSymbol("FT_CL-Oct!!")$Bid + TakeProfit/100,
                  GetSymbol("FT_CL-Oct!!")$Ask - TakeProfit/100)
+
 A01_SL <- ifelse(A01_Trade == "buy", GetSymbol("FT_CL-Oct!!")$Bid - StopLoss/100,
                  GetSymbol("FT_CL-Oct!!")$Ask + StopLoss/100)
 A01_LT <- Lotes
