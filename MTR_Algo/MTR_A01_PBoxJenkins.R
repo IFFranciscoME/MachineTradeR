@@ -90,10 +90,10 @@ PredRend <- round(predict(Modelo, n.ahead = 1)$pred[1],6)
 
 A01_Trade <- ifelse(PredRend > PastRend, "buy","sell")
 A01_Inst  <- "FT_CL-Oct!!"
-A01_TP <- ifelse(A01_Trade == "buy", GetSymbol("FT_CL-Oct!!")$Bid + TakeProfit/100,
-                 GetSymbol("FT_CL-Oct!!")$Ask - TakeProfit/100)
+A01_TP <- ifelse(A01_Trade == "buy", TP_GetSymbol("FT_CL-Oct!!")$Bid + TakeProfit/100,
+                 TP_GetSymbol("FT_CL-Oct!!")$Ask - TakeProfit/100)
 
-A01_SL <- ifelse(A01_Trade == "buy", GetSymbol("FT_CL-Oct!!")$Bid - StopLoss/100,
-                 GetSymbol("FT_CL-Oct!!")$Ask + StopLoss/100)
+A01_SL <- ifelse(A01_Trade == "buy", TP_GetSymbol("FT_CL-Oct!!")$Bid - StopLoss/100,
+                 TP_GetSymbol("FT_CL-Oct!!")$Ask + StopLoss/100)
 A01_LT <- Lotes
 A01_MD <- ModeloTexto

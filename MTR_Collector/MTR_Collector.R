@@ -17,11 +17,11 @@ A01_FechaIni   <- Sys.Date()-40
 A01_FechaFin   <- Sys.Date()
 A01_PreciosHis <-HisPrices(OA_At,"H4",OA_Da,OA_Ta,OA_Ak,OA_In,NULL,NULL,200)
 
-A01_PreciosAct <- list("FT_CL-Oct!!" = GetSymbol("EURUSD")[3:4])
+A01_PreciosAct <- list("FT_CL-Oct!!" = TP_GetSymbol("FT_CL-Oct!!")[3:4])
 
 # -- ---------------------------------------------------- Generate Trading Pal Token -- #
 
-PBoxJenkins$Token <- GetToken(Email = PBoxJenkins$Email,
+PBoxJenkins$Token <- TP_GetToken(Email = PBoxJenkins$Email,
                               Pass = PBoxJenkins$TPPass)
 
 # SONNY$Token <- GetToken(Email = SONNY$Email,

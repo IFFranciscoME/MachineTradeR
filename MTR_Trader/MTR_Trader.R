@@ -5,14 +5,6 @@
 # -- License: MIT ------------------------------------------------------------------ -- #
 # ------------------------------------------------------------------------------------- #
 
-RawGitHub <- "https://raw.githubusercontent.com/IFFranciscoME/"
-
-RTradingPal <- paste(RawGitHub,"RTradingPalAPI/master/RTradingPalAPI.R",sep="")
-downloader::source_url(RTradingPal,prompt=FALSE,quiet=TRUE)
-
-Hora_H1  <- c(23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0)
-Horas_H4 <- c(2,6,10,14,18,22)
-
 # ------------------------------------------------------------------------------------- #
 # -- Trading para A01 ----------------------------------------------------------------- #
 # ------------------------------------------------------------------------------------- #
@@ -23,15 +15,15 @@ Hora <- as.numeric(hour(as.POSIXct(Sys.timeDate(), origin = "1970-01-01",
 if(any(c(Hora == Horas_H4))) { 
 
 # -- Revisar si hay operaciones abiertas 
-OpenTradesPBoxJenkins  <- GetTrades(PBoxJenkins$TPUID)
+OpenTradesPBoxJenkins  <- TP_GetTrades(PBoxJenkins$TPUID)
 
 # -- Cerrar operaciones abiertas
-CloseTradesPBoxJenkins <- CloseTrade(P0_Token   = PBoxJenkins$Token$Token,
+CloseTradesPBoxJenkins <- TP_CloseTrade(P0_Token   = PBoxJenkins$Token$Token,
                                      P1_tradeID = OpenTradesPBoxJenkins$id[1],
                                      P2_userID  = PBoxJenkins$TPUID)
 
 # -- Abrir operacion con los ultimos parametros
-TradeOpenPBoxJenkins <- OpenTrade(P0_Token = as.character(PBoxJenkins$Token$Token),
+TradeOpenPBoxJenkins <- TP_OpenTrade(P0_Token = as.character(PBoxJenkins$Token$Token),
                                   P1_symbol = A01_Inst,
                                   P2_sl = A01_SL ,
                                   P3_tp = A01_TP,

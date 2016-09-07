@@ -45,7 +45,7 @@ Opens  <- OpenTrades(AccountType = OA_At,
 
 Trade  <- as.numeric(Opens$trades$id[1])
 
-if(!is.null(Trade)){
+if(is.character(Opens$trades$instrument)){
 
 Closes <- CloseTrade(AccountType = OA_At,
                      AccountID = OA_Ai,

@@ -17,8 +17,8 @@ Horas_H4 <- c(2,6,10,14,18,22)
 pkg <- c("base","downloader","dplyr","fBasics","forecast","googlesheets","grid",
          "gridExtra","httr","h2o","jsonlite","knitr","lmtest","lubridate","moments",
          "matrixStats", "PerformanceAnalytics","plyr","quantmod","randomForest",
-         "reshape2","RCurl","stats","scales","sendmailR", "mailR","tree","tseries",
-         "TTR","TSA","twitteR","XML","xts","xlsx","zoo")
+         "reshape2","RCurl","stats","scales","tree","tseries",
+         "TTR","TSA","twitteR","XML","xts","zoo")
 
 inst <- pkg %in% installed.packages()
 if(length(pkg[!inst]) > 0) install.packages(pkg[!inst])
@@ -48,8 +48,13 @@ source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Collector/MTR_Collector.R', ec
 Hora <- hour(as.POSIXct(Sys.timeDate(), origin = "1970-01-01",tz = "America/Mexico_City"))
 
 if(any(c(Hora == Horas_H4))) {
+  A01_Bandera <- 1
+  
 source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_A01_PBoxJenkins.R', echo=TRUE)
-} else "A01 En Espera, Periodicidad de tiempo no alcanzada"
+} else {
+  A01_Bandera <- 0
+  "A01 En Espera, Periodicidad de tiempo no alcanzada"
+}
 
 # -- ETAPA 5 ----------------------------------------------------------------------- -- #
 # -- Colocar operaciones con parametros generados por Algoritmos -------- MTR_Trader -- #
