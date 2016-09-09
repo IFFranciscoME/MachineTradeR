@@ -15,8 +15,8 @@ Horas_H4 <- c(18,22,2,6,10,14,18)
 pkg <- c("base","downloader","dplyr","fBasics","forecast","googlesheets","grid",
          "gridExtra","httr","h2o","jsonlite","knitr","lmtest","lubridate","moments",
          "matrixStats", "PerformanceAnalytics","plyr","quantmod","randomForest",
-         "reshape2","RCurl","stats","scales","sendmailR", "mailR","tree","tseries",
-         "TTR","TSA","twitteR","XML","xts","xlsx","zoo")
+         "reshape2","RCurl","stats","scales","tree","tseries",
+         "TTR","TSA","twitteR","XML","xts","zoo")
 
 inst <- pkg %in% installed.packages()
 if(length(pkg[!inst]) > 0) install.packages(pkg[!inst])
