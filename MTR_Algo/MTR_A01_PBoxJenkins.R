@@ -10,7 +10,7 @@
 Tam_Ventana <- 144
 TakeProfit <- 26
 StopLoss   <- 12
-Lotes <- .10
+Lotes <- .20
 
 V1 <- length(A01_PreciosHis[,1]) - Tam_Ventana
 V2 <- length(A01_PreciosHis[,1])

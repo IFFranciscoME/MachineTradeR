@@ -9,9 +9,6 @@
 # -- Inicializador general de sistema ------------------------------- Inicializador -- #
 # -- ------------------------------------------------------------------------------ -- #
 
-Hora_H1  <- c(23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0)
-Horas_H4 <- c(18,22,2,6,10,14,18)
-
 pkg <- c("base","downloader","dplyr","fBasics","forecast","googlesheets","grid",
          "gridExtra","httr","h2o","jsonlite","knitr","lmtest","lubridate","moments",
          "matrixStats", "PerformanceAnalytics","plyr","quantmod","randomForest",

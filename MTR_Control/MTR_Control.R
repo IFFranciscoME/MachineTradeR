@@ -5,6 +5,9 @@
 # -- License: TradingPal ---------------------------------------------------------- -- #
 # ------------------------------------------------------------------------------------ #
 
+# for(i in 1:2){
+#   print(i)
+# Sys.sleep(60*60*4)
 rm(list=ls())
 
 # -- ETAPA 0 ---------------------------------------------------------------------- -- #
@@ -60,6 +63,7 @@ source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_A01_PBoxJenkins.R', e
 # -- Colocar operaciones con parametros generados por Algoritmos -------- MTR_Trader -- #
 
 source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Trader/MTR_Trader.R', echo=TRUE)
+source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Trader/MTR_TraderIn.R', echo=TRUE)
 
 # -- ETAPA 4 ----------------------------------------------------------------------- -- #
 # -- Generar y Enviar senal a traves de SMS y Email ------------------- MTR_Notifier -- #
@@ -78,3 +82,15 @@ source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Notifier/MTR_Notifier.R', echo
 
 # knit('~/Documents/GitHub/MachineTradeR/MTR_Reporter/MTR_Reporter.rnw')
 
+# }
+
+# %r
+# The 12-hour clock time (using the locale's AM or PM). Only defined in some locales.
+
+Sys.setlocale("LC_TIME", "C")
+
+as.POSIXct("8/12/2016 9:46:08 AM", format = "%m/%d/%Y %I:%M:%S  %p", tz = "America/New_York")
+  
+td <- "25/03/2011 9:15:00 p.m."
+tdClean <- gsub("(.)\\.?[Mm]\\.?","\\1m",td)
+as.POSIXct(tdClean, format="%d/%m/%Y %I:%M:%S %p", tz="UTC")
