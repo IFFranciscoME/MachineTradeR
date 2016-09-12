@@ -48,7 +48,7 @@ source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Collector/MTR_Collector.R', ec
 # -- ETAPA 3 ----------------------------------------------------------------------- -- #
 # -- Ejecutar Algoritmos para generacion de senales ---------------------- MTR_Algos -- #
 
-Hora <- hour(as.POSIXct(Sys.timeDate(), origin = "1970-01-01",tz = "America/Mexico_City"))
+Hora <- lubridate::hour(as.POSIXct(Sys.timeDate(), origin = "1970-01-01",tz = "America/Mexico_City"))
 
 if(any(c(Hora == Horas_H4))) {
   A01_Bandera <- 1
@@ -86,11 +86,3 @@ source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Notifier/MTR_Notifier.R', echo
 
 # %r
 # The 12-hour clock time (using the locale's AM or PM). Only defined in some locales.
-
-Sys.setlocale("LC_TIME", "C")
-
-as.POSIXct("8/12/2016 9:46:08 AM", format = "%m/%d/%Y %I:%M:%S  %p", tz = "America/New_York")
-  
-td <- "25/03/2011 9:15:00 p.m."
-tdClean <- gsub("(.)\\.?[Mm]\\.?","\\1m",td)
-as.POSIXct(tdClean, format="%d/%m/%Y %I:%M:%S %p", tz="UTC")

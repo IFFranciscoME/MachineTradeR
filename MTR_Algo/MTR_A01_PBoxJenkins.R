@@ -74,12 +74,20 @@ AutoCorrelation <- function(x, type, LagMax, IncPlot) {
 # -- -------------------------------------------------------- Construccion de Modelo -- #
 
 d <- ADFTestedSeries(Datos,2,0.90)[1,3]
+
 p <- as.numeric(which.max(AutoCorrelation(Datos$RendClose, "partial", Tam_Ventana,
                                           FALSE)[,3]))
 q <- as.numeric(which.max(AutoCorrelation(Datos$RendClose, "correlation", Tam_Ventana,
                                           FALSE)[,3]))
-Modelo <- arima(Datos$RendClose, order=c(p,d,q), method = "CSS")
 
+MENSAJE <- try(
+Modelo <- stats::arima(Datos$RendClose/100, order=c(p,d,q), method = "CSS"),
+silent = TRUE)
+
+ifelse(class(MENSAJE) == "Arima", Modelo <- Modelo, 
+Modelo <- stats::arima(Datos$RendClose, order=c(1,d,1), method = "CSS"))
+
+Modelo
 ModeloTexto <- ifelse(d == 0, paste("ARMA(",paste(p,d,q,sep=","),")",sep=""), 
                       paste("ARIMA(",paste(p,d,q,sep=","),")",sep=""))
 

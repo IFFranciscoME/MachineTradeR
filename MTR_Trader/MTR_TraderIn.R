@@ -33,7 +33,7 @@ OA_Ai <- 9898116
 OA_Ak <- "697ccf8b096dd559886eb27b7fffa20b-090ea1867aed11343711996e967bb157"
 
 OA_In  <- "WTICO_USD"
-A01_LT <- 1
+A01_LT <- 2
 
 Opens  <- OpenTrades(AccountType = OA_At,
                      AccountID = OA_Ai,
@@ -48,7 +48,7 @@ Closes <- CloseTrade(AccountType = OA_At,
                      AccountID = OA_Ai,
                      Token = OA_Ak,
                      TradeID = Trade)
-} else 
+} else {
 
 Precio <- ActualPrice(AccountType = OA_At, Token = OA_Ak, Instrument = OA_In)
 
@@ -68,3 +68,4 @@ Orders <- NewOrder(AccountType = OA_At,
                    SL = A01_SL,
                    TP = A01_TP,
                    TS = 100)
+}
