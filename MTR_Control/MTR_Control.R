@@ -5,9 +5,6 @@
 # -- License: TradingPal ---------------------------------------------------------- -- #
 # ------------------------------------------------------------------------------------ #
 
-# for(i in 1:2){
-#   print(i)
-# Sys.sleep(60*60*4)
 rm(list=ls())
 
 # -- ETAPA 0 ---------------------------------------------------------------------- -- #
@@ -62,7 +59,7 @@ source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_A01_PBoxJenkins.R', e
 # -- ETAPA 5 ----------------------------------------------------------------------- -- #
 # -- Colocar operaciones con parametros generados por Algoritmos -------- MTR_Trader -- #
 
-source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Trader/MTR_Trader.R', echo=TRUE)
+#source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Trader/MTR_Trader.R', echo=TRUE)
 source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Trader/MTR_TraderIn.R', echo=TRUE)
 
 # -- ETAPA 4 ----------------------------------------------------------------------- -- #
@@ -81,8 +78,6 @@ source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Notifier/MTR_Notifier.R', echo
 # -- ------------------------------------------------------------------------------- -- #
 
 # knit('~/Documents/GitHub/MachineTradeR/MTR_Reporter/MTR_Reporter.rnw')
-
-# }
 
 # %r
 # The 12-hour clock time (using the locale's AM or PM). Only defined in some locales.
