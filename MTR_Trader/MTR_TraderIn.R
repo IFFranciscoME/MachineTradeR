@@ -5,25 +5,6 @@
 # -- License: IF Francisco ME ----------------------------------------------------- -- #
 # ------------------------------------------------------------------------------------ #
 
-# -- ETAPA 0 ---------------------------------------------------------------------- -- #
-# -- Inicializador general de sistema ------------------------------- Inicializador -- #
-# -- ------------------------------------------------------------------------------ -- #
-
-pkg <- c("base","downloader","dplyr","fBasics","forecast","googlesheets","grid",
-         "gridExtra","httr","h2o","jsonlite","knitr","lmtest","lubridate","moments",
-         "matrixStats", "PerformanceAnalytics","plyr","quantmod","randomForest",
-         "reshape2","RCurl","stats","scales","tree","tseries",
-         "TTR","TSA","twitteR","XML","xts","zoo")
-
-inst <- pkg %in% installed.packages()
-if(length(pkg[!inst]) > 0) install.packages(pkg[!inst])
-instpackages <- lapply(pkg, library, character.only=TRUE)
-
-RawGitHub <- "https://raw.githubusercontent.com/IFFranciscoME/"
-
-ROandaAPI <- paste(RawGitHub,"ROandaAPI/master/ROandaAPI.R",sep = "")
-downloader::source_url(ROandaAPI,prompt=FALSE,quiet=TRUE)
-
 # -- ETAPA 1 ---------------------------------------------------------------------- -- #
 # -- Informacion de Cuentas Involucradas ---------------------------------- Cuentas -- #
 # -- ------------------------------------------------------------------------------ -- #

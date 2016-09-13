@@ -9,7 +9,7 @@
 # -- Trading para A01 ----------------------------------------------------------------- #
 # ------------------------------------------------------------------------------------- #
 
-Hora <- as.numeric(hour(as.POSIXct(Sys.timeDate(), origin = "1970-01-01",
+Hora <- as.numeric(lubridate::hour(as.POSIXct(Sys.timeDate(), origin = "1970-01-01",
                                    tz = "America/Mexico_City")))
 
 if(any(c(Hora == Horas_H4))) {

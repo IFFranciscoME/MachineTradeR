@@ -45,13 +45,16 @@ source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Collector/MTR_Collector.R', ec
 # -- ETAPA 3 ----------------------------------------------------------------------- -- #
 # -- Ejecutar Algoritmos para generacion de senales ---------------------- MTR_Algos -- #
 
-Hora <- lubridate::hour(as.POSIXct(Sys.timeDate(), origin = "1970-01-01",tz = "America/Mexico_City"))
+Hora <- lubridate::hour(as.POSIXct(Sys.timeDate(), origin = "1970-01-01",
+                                   tz = "America/Mexico_City"))
 
 if(any(c(Hora == Horas_H4))) {
   A01_Bandera <- 1
   
 source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_A01_PBoxJenkins.R', echo=TRUE)
+  
 } else {
+  
   A01_Bandera <- 0
   "A01 En Espera, Periodicidad de tiempo no alcanzada"
 }
