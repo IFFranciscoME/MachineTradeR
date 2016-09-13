@@ -15,7 +15,7 @@ StopLoss    <- 15
 H_TakeProfit <- 10
 H_StopLoss   <- 25
 
-Lotes     <- .10
+Lotes     <- .20
 A01_Inst  <- "FT_CL-Oct!!"
 
 V1 <- length(A01_PreciosHis[,1]) - Tam_Ventana
