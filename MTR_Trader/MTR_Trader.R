@@ -30,10 +30,10 @@ CloseTradesPBoxJenkins <- TP_CloseTrade(P0_Token   = PBoxJenkins$Token$Token,
 # -- Abrir operacion con los ultimos parametros
 TradeOpenPBoxJenkins <- TP_OpenTrade(P0_Token = as.character(PBoxJenkins$Token$Token),
                                   P1_symbol = A01_Inst,
-                                  P2_sl = A01_SL ,
-                                  P3_tp = A01_TP,
+                                  P2_sl = H_A01_SL ,
+                                  P3_tp = H_A01_TP,
                                   P4_lots = A01_LT,
-                                  P5_op_type = A01_Trade)
+                                  P5_op_type = H_A01_Trade)
 
 # -- Abrir operacion con los ultimos parametros
 TradeOpenPBoxJenkins <- TP_OpenTrade(P0_Token = as.character(PBoxJenkins$Token$Token),
