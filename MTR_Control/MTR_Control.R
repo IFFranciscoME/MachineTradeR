@@ -62,7 +62,7 @@ source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Algo/MTR_A01_PBoxJenkins.R', e
 # -- ETAPA 5 ----------------------------------------------------------------------- -- #
 # -- Colocar operaciones con parametros generados por Algoritmos -------- MTR_Trader -- #
 
-#source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Trader/MTR_Trader.R', echo=TRUE)
+source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Trader/MTR_Trader.R', echo=TRUE)
 source('C:/TradingPal/BitBucket/MachineTradeR/MTR_Trader/MTR_TraderIn.R', echo=TRUE)
 
 # -- ETAPA 4 ----------------------------------------------------------------------- -- #
