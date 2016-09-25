@@ -9,11 +9,15 @@
 
 Tam_Ventana <- 144
 
-TakeProfit  <- 30
-StopLoss    <- 15
+TakeProfit <- 30
+StopLoss   <- 15
+Lotes      <- .10
 
-Lotes     <- .10
-A01_Inst  <- "FT_CL-Oct!!"
+H_TakeProfit <- TakeProfit - 4
+H_StopLoss   <- StopLoss - 4
+H_Lotes      <- .10
+
+A01_Inst <- "FT_CL-Oct!!"
 
 V1 <- length(A01_PreciosHis[,1]) - Tam_Ventana
 V2 <- length(A01_PreciosHis[,1])
@@ -108,6 +112,17 @@ SLSell <- TP_GetSymbol(A01_Inst)$Ask + StopLoss/100
 
 A01_TP <- ifelse(A01_Trade == "buy", TPBuy, TPSell)
 A01_SL <- ifelse(A01_Trade == "buy", SLBuy, SLSell)
-
 A01_LT <- Lotes
-A01_MD <- ModeloTexto
+
+H_A01_Trade <- ifelse(PredRend < PastRend, "buy","sell")
+
+H_TPBuy  <- TP_GetSymbol(A01_Inst)$Bid + H_TakeProfit/100
+H_TPSell <- TP_GetSymbol(A01_Inst)$Ask - H_TakeProfit/100
+H_SLBuy  <- TP_GetSymbol(A01_Inst)$Bid - H_StopLoss/100
+H_SLSell <- TP_GetSymbol(A01_Inst)$Ask + H_StopLoss/100
+
+H_A01_TP <- ifelse(A01_Trade == "buy", H_TPBuy, H_TPSell)
+H_A01_SL <- ifelse(A01_Trade == "buy", H_SLBuy, H_SLSell)
+
+H_A01_LT <- H_Lotes
+H_A01_MD <- ModeloTexto

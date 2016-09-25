@@ -23,12 +23,3 @@ A01_PreciosAct <- list("FT_CL-Oct!!" = TP_GetSymbol("FT_CL-Oct!!")[3:4])
 
 PBoxJenkins$Token <- TP_GetToken(Email = PBoxJenkins$Email,
                               Pass = PBoxJenkins$TPPass)
-
-# SONNY$Token <- GetToken(Email = SONNY$Email,
-#                         Pass = SONNY$TPPass)
-#  
-# ROBBY$Token <- GetToken(Email = ROBBY$Email,
-#                         Pass = ROBBY$TPPass)
-#  
-# BENDER$Token <- GetToken(Email = BENDER$Email,
-#                          Pass = BENDER$TPPass)
