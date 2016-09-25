@@ -50,8 +50,8 @@ DatoModelo <- as.data.frame(modelData(data.model))
 # -- ------------------------------------------------- Signals and Class Generation -- #
 
 signals <- function(x) {
-    if(x >=   0) {resultado <- "buy" } else
-      if(x <  0) {resultado <- "sell"}
+  if(x >=   0) {resultado <- "buy" } else
+    if(x <  0) {resultado <- "sell"}
   resultado }
 
 Clase <- sapply(DatoModelo$Delt.Cl.ACTIVO, signals)

@@ -18,7 +18,7 @@ BENDER <- list(Email = "benito.derman@gmail.com",
                EmailPass = "BENDER1.",
                TPName = "Benito Derman",
                TPPass = "BENDER1.",
-               TPUID = "a30fef87-e347-47d6-ad34-1d56c22dd2e7")
+               TPUID  = "a30fef87-e347-47d6-ad34-1d56c22dd2e7")
 
 # -- ------------------------------------------------------------ ROBBY (Robert Bay) -- #
 # -- Vendedor en EurUsd ------------------------------------------------------------ -- #
@@ -27,7 +27,7 @@ ROBBY <- list(Email = "Robby.R.Bay@gmail.com",
               EmailPass = "Robby.Romano.Bay.",
               TPName = "Robert Bay",
               TPPass = "Robby.Romano.Bay",
-              TPUID = "25a0a507-eb09-4daa-ba9b-7e46e28447d7")
+              TPUID  = "25a0a507-eb09-4daa-ba9b-7e46e28447d7")
 
 # -- ---------------------------------------------------------- SONNY (Sonny Romano) -- #
 # -- Comprador en EurUsd ----------------------------------------------------------- -- #
