@@ -11,6 +11,9 @@ rm(list=ls())
 # -- Inicializador general de sistema ------------------------------ MTR_Control_H4 -- #
 # -- ------------------------------------------------------------------------------ -- #
 
+Sys.setlocale(category = "LC_ALL", locale = "")
+Sys.time()
+
 Horas_H4 <- c(2,6,10,14,18,22)
 
 pkg <- c("base","downloader","dplyr","fBasics","forecast","googlesheets","grid",

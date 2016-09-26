@@ -20,23 +20,29 @@ A01_PELHAM_BJ <-list(Email  = "P.Box.Jenkins@gmail.com",
                      TPPass = "BoxJenkins1.",
                      TPUID  = "0e2bc5fb-35ee-4b4f-869c-ae94d5e40eae")
 
+A01_PELHAM_BJ$token <- TP_GetToken(Email=A01_PELHAM_BJ$Email, Pass=A01_PELHAM_BJ$EmailPass)
+
 # -- ------------------------------------------------------- SONNY_NN (Sonny Romano) -- #
 # -- Neural Network Original + Inverso de ROBBY ------------------------------------ -- #
 
-A02_SONNY_NN <-list(Email  = "Sonny.Romano.B@gmail.com",
-                    EmailPass = "Sonny.Romano.Bay.",
-                    TPName = "Sonny Romano",
-                    TPPass = "Sonny.Romano.Bay.",
-                    TPUID  = "dc68bca7-a8ff-4eb2-8e97-a2aef5642f4b")
+A02_SONNY_NN <- list(Email  = "Sonny.Romano.B@gmail.com",
+                     EmailPass = "Sonny.Romano.Bay.",
+                     TPName = "Sonny Romano",
+                     TPPass = "Sonny.Romano.Bay.",
+                     TPUID  = "dc68bca7-a8ff-4eb2-8e97-a2aef5642f4b")
+
+A02_SONNY_NN$token <- TP_GetToken(Email=A02_SONNY_NN$Email, Pass=A02_SONNY_NN$EmailPass)
 
 # -- --------------------------------------------------------- ROBBY_RF (Robert Bay) -- #
 # -- Random Forest Original + Inverso de SONNY ------------------------------------- -- #
 
 A03_ROBBY_RF <- list(Email = "Robby.R.Bay@gmail.com",
-                     EmailPass = "Robby.Romano.Bay.",
+                     EmailPass = "Robby.Romano.Bay",
                      TPName = "Robert Bay",
                      TPPass = "Robby.Romano.Bay",
                      TPUID  = "25a0a507-eb09-4daa-ba9b-7e46e28447d7")
+
+A03_ROBBY_RF$token <- TP_GetToken(Email=A03_ROBBY_RF$Email, Pass=A03_ROBBY_RF$EmailPass)
 
 # -- ----------------------------------------------------- BENDER_LR (Benito Derman) -- #
 # -- Regresion Lineal Multiple de Variables Endogenas ------------------------------ -- #
@@ -46,6 +52,8 @@ A04_BENDER_LR <- list(Email = "benito.derman@gmail.com",
                       TPName = "Benito Derman",
                       TPPass = "BENDER1.",
                       TPUID  = "a30fef87-e347-47d6-ad34-1d56c22dd2e7")
+
+A04_BENDER_LR$token <- TP_GetToken(Email=A04_BENDER_LR$Email, Pass=A04_BENDER_LR$EmailPass)
 
 # ------------------------------------------------------------------------------------- #
 # -- OANDA API --------------------------------------------------------------------- -- #

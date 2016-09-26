@@ -6,18 +6,10 @@
 # ------------------------------------------------------------------------------------- #
 
 # ------------------------------------------------------------------------------------- #
-# -- Capturar resultados de algoritmos ------------------------------------------------ #
+# -- Detectar Actividad de Algoritmos ------------------------------------------------- #
 # ------------------------------------------------------------------------------------- #
 
-# ------------------------------------------------------------------------------------- #
-# -- Trading para A01 ----------------------------------------------------------------- #
-# ------------------------------------------------------------------------------------- #
 
-# -- Revisar si hay operaciones abiertas 
-A01_PELHAM_BJ_OpenTrades <- TP_GetTrades(A01_PELHAM_BJ$TPUID)
-A02_SONNY_NN_OpenTrades  <- TP_GetTrades(A02_SONNY_NN$TPUID)
-A03_ROBBY_RF_OpenTrades  <- TP_GetTrades(A03_ROBBY_RF$TPUID)
-A04_BENDER_LR_OpenTrades <- TP_GetTrades(A04_BENDER_LR$TPUID)
 
 # -- Escenarios
 # -- 1.- Ninguna operacion abierta 
@@ -27,104 +19,75 @@ A04_BENDER_LR_OpenTrades <- TP_GetTrades(A04_BENDER_LR$TPUID)
 # -- 2.1.- Proceder a cerrar todas las ops abiertas
 # -- 2.2.- Proceder a abrir ops enviadas por MTR_Algo
 
+# ------------------------------------------------------------------------------------- #
+# -- Trading para A01_PELHAM_BJ ------------------------------------------------------- #
+# ------------------------------------------------------------------------------------- #
 
-
+# -- Revisar si hay operaciones abiertas 
+A01_PELHAM_BJ$OpenTrades <- TP_GetTrades(
+                             A01_PELHAM_BJ$TPUID)
 
 # -- Cerrar operaciones abiertas
-CloseTradesPBoxJenkins <- TP_CloseTrade(P0_Token   = PBoxJenkins$Token$Token,
-                                     P1_tradeID = OpenTradesPBoxJenkins$id[1],
-                                     P2_userID  = PBoxJenkins$TPUID)
+A01_PELHAM_BJ$CloseTrades <- TP_CloseTrade(
+                              P0_Token   = A01_PELHAM_BJ$token$Token,
+                              P1_tradeID = A01_PELHAM_BJ$OpenTrades$id[1],
+                              P2_userID  = A01_PELHAM_BJ$TPUID)
 
 # -- Abrir operacion con los ultimos parametros
-TradeOpenPBoxJenkins <- TP_OpenTrade(P0_Token = as.character(PBoxJenkins$Token$Token),
-                                  P1_symbol = A01_Inst,
-                                  P2_sl = A01_SL ,
-                                  P3_tp = A01_TP,
-                                  P4_lots = A01_LT,
-                                  P5_op_type = A01_Trade)
+A01_PELHAM_BJ$LastTrade   <- TP_OpenTrade(
+                              P0_Token = as.character(A01_PELHAM_BJ$token$Token),
+                              P1_symbol = A01_Inst,
+                              P2_sl = A01_SL ,
+                              P3_tp = A01_TP,
+                              P4_lots = A01_LT,
+                              P5_op_type = A01_Trade)
 
-# -- -------------------------------------------------------------------- Open Trade -- #
+# ------------------------------------------------------------------------------------- #
+# -- Trading para A02_SONNY_NN -------------------------------------------------------- #
+# ------------------------------------------------------------------------------------- #
 
+# -- Revisar si hay operaciones abiertas
+A02_SONNY_NN$OpenTrades  <- TP_GetTrades(A02_SONNY_NN$TPUID)
 
-# TradeSONNY <- OpenTrade(P0_Token = as.character(SONNY$Token$Token),
-#                         P1_symbol = "AUDUSD",
-#                         P2_sl = 2 ,
-#                         P3_tp = 1,
-#                         P4_lots = 0.5,
-#                         P5_op_type = "sell")
-# 
-# TradeROBBY <- OpenTrade(P0_Token = as.character(ROBBY$Token$Token),
-#                         P1_symbol = "AUDUSD",
-#                         P2_sl = 1,
-#                         P3_tp = 2,
-#                         P4_lots = 0.5,
-#                         P5_op_type = "buy")
-# 
-# TradeBENDER <- OpenTrade(P0_Token = as.character(BENDER$Token$Token),
-#                         P1_symbol = "NZDUSD",
-#                         P2_sl = 0.5 ,
-#                         P3_tp = 1,
-#                         P4_lots = 0.1,
-#                         P5_op_type = "sell")
+# -- Abrir operacion con los ultimos parametros
+A02_SONNY_NN$LastTrade   <- TP_OpenTrade(
+                            P0_Token = as.character(PBoxJenkins$Token$Token),
+                            P1_symbol = A01_Inst,
+                            P2_sl = A01_SL ,
+                            P3_tp = A01_TP,
+                            P4_lots = A01_LT,
+                            P5_op_type = A01_Trade)
 
-# -- ------------------------------------------------------------------- Close Trade -- #
+# -- Cerrar operacion con los ultimos parametros
+A02_SONNY_NN$ClosedTrades <- TP_CloseTrade(
+                             P0_Token   = A02_SONNY_NN$token$Token,
+                             P1_tradeID = A02_SONNY_NN$OpenTrades$id[1],
+                             P2_userID  = A02_SONNY_NN$TPUID)
 
-# CloseTrade(P0_Token = SONNY$Token$Token,
-#            P1_tradeID = TradeSONNY$id[1],
-#            P2_userID =  SONNY$TPUID )
-# 
-# CloseTrade(P0_Token = ROBBY$Token$Token,
-#            P1_tradeID = TradeROBBY$id[1],
-#            P2_userID =  ROBBY$TPUID )
-# 
-# CloseTrade(P0_Token = BENDER$Token$Token,
-#            P1_tradeID = TradeBENDER$id[1],
-#            P2_userID =  BENDER$TPUID)
+# ------------------------------------------------------------------------------------- #
+# -- Trading para A03_ROBBY_RF -------------------------------------------------------- #
+# ------------------------------------------------------------------------------------- #
 
-# -- -------------------------------------------------------------------- Get Trades -- #
-# 
-# TradeSONNY <- GetTrades(FCO$TPUID)
-# TradeSONNY <- GetTrades(FCO$TPUID)
-# TradeROBBY <- GetTrades(ROBBY$TPUID)
-# 
-# TradeSONNY  <- GetTrades(SONNY$TPUID)
-# TradeROBBY  <- GetTrades(ROBBY$TPUID)
-# TradeBENDER <- GetTrades(BENDER$TPUID)
+# -- Conocer si hay operaciones abiertas
+A03_ROBBY_RF_OpenTrades  <- TP_GetTrades(A03_ROBBY_RF$TPUID)
 
-# -- ----------------------------------------------------------- Get Account Balance -- #
-# 
-# AccBalSONNY <- GetAccountBalance(P0_Token = SONNY$Token$Token,
-#                                  P1_userID = SONNY$TPUID)
-# AccBalSONNY$balance
-# 
-# AccBalROBBY <- GetAccountBalance(P0_Token = ROBBY$Token$Token,
-#                                  P1_userID = ROBBY$TPUID)
-# AccBalROBBY$balance
-# 
-# AccBalBENDER <- GetAccountBalance(P0_Token = BENDER$Token$Token,
-#                                  P1_userID = BENDER$TPUID)
-# AccBalBENDER$balance
+TradeROBBY <- OpenTrade(P0_Token = as.character(ROBBY$Token$Token),
+                        P1_symbol = "AUDUSD",
+                        P2_sl = 1,
+                        P3_tp = 2,
+                        P4_lots = 0.5,
+                        P5_op_type = "buy")
 
-# -- ---------------------------------------------------------------- Get Trade Info -- #
+# ------------------------------------------------------------------------------------- #
+# -- Trading para A04_BENDER_LR ------------------------------------------------------- #
+# ------------------------------------------------------------------------------------- #
 
-# GetTradeInfo(P0_Token = SONNY$Token$Token,
-#              P1_tradeID = "dc68bca7-a8ff-4eb2-8e97-a2aef5642f4b-1469018679325",
-#              P2_userID = SONNY$TPUID)
-
-# -- ------------------------------------------------------------- Modify Trade Info -- #
-
-# ModifyTrade(P0_Token, P1_tradeID, P2_SL, P3_TP)
-
-# -- ----------------------------------------------------- Get Actual Trades of User -- #
-# 
-# View(GetTrades(UserID = SONNY$TPUID))
-# View(GetTrades(UserID = ROBBY$TPUID))
-# View(GetTrades(UserID = BENDER$TPUID))
-
-# -- -------------------------------------------------------------- Get Account Info -- #
-# 
-# AccInfoSONNY <- GetAccountInfo(P0_Token = SONNY$Token$Token,
-#                                P1_userID = SONNY$TPUID)
-# 
-# AccInfoROBBY <- GetAccountInfo(P0_Token = ROBBY$Token$Token,
-#                                P1_userID = ROBBY$TPUID)
+A04_BENDER_LR_OpenTrades <- TP_GetTrades(A04_BENDER_LR$TPUID)
+ 
+TradeBENDER <- OpenTrade(P0_Token = as.character(BENDER$Token$Token),
+                         P1_symbol = "NZDUSD",
+                         P2_sl = 0.5 ,
+                         P3_tp = 1,
+                         P4_lots = 0.1,
+                         P5_op_type = "sell")
+ 
