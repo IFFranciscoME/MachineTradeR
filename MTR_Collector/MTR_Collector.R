@@ -11,7 +11,7 @@ OA_In <- "WTICO_USD"           # Instrument: Instrumento OA_Financiero a utiliza
 OA_Da <- 17
 OA_Ta <- "America/Mexico_City" # Uso horario
 
-# -- PBoxJenkins ---------------------------------------------------------------------- #
+# -- A01_PELHAM_BJ -------------------------------------------------------------------- #
 
 A01_FechaIni   <- Sys.Date()-40
 A01_FechaFin   <- Sys.Date()
@@ -21,5 +21,5 @@ A01_PreciosAct <- list("FT_CL-Oct!!" = TP_GetSymbol("FT_CL-Oct!!")[3:4])
 
 # -- ---------------------------------------------------- Generate Trading Pal Token -- #
 
-PBoxJenkins$Token <- TP_GetToken(Email = PBoxJenkins$Email,
-                              Pass = PBoxJenkins$TPPass)
+A01_PELHAM_BJ$Token <- TP_GetToken(Email = A01_PELHAM_BJ$Email,
+                                   Pass = A01_PELHAM_BJ$TPPass)

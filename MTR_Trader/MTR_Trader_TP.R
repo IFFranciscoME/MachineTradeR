@@ -6,16 +6,29 @@
 # ------------------------------------------------------------------------------------- #
 
 # ------------------------------------------------------------------------------------- #
+# -- Capturar resultados de algoritmos ------------------------------------------------ #
+# ------------------------------------------------------------------------------------- #
+
+# ------------------------------------------------------------------------------------- #
 # -- Trading para A01 ----------------------------------------------------------------- #
 # ------------------------------------------------------------------------------------- #
 
-Hora <- as.numeric(lubridate::hour(as.POSIXct(Sys.timeDate(), origin = "1970-01-01",
-                                   tz = "America/Mexico_City")))
-
-if(any(c(Hora == Horas_H4))) {
-
 # -- Revisar si hay operaciones abiertas 
-OpenTradesPBoxJenkins  <- TP_GetTrades(PBoxJenkins$TPUID)
+A01_PELHAM_BJ_OpenTrades <- TP_GetTrades(A01_PELHAM_BJ$TPUID)
+A02_SONNY_NN_OpenTrades  <- TP_GetTrades(A02_SONNY_NN$TPUID)
+A03_ROBBY_RF_OpenTrades  <- TP_GetTrades(A03_ROBBY_RF$TPUID)
+A04_BENDER_LR_OpenTrades <- TP_GetTrades(A04_BENDER_LR$TPUID)
+
+# -- Escenarios
+# -- 1.- Ninguna operacion abierta 
+# -- 1.1.- Proceder a abrir ops enviadas por MTR_Algo
+
+# -- 2.- Localizar operaciones abiertas del mismo instrumento enviado por MTR_Algo 
+# -- 2.1.- Proceder a cerrar todas las ops abiertas
+# -- 2.2.- Proceder a abrir ops enviadas por MTR_Algo
+
+
+
 
 # -- Cerrar operaciones abiertas
 CloseTradesPBoxJenkins <- TP_CloseTrade(P0_Token   = PBoxJenkins$Token$Token,
@@ -29,11 +42,6 @@ TradeOpenPBoxJenkins <- TP_OpenTrade(P0_Token = as.character(PBoxJenkins$Token$T
                                   P3_tp = A01_TP,
                                   P4_lots = A01_LT,
                                   P5_op_type = A01_Trade)
-
-} else {
-  A01_Bandera <- 0
-  A01_Mensaje <- "A01 en espera, periodicida de tiempo no alcanzada (2:00, 6:00, 10:00,
-  14:00, 18:00, 22:00)" }
 
 # -- -------------------------------------------------------------------- Open Trade -- #
 

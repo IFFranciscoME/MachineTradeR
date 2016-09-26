@@ -12,8 +12,8 @@ Tam_Ventana <- 144
 TakeProfit  <- 30
 StopLoss    <- 15
 
-Lotes     <- .10
-A01_Inst  <- "FT_CL-Oct!!"
+Lotes    <- .10
+A01_Inst <- "FT_CL-Oct!!"
 
 V1 <- length(A01_PreciosHis[,1]) - Tam_Ventana
 V2 <- length(A01_PreciosHis[,1])
@@ -76,38 +76,46 @@ AutoCorrelation <- function(x, type, LagMax, IncPlot) {
 # -- ------------------------------------------------------------------------ -- 2.2 -- #
 # -- -------------------------------------------------------- Construccion de Modelo -- #
 
-d <- ADFTestedSeries(Datos,2,0.90)[1,3]
+# -- Parametros de metodo original ---------------------------------------- -- 2.2.0 -- #
 
+d <- ADFTestedSeries(Datos,2,0.90)[1,3]
 p <- as.numeric(which.max(AutoCorrelation(Datos$RendClose, "partial", Tam_Ventana,
                                           FALSE)[,3]))
 q <- as.numeric(which.max(AutoCorrelation(Datos$RendClose, "correlation", Tam_Ventana,
                                           FALSE)[,3]))
 
+# -- Prueba de ajuste de modelo con metodo original ----------------------- -- 2.2.1 -- #
+
 MENSAJE <- try(
-Modelo <- stats::arima(Datos$RendClose/100, order=c(p,d,q), method = "CSS"),
+Modelo  <- stats::arima(Datos$RendClose/100, order=c(p,d,q), method = "CSS"),
 silent = TRUE)
 
-ifelse(class(MENSAJE) == "Arima", Modelo <- Modelo, 
-Modelo <- stats::arima(Datos$RendClose, order=c(1,d,1), method = "CSS"))
+if(class(MENSAJE) == "Arima"){
 
-Modelo
-ModeloTexto <- ifelse(d == 0, paste("ARMA(",paste(p,d,q,sep=","),")",sep=""), 
-                      paste("ARIMA(",paste(p,d,q,sep=","),")",sep=""))
+  Modelo <- Modelo
+  ModeloTexto <- ifelse(d == 0, paste("ARMA(",paste(p,d,q,sep=","),")",sep=""), 
+                        paste("ARIMA(",paste(p,d,q,sep=","),")",sep=""))
+
+} else {
+  
+  Modelo <- stats::arima(Datos$RendClose, order=c(1,d,1), method = "CSS")
+  ModeloTexto <- ifelse(d == 0, paste("ARMA(",paste(1,d,1,sep=","),")",sep=""), 
+                        paste("ARIMA(",paste(1,d,1,sep=","),")",sep=""))
+
+}
 
 PastRend <- round(last(Datos$RendClose),6)
 PredRend <- round(predict(Modelo, n.ahead = 1)$pred[1],6)
 
 # -- Valor Final ---------------------------------------------------------------------- #
 
-A01_Trade <- ifelse(PredRend > PastRend, "buy","sell")
-
 TPBuy  <- TP_GetSymbol(A01_Inst)$Bid + TakeProfit/100
 TPSell <- TP_GetSymbol(A01_Inst)$Ask - TakeProfit/100
 SLBuy  <- TP_GetSymbol(A01_Inst)$Bid - StopLoss/100
 SLSell <- TP_GetSymbol(A01_Inst)$Ask + StopLoss/100
 
+A01_Trade <- ifelse(PredRend > PastRend, "buy","sell")
 A01_TP <- ifelse(A01_Trade == "buy", TPBuy, TPSell)
 A01_SL <- ifelse(A01_Trade == "buy", SLBuy, SLSell)
-
 A01_LT <- Lotes
 A01_MD <- ModeloTexto
