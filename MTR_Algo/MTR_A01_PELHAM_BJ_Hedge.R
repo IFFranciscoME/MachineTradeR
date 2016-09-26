@@ -17,10 +17,10 @@ H_TakeProfit <- TakeProfit - 5
 H_StopLoss   <- StopLoss - 5
 H_Lotes      <- .10
 
-V1 <- length(A01_PreciosHis[,1]) - Tam_Ventana
-V2 <- length(A01_PreciosHis[,1])
+V1 <- length(A01H_PreciosHis[,1]) - Tam_Ventana
+V2 <- length(A01H_PreciosHis[,1])
 
-Datos <- A01_PreciosHis[V1:V2,]
+Datos <- A01H_PreciosHis[V1:V2,]
 Datos <- data.frame(Datos$TimeStamp[-1], diff(log(Datos$Close)))
 colnames(Datos) <- c("TimeStamp","RendClose")
 
@@ -101,28 +101,39 @@ PredRend <- round(predict(Modelo, n.ahead = 1)$pred[1],6)
 
 # -- Valor Final ---------------------------------------------------------------------- #
 
-Inst  <- "FT_CL-Nov!!"
+Inst  <- "EURUSD"
 Bid <- TP_GetSymbol(Inst)$Bid
 Ask <- TP_GetSymbol(Inst)$Ask
-Trade <- ifelse(PredRend > PastRend, "buy","sell")
-
-TP <- ifelse(Trade == "buy", Bid + TakeProfit/100, Ask - TakeProfit/100)
-SL <- ifelse(Trade == "buy", Bid - StopLoss/100, Ask + StopLoss/100)
-LT <- Lotes
-
+Trade   <- ifelse(PredRend > PastRend, "buy","sell")
 H_Trade <- ifelse(Trade == "buy", "sell", "buy")
-
-H_TP <- ifelse(H_Trade == "buy", Bid + H_TakeProfit/100, Ask - H_TakeProfit/100)
-H_SL <- ifelse(H_Trade == "buy", Bid - H_StopLoss/100, Ask + H_StopLoss/100)
-
+LT   <- Lotes
 H_LT <- H_Lotes
 
+if(Trade == "buy"){
+
+  TP   <- Bid + TakeProfit/10000
+  H_SL <- TP  - 4/10000
+  
+  SL   <- Bid - StopLoss/10000
+  H_TP <- SL  - 4/10000
+
+} else {
+
+  TP   <- Ask - TakeProfit/10000
+  H_SL <- TP  + 4/10000
+
+  SL   <- Ask + StopLoss/10000
+  H_TP <- SL  - 4/10000
+
+}
+
 A01H_Datos <- list(
-                Inst  = Inst, Trade = Trade, Modelo = ModeloTexto,
-                TP = ifelse(Trade == "buy", TPBuy, TPSell),
-                SL = ifelse(Trade == "buy", SLBuy, SLSell),
+                Inst  = Inst, Modelo = ModeloTexto,
+                Trade = Trade,
+                TP = TP,
+                SL = SL,
                 LT = Lotes,
                 H_Trade = H_Trade,
-                H_TP = ifelse(H_Trade == "sell", H_TPSell, H_TPBuy),
-                H_SL = ifelse(H_Trade == "sell", H_SLSell, H_SLBuy),
-                H_LT = Lotes)
+                H_TP = H_TP,
+                H_SL = H_SL,
+                H_LT = H_Lotes)

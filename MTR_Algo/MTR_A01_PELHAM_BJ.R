@@ -11,7 +11,6 @@ Tam_Ventana <- 144
 TakeProfit  <- 30
 StopLoss <- 15
 Lotes    <- .10
-A01_Inst <- "FT_CL-Nov!!"
 
 V1 <- length(A01_PreciosHis[,1]) - Tam_Ventana
 V2 <- length(A01_PreciosHis[,1])
@@ -110,10 +109,10 @@ PredRend <- round(predict(Modelo, n.ahead = 1)$pred[1],6)
 Inst  <- "FT_CL-Nov!!"
 Trade <- ifelse(PredRend > PastRend, "buy","sell")
 
-TPBuy  <- TP_GetSymbol(A01_Inst)$Bid + TakeProfit/100
-TPSell <- TP_GetSymbol(A01_Inst)$Ask - TakeProfit/100
-SLBuy  <- TP_GetSymbol(A01_Inst)$Bid - StopLoss/100
-SLSell <- TP_GetSymbol(A01_Inst)$Ask + StopLoss/100
+TPBuy  <- TP_GetSymbol(Inst)$Bid + TakeProfit/100
+TPSell <- TP_GetSymbol(Inst)$Ask - TakeProfit/100
+SLBuy  <- TP_GetSymbol(Inst)$Bid - StopLoss/100
+SLSell <- TP_GetSymbol(Inst)$Ask + StopLoss/100
 
 A01_Datos <- list(
               Inst  = Inst, 

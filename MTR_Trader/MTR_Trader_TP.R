@@ -9,7 +9,6 @@
 # -- Detectar Actividad de Algoritmos ------------------------------------------------- #
 # ------------------------------------------------------------------------------------- #
 
-
 # -- Escenarios
 # -- 1.- Ninguna operacion abierta 
 # -- 1.1.- Proceder a abrir ops enviadas por MTR_Algo
@@ -22,17 +21,19 @@
 # -- Trading para A01_PELHAM_BJ ------------------------------------------------------- #
 # ------------------------------------------------------------------------------------- #
 
-if(length(A01_Datos) != 0){
+if(length(A01_Datos) != 0 ){
   
 # -- Revisar si hay operaciones abiertas 
-# A01_PELHAM_BJ$OpenTrades <- TP_GetTrades(
-#                              A01_PELHAM_BJ$TPUID)
+A01_PELHAM_BJ$OpenTrades <- TP_GetTrades(A01_PELHAM_BJ$TPUID)
 
 # -- Cerrar operaciones abiertas
-# A01_PELHAM_BJ$CloseTrades <- TP_CloseTrade(
-#                               P0_Token   = A01_PELHAM_BJ$token$Token,
-#                               P1_tradeID = A01_PELHAM_BJ$OpenTrades$id[1],
-#                               P2_userID  = A01_PELHAM_BJ$TPUID)
+if(A01_PELHAM_BJ$OpenTrades$free_margin !=0) {
+ 
+ A01_PELHAM_BJ$CloseTrades <- TP_CloseTrade(
+                               P0_Token   = A01_PELHAM_BJ$token$Token,
+                               P1_tradeID = A01_PELHAM_BJ$OpenTrades$id[2],
+                               P2_userID  = A01_PELHAM_BJ$TPUID)
+}
 
 # -- Abrir operacion con los ultimos parametros
 A01_PELHAM_BJ$LastTrade   <- TP_OpenTrade(
@@ -45,51 +46,80 @@ A01_PELHAM_BJ$LastTrade   <- TP_OpenTrade(
 }
 
 # ------------------------------------------------------------------------------------- #
-# -- Trading para A02_SONNY_NN -------------------------------------------------------- #
+# -- Trading para A01H_PELHAM_BJ -------------------------------------------------------- #
 # ------------------------------------------------------------------------------------- #
 
+if(length(A01H_Datos) != 0){
+
 # -- Revisar si hay operaciones abiertas
-A02_SONNY_NN$OpenTrades  <- TP_GetTrades(A02_SONNY_NN$TPUID)
+A01_PELHAM_BJ$OpenTrades  <- TP_GetTrades(A01_PELHAM_BJ$TPUID)
+
+if(any(A01_PELHAM_BJ$OpenTrades$symbol == "EURUSD")){
+
+    A01_PELHAM_BJ$OpenTrades <-
+    A01_PELHAM_BJ$OpenTrades[which(A01_PELHAM_BJ$OpenTrades$symbol == "EURUSD"),]
+
+} else
+
+if(sum(A01_PELHAM_BJ$OpenTrades$free_margin) !=0) {
+
+  Opens <- length(A01_PELHAM_BJ$OpenTrades$free_margin)
+  
+  for(i in 1:Opens){
+  # -- Cerrar operaciones con los ultimos parametros
+  TP_CloseTrade(
+  P0_Token   = A01_PELHAM_BJ$token$Token,
+  P1_tradeID = A01_PELHAM_BJ$OpenTrades$id[i],
+  P2_userID  = A01_PELHAM_BJ$TPUID)
+  }
+
+} else {
 
 # -- Abrir operacion con los ultimos parametros
-A02_SONNY_NN$LastTrade   <- TP_OpenTrade(
-                            P0_Token = as.character(PBoxJenkins$Token$Token),
-                            P1_symbol = A01_Inst,
-                            P2_sl = A01_SL ,
-                            P3_tp = A01_TP,
-                            P4_lots = A01_LT,
-                            P5_op_type = A01_Trade)
+TP_OpenTrade(
+P0_Token = as.character(A01_PELHAM_BJ$token$Token),
+P1_symbol = A01H_Datos$Inst,
+P2_sl = A01H_Datos$SL ,
+P3_tp = A01H_Datos$TP,
+P4_lots = A01H_Datos$LT,
+P5_op_type = A01H_Datos$Trade)
 
-# -- Cerrar operacion con los ultimos parametros
-A02_SONNY_NN$ClosedTrades <- TP_CloseTrade(
-                             P0_Token   = A02_SONNY_NN$token$Token,
-                             P1_tradeID = A02_SONNY_NN$OpenTrades$id[1],
-                             P2_userID  = A02_SONNY_NN$TPUID)
+# -- Abrir operacion con los ultimos parametros
+TP_OpenTrade(
+P0_Token = as.character(A01_PELHAM_BJ$token$Token),
+P1_symbol = A01H_Datos$Inst,
+P2_sl = A01H_Datos$H_SL ,
+P3_tp = A01H_Datos$H_TP,
+P4_lots = A01H_Datos$H_LT,
+P5_op_type = A01H_Datos$H_Trade)
+
+}
+}
 
 # ------------------------------------------------------------------------------------- #
 # -- Trading para A03_ROBBY_RF -------------------------------------------------------- #
 # ------------------------------------------------------------------------------------- #
 
-# -- Conocer si hay operaciones abiertas
-A03_ROBBY_RF_OpenTrades  <- TP_GetTrades(A03_ROBBY_RF$TPUID)
-
-TradeROBBY <- OpenTrade(P0_Token = as.character(ROBBY$Token$Token),
-                        P1_symbol = "AUDUSD",
-                        P2_sl = 1,
-                        P3_tp = 2,
-                        P4_lots = 0.5,
-                        P5_op_type = "buy")
-
-# ------------------------------------------------------------------------------------- #
-# -- Trading para A04_BENDER_LR ------------------------------------------------------- #
-# ------------------------------------------------------------------------------------- #
-
-A04_BENDER_LR_OpenTrades <- TP_GetTrades(A04_BENDER_LR$TPUID)
- 
-TradeBENDER <- OpenTrade(P0_Token = as.character(BENDER$Token$Token),
-                         P1_symbol = "NZDUSD",
-                         P2_sl = 0.5 ,
-                         P3_tp = 1,
-                         P4_lots = 0.1,
-                         P5_op_type = "sell")
- 
+# # -- Conocer si hay operaciones abiertas
+# A03_ROBBY_RF_OpenTrades  <- TP_GetTrades(A03_ROBBY_RF$TPUID)
+# 
+# TradeROBBY <- OpenTrade(P0_Token = as.character(ROBBY$Token$Token),
+#                         P1_symbol = "AUDUSD",
+#                         P2_sl = 1,
+#                         P3_tp = 2,
+#                         P4_lots = 0.5,
+#                         P5_op_type = "buy")
+# 
+# # ------------------------------------------------------------------------------------- #
+# # -- Trading para A04_BENDER_LR ------------------------------------------------------- #
+# # ------------------------------------------------------------------------------------- #
+# 
+# A04_BENDER_LR_OpenTrades <- TP_GetTrades(A04_BENDER_LR$TPUID)
+#  
+# TradeBENDER <- OpenTrade(P0_Token = as.character(BENDER$Token$Token),
+#                          P1_symbol = "NZDUSD",
+#                          P2_sl = 0.5 ,
+#                          P3_tp = 1,
+#                          P4_lots = 0.1,
+#                          P5_op_type = "sell")
+#  
