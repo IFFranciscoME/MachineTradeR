@@ -10,12 +10,9 @@
 Tam_Ventana <- 144
 
 TakeProfit <- 30
-StopLoss   <- 15
-Lotes      <- .10
-
-H_TakeProfit <- TakeProfit - 5
-H_StopLoss   <- StopLoss - 5
-H_Lotes      <- .10
+StopLoss <- 15
+Lotes    <- .10
+H_Lotes  <- .10
 
 V1 <- length(A01H_PreciosHis[,1]) - Tam_Ventana
 V2 <- length(A01H_PreciosHis[,1])
