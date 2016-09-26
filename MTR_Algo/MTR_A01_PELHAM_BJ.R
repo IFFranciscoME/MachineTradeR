@@ -8,12 +8,10 @@
 # -- Traer Valores y Datos de Entrada ------------------------------------------------ #
 
 Tam_Ventana <- 144
-
 TakeProfit  <- 30
-StopLoss    <- 15
-
+StopLoss <- 15
 Lotes    <- .10
-A01_Inst <- "FT_CL-Oct!!"
+A01_Inst <- "FT_CL-Nov!!"
 
 V1 <- length(A01_PreciosHis[,1]) - Tam_Ventana
 V2 <- length(A01_PreciosHis[,1])
@@ -109,13 +107,18 @@ PredRend <- round(predict(Modelo, n.ahead = 1)$pred[1],6)
 
 # -- Valor Final ---------------------------------------------------------------------- #
 
+Inst  <- "FT_CL-Nov!!"
+Trade <- ifelse(PredRend > PastRend, "buy","sell")
+
 TPBuy  <- TP_GetSymbol(A01_Inst)$Bid + TakeProfit/100
 TPSell <- TP_GetSymbol(A01_Inst)$Ask - TakeProfit/100
 SLBuy  <- TP_GetSymbol(A01_Inst)$Bid - StopLoss/100
 SLSell <- TP_GetSymbol(A01_Inst)$Ask + StopLoss/100
 
-A01_Trade <- ifelse(PredRend > PastRend, "buy","sell")
-A01_TP <- ifelse(A01_Trade == "buy", TPBuy, TPSell)
-A01_SL <- ifelse(A01_Trade == "buy", SLBuy, SLSell)
-A01_LT <- Lotes
-A01_MD <- ModeloTexto
+A01_Datos <- list(
+              Inst  = Inst, 
+              Trade = Trade,
+              TP = ifelse(Trade == "buy", TPBuy, TPSell),
+              SL = ifelse(Trade == "buy", SLBuy, SLSell),
+              LT = Lotes,
+              MD = ModeloTexto )

@@ -17,7 +17,7 @@ A01_FechaIni   <- Sys.Date()-40
 A01_FechaFin   <- Sys.Date()
 A01_PreciosHis <-HisPrices(OA_At,"H4",OA_Da,OA_Ta,OA_Ak,OA_In,NULL,NULL,200)
 
-A01_PreciosAct <- list("FT_CL-Oct!!" = TP_GetSymbol("FT_CL-Oct!!")[3:4])
+A01_PreciosAct <- list("FT_CL-Nov!!" = TP_GetSymbol("FT_CL-Nov!!")[3:4])
 
 # -- ---------------------------------------------------- Generate Trading Pal Token -- #
 

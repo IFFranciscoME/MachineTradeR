@@ -12,7 +12,6 @@ rm(list=ls())
 # -- ------------------------------------------------------------------------------ -- #
 
 Sys.setlocale(category = "LC_ALL", locale = "")
-Sys.time()
 
 Horas_H4 <- c(2,6,10,14,18,22)
 
@@ -53,6 +52,8 @@ Hora <- lubridate::hour(as.POSIXct(Sys.timeDate(), origin = "1970-01-01",
 if(any(c(Hora == Horas_H4))) {
   A01_Bandera <- 1
 
+source('C:/TradingPal/BitBucket/R_MachineTradeR/MTR_Algo/MTR_A01_PELHAM.R', echo=TRUE)
+  
 source('C:/TradingPal/BitBucket/R_MachineTradeR/MTR_Algo/MTR_A01_PELHAM_BJ.R', echo=TRUE)
 
 } else {

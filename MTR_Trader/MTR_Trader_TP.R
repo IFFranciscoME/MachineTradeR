@@ -10,7 +10,6 @@
 # ------------------------------------------------------------------------------------- #
 
 
-
 # -- Escenarios
 # -- 1.- Ninguna operacion abierta 
 # -- 1.1.- Proceder a abrir ops enviadas por MTR_Algo
@@ -23,24 +22,27 @@
 # -- Trading para A01_PELHAM_BJ ------------------------------------------------------- #
 # ------------------------------------------------------------------------------------- #
 
+if(length(A01_Datos) != 0){
+  
 # -- Revisar si hay operaciones abiertas 
-A01_PELHAM_BJ$OpenTrades <- TP_GetTrades(
-                             A01_PELHAM_BJ$TPUID)
+# A01_PELHAM_BJ$OpenTrades <- TP_GetTrades(
+#                              A01_PELHAM_BJ$TPUID)
 
 # -- Cerrar operaciones abiertas
-A01_PELHAM_BJ$CloseTrades <- TP_CloseTrade(
-                              P0_Token   = A01_PELHAM_BJ$token$Token,
-                              P1_tradeID = A01_PELHAM_BJ$OpenTrades$id[1],
-                              P2_userID  = A01_PELHAM_BJ$TPUID)
+# A01_PELHAM_BJ$CloseTrades <- TP_CloseTrade(
+#                               P0_Token   = A01_PELHAM_BJ$token$Token,
+#                               P1_tradeID = A01_PELHAM_BJ$OpenTrades$id[1],
+#                               P2_userID  = A01_PELHAM_BJ$TPUID)
 
 # -- Abrir operacion con los ultimos parametros
 A01_PELHAM_BJ$LastTrade   <- TP_OpenTrade(
                               P0_Token = as.character(A01_PELHAM_BJ$token$Token),
-                              P1_symbol = A01_Inst,
-                              P2_sl = A01_SL ,
-                              P3_tp = A01_TP,
-                              P4_lots = A01_LT,
-                              P5_op_type = A01_Trade)
+                              P1_symbol = A01_Datos$Inst,
+                              P2_sl = A01_Datos$SL,
+                              P3_tp = A01_Datos$TP,
+                              P4_lots = A01_Datos$LT,
+                              P5_op_type = A01_Datos$Trade)
+}
 
 # ------------------------------------------------------------------------------------- #
 # -- Trading para A02_SONNY_NN -------------------------------------------------------- #
