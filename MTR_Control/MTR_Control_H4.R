@@ -13,7 +13,7 @@ rm(list=ls())
 
 Sys.setlocale(category = "LC_ALL", locale = "")
 
-Horas_H4 <- c(2,6,10,14,18,22,1)
+Horas_H4 <- c(2,6,10,14,18,22,9)
 
 pkg <- c("base","downloader","dplyr","fBasics","forecast","googlesheets","grid",
          "gridExtra","httr","h2o","jsonlite","knitr","lmtest","lubridate","moments",
@@ -71,7 +71,7 @@ source('C:/TradingPal/BitBucket/R_MachineTradeR/MTR_Algo/MTR_A01_PELHAM_BJ_Hedge
 # -- Colocar operaciones con parametros generados por Algoritmos -------- MTR_Trader -- #
 
 source('C:/TradingPal/BitBucket/R_MachineTradeR/MTR_Trader/MTR_Trader_TP.R', echo=TRUE)
-source('C:/TradingPal/BitBucket/R_MachineTradeR/MTR_Trader/MTR_Trader_OA.R', echo=TRUE)
+#source('C:/TradingPal/BitBucket/R_MachineTradeR/MTR_Trader/MTR_Trader_OA.R', echo=TRUE)
 
 # -- ETAPA 4 ----------------------------------------------------------------------- -- #
 # -- Generar y Enviar senal a traves de SMS y Email ------------------- MTR_Notifier -- #

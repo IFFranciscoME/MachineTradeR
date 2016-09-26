@@ -18,34 +18,6 @@
 # -- 2.2.- Proceder a abrir ops enviadas por MTR_Algo
 
 # ------------------------------------------------------------------------------------- #
-# -- Trading para A01_PELHAM_BJ ------------------------------------------------------- #
-# ------------------------------------------------------------------------------------- #
-
-if(length(A01_Datos) != 0){ # Para revisar si se ejecuto el codigo A01_PELHAM_BJ
-
-# -- Revisar si hay operaciones abiertas en cuenta de Pelham Jenkins
-A01_PELHAM_BJ$OpenTrades <- TP_GetTrades(A01_PELHAM_BJ$TPUID)
-
-# -- Cerrar operaciones abiertas
-if(A01_PELHAM_BJ$OpenTrades$free_margin !=0) {
- 
- A01_PELHAM_BJ$CloseTrades <- TP_CloseTrade(
-                               P0_Token   = A01_PELHAM_BJ$token$Token,
-                               P1_tradeID = A01_PELHAM_BJ$OpenTrades$id[2],
-                               P2_userID  = A01_PELHAM_BJ$TPUID)
-}
-
-# -- Abrir operacion con los ultimos parametros
-A01_PELHAM_BJ$LastTrade   <- TP_OpenTrade(
-                              P0_Token = as.character(A01_PELHAM_BJ$token$Token),
-                              P1_symbol = A01_Datos$Inst,
-                              P2_sl = A01_Datos$SL,
-                              P3_tp = A01_Datos$TP,
-                              P4_lots = A01_Datos$LT,
-                              P5_op_type = A01_Datos$Trade)
-}
-
-# ------------------------------------------------------------------------------------- #
 # -- Trading para A01H_PELHAM_BJ -------------------------------------------------------- #
 # ------------------------------------------------------------------------------------- #
 
@@ -100,6 +72,34 @@ P4_lots = A01H_Datos$H_LT,
 P5_op_type = A01H_Datos$H_Trade)
 
 }
+}
+
+# ------------------------------------------------------------------------------------- #
+# -- Trading para A01_PELHAM_BJ ------------------------------------------------------- #
+# ------------------------------------------------------------------------------------- #
+
+if(length(A01_Datos) != 0){ # Para revisar si se ejecuto el codigo A01_PELHAM_BJ
+  
+  # -- Revisar si hay operaciones abiertas en cuenta de Pelham Jenkins
+  A01_PELHAM_BJ$OpenTrades <- TP_GetTrades(A01_PELHAM_BJ$TPUID)
+  
+  # -- Cerrar operaciones abiertas
+  if(A01_PELHAM_BJ$OpenTrades$free_margin !=0) {
+    
+    A01_PELHAM_BJ$CloseTrades <- TP_CloseTrade(
+      P0_Token   = A01_PELHAM_BJ$token$Token,
+      P1_tradeID = A01_PELHAM_BJ$OpenTrades$id[2],
+      P2_userID  = A01_PELHAM_BJ$TPUID)
+  }
+  
+  # -- Abrir operacion con los ultimos parametros
+  A01_PELHAM_BJ$LastTrade   <- TP_OpenTrade(
+    P0_Token = as.character(A01_PELHAM_BJ$token$Token),
+    P1_symbol = A01_Datos$Inst,
+    P2_sl = A01_Datos$SL,
+    P3_tp = A01_Datos$TP,
+    P4_lots = A01_Datos$LT,
+    P5_op_type = A01_Datos$Trade)
 }
 
 # ------------------------------------------------------------------------------------- #
