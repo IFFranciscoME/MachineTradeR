@@ -5,26 +5,32 @@
 # -- License: TradingPal ---------------------------------------------------------- -- #
 # ------------------------------------------------------------------------------------ #
 
+# -- Borrar todos los elementos del environment
 rm(list=ls())
 
 # -- ETAPA 0 ---------------------------------------------------------------------- -- #
 # -- Inicializador general de sistema ------------------------------ MTR_Control_H4 -- #
 # -- ------------------------------------------------------------------------------ -- #
 
+# -- Establecer el sistema de medicion de la computadora
 Sys.setlocale(category = "LC_ALL", locale = "")
 
-Horas_H4 <- c(2,6,10,14,18,22,9)
+# -- Horas admitidas para hacer correr cada 4 Horas los codigos
+Horas_H4 <- c(2,6,10,14,18,22,23)
 
+# -- Paquetes o librerias utilizadas
 pkg <- c("base","downloader","dplyr","fBasics","forecast","googlesheets","grid",
          "gridExtra","httr","h2o","jsonlite","knitr","lmtest","lubridate","moments",
          "matrixStats", "PerformanceAnalytics","plyr","quantmod","randomForest",
          "reshape2","RCurl","stats","scales","tree","tseries",
          "TTR","TSA","twitteR","XML","xts","zoo")
 
+# -- Cargar librerias o en su defecto instalarlas
 inst <- pkg %in% installed.packages()
 if(length(pkg[!inst]) > 0) install.packages(pkg[!inst])
 instpackages <- lapply(pkg, library, character.only=TRUE)
 
+# -- Cargar archivos desde GitHub
 RawGitHub <- "https://raw.githubusercontent.com/IFFranciscoME/"
 
 ROandaAPI <- paste(RawGitHub,"ROandaAPI/master/ROandaAPI.R",sep = "")

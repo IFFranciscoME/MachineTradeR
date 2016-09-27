@@ -41,7 +41,7 @@ if(any(A01_PELHAM_BJ$OpenTrades$symbol == "EURUSD")){
 
 if(sum(A01_PELHAM_BJ$OpenTrades$free_margin) !=0) {
 
-  Opens <- length(A01_PELHAM_BJ$OpenTrades$free_margin)
+  Opens <- as.numeric(length(A01_PELHAM_BJ$OpenTrades$free_margin))
   
   for(i in 1:Opens){
   # -- Cerrar operaciones con los ultimos parametros
@@ -82,6 +82,20 @@ if(length(A01_Datos) != 0){ # Para revisar si se ejecuto el codigo A01_PELHAM_BJ
   
   # -- Revisar si hay operaciones abiertas en cuenta de Pelham Jenkins
   A01_PELHAM_BJ$OpenTrades <- TP_GetTrades(A01_PELHAM_BJ$TPUID)
+  
+  if(any(A01_PELHAM_BJ$OpenTrades$symbol == "FT_CL-Nov!!")){
+    
+    A01_PELHAM_BJ$OpenTrades <-
+      A01_PELHAM_BJ$OpenTrades[which(A01_PELHAM_BJ$OpenTrades$symbol == "FT_CL-Nov!!"),]
+    
+  } else {
+    
+    A01_PELHAM_BJ$OpenTrades <- data.frame(matrix(nrow=1,ncol=12,data=0))
+    colnames(A01_PELHAM_BJ$OpenTrades) <- c("free_margin","id","isSelf","lots","margin",
+                                            "op_type","open","sl","symbol","tp","user",
+                                            "joint")
+  }
+  
   
   # -- Cerrar operaciones abiertas
   if(A01_PELHAM_BJ$OpenTrades$free_margin !=0) {
