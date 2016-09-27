@@ -41,16 +41,36 @@ if(any(A01_PELHAM_BJ$OpenTrades$symbol == "EURUSD")){
 
 if(sum(A01_PELHAM_BJ$OpenTrades$free_margin) !=0) {
 
-  Opens <- as.numeric(length(A01_PELHAM_BJ$OpenTrades$free_margin))
   
-  for(i in 1:Opens){
   # -- Cerrar operaciones con los ultimos parametros
   TP_CloseTrade(
-  P0_Token   = A01_PELHAM_BJ$token$Token,
-  P1_tradeID = A01_PELHAM_BJ$OpenTrades$id[i],
-  P2_userID  = A01_PELHAM_BJ$TPUID)
-  }
-
+    P0_Token   = A01_PELHAM_BJ$token$Token,
+    P1_tradeID = A01_PELHAM_BJ$OpenTrades$id[1],
+    P2_userID  = A01_PELHAM_BJ$TPUID)
+  
+  TP_CloseTrade(
+    P0_Token   = A01_PELHAM_BJ$token$Token,
+    P1_tradeID = A01_PELHAM_BJ$OpenTrades$id[2],
+    P2_userID  = A01_PELHAM_BJ$TPUID)
+  
+  # -- Abrir operacion con los ultimos parametros
+  TP_OpenTrade(
+    P0_Token = as.character(A01_PELHAM_BJ$token$Token),
+    P1_symbol = A01H_Datos$Inst,
+    P2_sl = A01H_Datos$SL ,
+    P3_tp = A01H_Datos$TP,
+    P4_lots = A01H_Datos$LT,
+    P5_op_type = A01H_Datos$Trade)
+  
+  # -- Abrir operacion con los ultimos parametros
+  TP_OpenTrade(
+    P0_Token = as.character(A01_PELHAM_BJ$token$Token),
+    P1_symbol = A01H_Datos$Inst,
+    P2_sl = A01H_Datos$H_SL ,
+    P3_tp = A01H_Datos$H_TP,
+    P4_lots = A01H_Datos$H_LT,
+    P5_op_type = A01H_Datos$H_Trade)
+  
 } else {
 
 # -- Abrir operacion con los ultimos parametros
@@ -85,7 +105,7 @@ if(length(A01_Datos) != 0){ # Para revisar si se ejecuto el codigo A01_PELHAM_BJ
   
   if(any(A01_PELHAM_BJ$OpenTrades$symbol == "FT_CL-Nov!!")){
     
-    A01_PELHAM_BJ$OpenTrades <-
+     A01_PELHAM_BJ$OpenTrades <-
       A01_PELHAM_BJ$OpenTrades[which(A01_PELHAM_BJ$OpenTrades$symbol == "FT_CL-Nov!!"),]
     
   } else {
@@ -102,18 +122,29 @@ if(length(A01_Datos) != 0){ # Para revisar si se ejecuto el codigo A01_PELHAM_BJ
     
     A01_PELHAM_BJ$CloseTrades <- TP_CloseTrade(
       P0_Token   = A01_PELHAM_BJ$token$Token,
-      P1_tradeID = A01_PELHAM_BJ$OpenTrades$id[2],
+      P1_tradeID = A01_PELHAM_BJ$OpenTrades$id[1],
       P2_userID  = A01_PELHAM_BJ$TPUID)
+    
+    # -- Abrir operacion con los ultimos parametros
+    A01_PELHAM_BJ$LastTrade   <- TP_OpenTrade(
+      P0_Token = as.character(A01_PELHAM_BJ$token$Token),
+      P1_symbol = A01_Datos$Inst,
+      P2_sl = A01_Datos$SL,
+      P3_tp = A01_Datos$TP,
+      P4_lots = A01_Datos$LT,
+      P5_op_type = A01_Datos$Trade)
+    
+  } else {
+    
+    # -- Abrir operacion con los ultimos parametros
+    A01_PELHAM_BJ$LastTrade   <- TP_OpenTrade(
+      P0_Token = as.character(A01_PELHAM_BJ$token$Token),
+      P1_symbol = A01_Datos$Inst,
+      P2_sl = A01_Datos$SL,
+      P3_tp = A01_Datos$TP,
+      P4_lots = A01_Datos$LT,
+      P5_op_type = A01_Datos$Trade)  
   }
-  
-  # -- Abrir operacion con los ultimos parametros
-  A01_PELHAM_BJ$LastTrade   <- TP_OpenTrade(
-    P0_Token = as.character(A01_PELHAM_BJ$token$Token),
-    P1_symbol = A01_Datos$Inst,
-    P2_sl = A01_Datos$SL,
-    P3_tp = A01_Datos$TP,
-    P4_lots = A01_Datos$LT,
-    P5_op_type = A01_Datos$Trade)
 }
 
 # ------------------------------------------------------------------------------------- #

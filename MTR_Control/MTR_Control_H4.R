@@ -16,7 +16,7 @@ rm(list=ls())
 Sys.setlocale(category = "LC_ALL", locale = "")
 
 # -- Horas admitidas para hacer correr cada 4 Horas los codigos
-Horas_H4 <- c(2,6,10,14,18,22,23)
+Horas_H4 <- c(2,6,10,14,18,22)
 
 # -- Paquetes o librerias utilizadas
 pkg <- c("base","downloader","dplyr","fBasics","forecast","googlesheets","grid",
