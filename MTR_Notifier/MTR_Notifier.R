@@ -23,7 +23,8 @@ Http3 <- paste(paste(Http2,TL_Ai,sep="/"),"/Messages.XML",sep="")
 ifelse(A01_Bandera == 1,
 MensajeF2 <- paste(paste(paste(paste(paste(paste(paste(paste(
              paste("Operacion Abierta A01 / Inst:", A01_Inst),"/ TP:"),
-             A01_TP), "/ SL:"),A01_SL), "/ Modelo:"),A01_MD),"/ Direccion:",A01_Trade)),
+             A01_Datos$TP), "/ SL:"),A01_Datos$SL), "/ Modelo:"),A01_Datos$MD),
+             "/ Direccion:",A01_Datos$Trade)),
 MensajeF2 <- A01_Mensaje)
 
 MensajeF2
@@ -40,7 +41,7 @@ JorgeH <- "+528118013609"
 
 postForm(Http3, .params = c(From = "+14072701470", To = Francisco, Body = MensajeF2))
 
-#postForm(Http3, .params = c(From = "+14072701470", To = Marcelo, Body = MensajeF2))
+postForm(Http3, .params = c(From = "+14072701470", To = Chapa, Body = MensajeF2))
 
 
 options(RCurlOptions = list(
