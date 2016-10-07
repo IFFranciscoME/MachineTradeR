@@ -66,4 +66,9 @@ HashTags_Generales <- c("#tp_algotrading , #machinelearning , #machineintelligen
 # -- Etiquetador y comentarios con seguidores ----------------------------------------- #
 
 
+TP_PostUserWall(P0_Token = A01_PELHAM_BJ$Token$Token,
+                P2_HashTags = c("AlgoTrading","Forex"),
+                P1_Texto = "Texto de contenido a las 18.55")
+
+
 
