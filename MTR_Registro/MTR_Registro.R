@@ -55,6 +55,17 @@ A04_BENDER_LR <- list(Email = "benito.derman@gmail.com",
 
 A04_BENDER_LR$token <- TP_GetToken(Email=A04_BENDER_LR$Email, Pass=A04_BENDER_LR$EmailPass)
 
+# -- ------------------------------------------------------ TESTER_JN (Tester Jones) -- #
+# -- Cuenta para pruebas tecnologicas ---------------------------------------------- -- #
+
+A05_TESTER_JN <- list(Email = "TesterJonesFX@gmail.com",
+                      EmailPass = "VanguardiaTesterJones1.",
+                      TPName = "Tester Jones",
+                      TPPass = "VanguardiaTesterJones1.",
+                      TPUID  = "d574516c-10fa-44a7-b7d2-1747decf637f")
+
+A05_TESTER_JN$token <- TP_GetToken(Email=A05_TESTER_JN$Email, Pass=A05_TESTER_JN$EmailPass)
+
 # ------------------------------------------------------------------------------------- #
 # -- OANDA API --------------------------------------------------------------------- -- #
 # ------------------------------------------------------------------------------------- #

@@ -65,10 +65,25 @@ HashTags_Generales <- c("#tp_algotrading , #machinelearning , #machineintelligen
 
 # -- Etiquetador y comentarios con seguidores ----------------------------------------- #
 
+# library("httr")
+# library("jsonlite")
+# library("RCurl")
 
-TP_PostUserWall(P0_Token = A01_PELHAM_BJ$Token$Token,
-                P2_HashTags = c("AlgoTrading","Forex"),
-                P1_Texto = "Texto de contenido a las 18.55")
+TP_PostUserWall <- function(P0_Token, P1_Texto, P2_HashTags, P3_PeopleTags){
+  
+  Rep1 <- length(P2_HashTags)
+  
+  for(i in 1:Rep1) P1_Texto <- paste(P1_Texto, paste("#",P2_HashTags[i], sep=""), sep=" ")
+  
+  http  <- "www.tradingpal.com/api/posts/?token="
+  http2 <- paste(http, P0_Token, sep="")
+  Param <- list(content = P1_Texto, tags = P2_HashTags, people_tagged = P3_PeopleTags)
+  PF <- postForm(http2, style="POST", .params=Param, .opts=list(ssl.verifypeer = TRUE))
+  
+}
 
-
+TP_PostUserWall(P0_Token = A05_TESTER_JN$token$Token,
+                P3_PeopleTags = c("Tester Jones"),
+                P2_HashTags = c("HashTag1","HashTag2"),
+                P1_Texto = paste("{0} Texto Generado a las", Sys.timeDate(), sep =" "))
 

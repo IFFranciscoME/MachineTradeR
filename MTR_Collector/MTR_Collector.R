@@ -21,8 +21,3 @@ A02_PreciosHis <- HisPrices(OA_At,"H1",OA_Da,OA_Ta,OA_Ak,"AUD_USD",NULL,NULL,200
 
 A01_PreciosAct  <- list("FT_CL-Nov!!" = TP_GetSymbol("FT_CL-Nov!!")[3:4])
 A01H_PreciosAct <- list("EURUSD" = TP_GetSymbol("EURUSD")[3:4])
-
-# -- ---------------------------------------------------- Generate Trading Pal Token -- #
-
-A01_PELHAM_BJ$Token <- TP_GetToken(Email = A01_PELHAM_BJ$Email,
-                                   Pass = A01_PELHAM_BJ$TPPass)
