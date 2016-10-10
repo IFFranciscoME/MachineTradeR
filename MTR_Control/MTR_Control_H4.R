@@ -16,7 +16,7 @@ rm(list=ls())
 Sys.setlocale(category = "LC_ALL", locale = "")
 
 # -- Horas admitidas para hacer correr cada 4 Horas los codigos
-Horas_H4 <- c(2,6,10,14,18,22)
+Horas_H4 <- c(2,6,10,14,18,22,16)
 
 # -- Paquetes o librerias utilizadas
 pkg <- c("base","downloader","dplyr","fBasics","forecast","googlesheets","grid",
@@ -33,7 +33,7 @@ instpackages <- lapply(pkg, library, character.only=TRUE)
 # -- Cargar archivos desde GitHub
 RawGitHub <- "https://raw.githubusercontent.com/IFFranciscoME/"
 
-ROandaAPI <- paste(RawGitHub,"ROandaAPI/master/ROandaAPI.R",sep = "")
+ROandaAPI <- paste(RawGitHub,"ROandaAPI/master/ROandaAPI.R",sep="")
 downloader::source_url(ROandaAPI,prompt=FALSE,quiet=TRUE)
 
 RTradingPal <- paste(RawGitHub,"RTradingPalAPI/master/RTradingPalAPI.R",sep="")

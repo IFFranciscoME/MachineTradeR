@@ -41,7 +41,7 @@ JorgeH <- "+528118013609"
 
 postForm(Http3, .params = c(From = "+14072701470", To = Francisco, Body = MensajeF2))
 
-postForm(Http3, .params = c(From = "+14072701470", To = Chapa, Body = MensajeF2))
+# postForm(Http3, .params = c(From = "+14072701470", To = Chapa, Body = MensajeF2))
 
 
 options(RCurlOptions = list(

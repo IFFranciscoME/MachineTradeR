@@ -8,16 +8,15 @@
 # -- Traer Valores y Datos de Entrada ------------------------------------------------ #
 
 Tam_Ventana <- 144
-
-TakeProfit <- 30
+TakeProfit  <- 30
 StopLoss <- 15
 Lotes    <- .10
 H_Lotes  <- .10
 
-V1 <- length(A01H_PreciosHis[,1]) - Tam_Ventana
-V2 <- length(A01H_PreciosHis[,1])
+V1 <- as.numeric(length(A01_PELHAM_BJ$Datos_H$Precios_H_1[,1]) - Tam_Ventana)
+V2 <- as.numeric(length(A01_PELHAM_BJ$Datos_H$Precios_H_1[,1]))
 
-Datos <- A01H_PreciosHis[V1:V2,]
+Datos <- A01_PELHAM_BJ$Datos_H$Precios_H_1[V1:V2,]
 Datos <- data.frame(Datos$TimeStamp[-1], diff(log(Datos$Close)))
 colnames(Datos) <- c("TimeStamp","RendClose")
 
@@ -89,7 +88,6 @@ silent = TRUE)
 ifelse(class(MENSAJE) == "Arima", Modelo <- Modelo, 
 Modelo <- stats::arima(Datos$RendClose, order=c(1,d,1), method = "CSS"))
 
-Modelo
 ModeloTexto <- ifelse(d == 0, paste("ARMA(",paste(p,d,q,sep=","),")",sep=""), 
                       paste("ARIMA(",paste(p,d,q,sep=","),")",sep=""))
 
@@ -98,9 +96,9 @@ PredRend <- round(predict(Modelo, n.ahead = 1)$pred[1],6)
 
 # -- Valor Final ---------------------------------------------------------------------- #
 
-Inst  <- "EURUSD"
-Bid <- TP_GetSymbol(Inst)$Bid
-Ask <- TP_GetSymbol(Inst)$Ask
+Inst    <- A01_PELHAM_BJ$Datos_H$Inst
+Bid     <- TP_GetSymbol(Inst)$Bid
+Ask     <- TP_GetSymbol(Inst)$Ask
 Trade   <- ifelse(PredRend > PastRend, "buy","sell")
 H_Trade <- ifelse(Trade == "buy", "sell", "buy")
 LT   <- Lotes
@@ -124,13 +122,14 @@ if(Trade == "buy"){
 
 }
 
-A01H_Datos <- list(
-                Inst  = Inst, Modelo = ModeloTexto,
-                Trade = Trade,
-                TP = TP,
-                SL = SL,
-                LT = Lotes,
-                H_Trade = H_Trade,
-                H_TP = H_TP,
-                H_SL = H_SL,
-                H_LT = H_Lotes)
+A01_PELHAM_BJ$DatosTrade_H <- list(
+                                Inst  = Inst, 
+                                Trade = Trade,
+                                TP = TP,
+                                SL = SL,
+                                LT = Lotes,
+                                H_Trade = H_Trade,
+                                H_TP = H_TP,
+                                H_SL = H_SL,
+                                H_LT = H_Lotes,
+                                Modelo = ModeloTexto)

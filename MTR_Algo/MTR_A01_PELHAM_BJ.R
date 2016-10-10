@@ -12,10 +12,10 @@ TakeProfit  <- 30
 StopLoss <- 15
 Lotes    <- .10
 
-V1 <- length(A01_PreciosHis[,1]) - Tam_Ventana
-V2 <- length(A01_PreciosHis[,1])
+V1 <- as.numeric(length(A01_PELHAM_BJ$Datos$Precios_H_1[,1]) - Tam_Ventana)
+V2 <- as.numeric(length(A01_PELHAM_BJ$Datos$Precios_H_1[,1]))
 
-Datos <- A01_PreciosHis[V1:V2,]
+Datos <- A01_PELHAM_BJ$Datos$Precios_H_1[V1:V2,]
 Datos <- data.frame(Datos$TimeStamp[-1], diff(log(Datos$Close)))
 colnames(Datos) <- c("TimeStamp","RendClose")
 
@@ -106,7 +106,7 @@ PredRend <- round(predict(Modelo, n.ahead = 1)$pred[1],6)
 
 # -- Valor Final ---------------------------------------------------------------------- #
 
-Inst  <- "FT_CL-Nov!!"
+Inst  <- A01_PELHAM_BJ$Datos$Inst
 Trade <- ifelse(PredRend > PastRend, "buy","sell")
 
 TPBuy  <- TP_GetSymbol(Inst)$Bid + TakeProfit/100
@@ -114,10 +114,10 @@ TPSell <- TP_GetSymbol(Inst)$Ask - TakeProfit/100
 SLBuy  <- TP_GetSymbol(Inst)$Bid - StopLoss/100
 SLSell <- TP_GetSymbol(Inst)$Ask + StopLoss/100
 
-A01_Datos <- list(
-              Inst  = Inst, 
-              Trade = Trade,
-              TP = ifelse(Trade == "buy", TPBuy, TPSell),
-              SL = ifelse(Trade == "buy", SLBuy, SLSell),
-              LT = Lotes,
-              MD = ModeloTexto )
+A01_PELHAM_BJ$DatosTrade <- list(
+                                Inst  = Inst,
+                                Trade = Trade,
+                                TP = ifelse(Trade == "buy", TPBuy, TPSell),
+                                SL = ifelse(Trade == "buy", SLBuy, SLSell),
+                                LT = Lotes,
+                                MD = ModeloTexto )

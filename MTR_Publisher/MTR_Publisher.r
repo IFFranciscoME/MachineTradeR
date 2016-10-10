@@ -91,14 +91,14 @@ Mensajes_Random_Viernes <- c(
 # -- Aleaotorizador de mensajes ------------------------------------------------------- #
 # -- ---------------------------------------------------------------------------------- #
 
-TP_GetAutoCopyUsers(A01_PELHAM_BJ$TPUID)
+# TP_GetAutoCopyUsers(A01_PELHAM_BJ$TPUID)
 
 Texto1 <- Mensajes_Agradecimiento[
           trunc(runif(n = 1, min = 1, max = length(Mensajes_Agradecimiento)))]
 
-TP_PostUserWall(P0_Token = A05_TESTER_JN$token$Token,
-                P2_HashTags = c("#TP_AlgoTrader, #AlgoTrading , #MachineLearning, #R"),
-                P1_Texto = Texto1)
+# TP_PostUserWall(P0_Token = A05_TESTER_JN$token$Token,
+#                 P2_HashTags = c("#TP_AlgoTrader, #AlgoTrading , #MachineLearning, #R"),
+#                 P1_Texto = Texto1)
 
 # -- --------------------------------------------------------------------- POSITIVOS -- #
 # -- Aleaotorizador de mensajes ------------------------------------------------------- #
@@ -106,10 +106,10 @@ TP_PostUserWall(P0_Token = A05_TESTER_JN$token$Token,
 
 Texto2 <- Mensajes_Positivos[
           trunc(runif(n = 1, min = 1, max = length(Mensajes_Positivos)))]
-
-TP_PostUserWall(P0_Token = A05_TESTER_JN$token$Token,
-                P2_HashTags = c("#TP_AlgoTrader, #AlgoTrading , #MachineLearning, #R"),
-                P1_Texto = Texto2)
+# 
+# TP_PostUserWall(P0_Token = A05_TESTER_JN$token$Token,
+#                 P2_HashTags = c("#TP_AlgoTrader, #AlgoTrading , #MachineLearning, #R"),
+#                 P1_Texto = Texto2)
 
 # -- ------------------------------------------------------------------------ RANDOM -- #
 # -- Aleaotorizador de mensajes ------------------------------------------------------- #
@@ -117,10 +117,10 @@ TP_PostUserWall(P0_Token = A05_TESTER_JN$token$Token,
 # 
 Texto4 <- Mensajes_Random[
           trunc(runif(n = 1, min = 1, max = length(Mensajes_Random)))]
-
-TP_PostUserWall(P0_Token = A05_TESTER_JN$token$Token,
-                P2_HashTags = c("#TP_AlgoTrader, #AlgoTrading , #MachineLearning, #R"),
-                P1_Texto = Texto3)
+# 
+# TP_PostUserWall(P0_Token = A05_TESTER_JN$token$Token,
+#                 P2_HashTags = c("#TP_AlgoTrader, #AlgoTrading , #MachineLearning, #R"),
+#                 P1_Texto = Texto3)
 
 # -- ---------------------------------------------------------------- RANDOM VIERNES -- #
 # -- Aleaotorizador de mensajes ------------------------------------------------------- #
@@ -128,7 +128,7 @@ TP_PostUserWall(P0_Token = A05_TESTER_JN$token$Token,
 # 
 Texto5 <- Mensajes_Random_Viernes[
           trunc(runif(n = 1, min = 1, max = length(Mensajes_Random_Viernes)))]
-
-TP_PostUserWall(P0_Token = A05_TESTER_JN$token$Token,
-                P2_HashTags = c("#TP_AlgoTrader, #AlgoTrading , #MachineLearning, #R"),
-                P1_Texto = Texto4)
+# 
+# TP_PostUserWall(P0_Token = A05_TESTER_JN$token$Token,
+#                 P2_HashTags = c("#TP_AlgoTrader, #AlgoTrading , #MachineLearning, #R"),
+#                 P1_Texto = Texto4)
