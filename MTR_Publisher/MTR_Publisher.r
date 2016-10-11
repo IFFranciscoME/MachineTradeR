@@ -106,7 +106,7 @@ Texto1 <- Mensajes_Agradecimiento[
 
 Texto2 <- Mensajes_Positivos[
           trunc(runif(n = 1, min = 1, max = length(Mensajes_Positivos)))]
-# 
+
 # TP_PostUserWall(P0_Token = A05_TESTER_JN$token$Token,
 #                 P2_HashTags = c("#TP_AlgoTrader, #AlgoTrading , #MachineLearning, #R"),
 #                 P1_Texto = Texto2)
@@ -114,10 +114,10 @@ Texto2 <- Mensajes_Positivos[
 # -- ------------------------------------------------------------------------ RANDOM -- #
 # -- Aleaotorizador de mensajes ------------------------------------------------------- #
 # -- ---------------------------------------------------------------------------------- #
-# 
+
 Texto4 <- Mensajes_Random[
           trunc(runif(n = 1, min = 1, max = length(Mensajes_Random)))]
-# 
+
 # TP_PostUserWall(P0_Token = A05_TESTER_JN$token$Token,
 #                 P2_HashTags = c("#TP_AlgoTrader, #AlgoTrading , #MachineLearning, #R"),
 #                 P1_Texto = Texto3)
@@ -125,10 +125,10 @@ Texto4 <- Mensajes_Random[
 # -- ---------------------------------------------------------------- RANDOM VIERNES -- #
 # -- Aleaotorizador de mensajes ------------------------------------------------------- #
 # -- ---------------------------------------------------------------------------------- #
-# 
+
 Texto5 <- Mensajes_Random_Viernes[
           trunc(runif(n = 1, min = 1, max = length(Mensajes_Random_Viernes)))]
-# 
+
 # TP_PostUserWall(P0_Token = A05_TESTER_JN$token$Token,
 #                 P2_HashTags = c("#TP_AlgoTrader, #AlgoTrading , #MachineLearning, #R"),
 #                 P1_Texto = Texto4)
