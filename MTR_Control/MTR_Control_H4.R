@@ -16,7 +16,7 @@ rm(list=ls())
 Sys.setlocale(category = "LC_ALL", locale = "")
 
 # -- Horas admitidas para hacer correr cada 4 Horas los codigos
-Horas_H4 <- c(2,6,10,14,18,22,16)
+Horas_H4 <- c(2,6,10,14,19,20)
 
 # -- Paquetes o librerias utilizadas
 pkg <- c("base","downloader","dplyr","fBasics","forecast","googlesheets","grid",
@@ -88,4 +88,4 @@ source('C:/TradingPal/BitBucket/R_MachineTradeR/MTR_Notifier/MTR_Notifier.R', ec
 # -- Publicar en Trading Pal y Twitter resultados -------------------- MTR_Publisher -- #
 # -- ------------------------------------------------------------------------------- -- #
 
-source('C:/TradingPal/BitBucket/R_MachineTradeR/MTR_Notifier/MTR_Publisher.R', echo=TRUE)
+source('C:/TradingPal/BitBucket/R_MachineTradeR/MTR_Publisher/MTR_Publisher.R', echo=TRUE)

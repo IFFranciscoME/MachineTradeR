@@ -97,11 +97,11 @@ Texto1 <- Mensajes_Agradecimiento[
           trunc(runif(n = 1, min = 1, max = length(Mensajes_Agradecimiento)))]
 
 # TP_PostUserWall(P0_Token = A05_TESTER_JN$token$Token,
-#                 P2_HashTags = c("#TP_AlgoTrader, #AlgoTrading , #MachineLearning, #R"),
-#                 P1_Texto = Texto1)
+#                  P2_HashTags = c("#TP_AlgoTrader, #AlgoTrading , #MachineLearning, #R"),
+#                  P1_Texto = Texto1)
 
 # -- --------------------------------------------------------------------- POSITIVOS -- #
-# -- Aleaotorizador de mensajes ------------------------------------------------------- #
+# -- Aleatorizador de mensajes -------------------------------------------------------- #
 # -- ---------------------------------------------------------------------------------- #
 
 Texto2 <- Mensajes_Positivos[
