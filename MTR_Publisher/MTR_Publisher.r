@@ -84,7 +84,9 @@ Mensajes_Random_Viernes <- c(
   "No esta la frase numero 15",
   "Eat your foot.", "I am pretending to be a tomato.",
   "I have a magical box and it is better than yours",
-  "I am so blue I'm greener than purple."
+  "I am so blue I'm greener than purple.",
+  "My _spidey sense_ tells me I'll have to skip lunch today.",
+  "We should be concerned if the variable value for `radioactive` is `true`."
 )
 
 # -- ---------------------------------------------------------------- AGRADECIMIENTO -- #
