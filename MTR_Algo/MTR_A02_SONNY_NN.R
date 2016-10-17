@@ -33,11 +33,15 @@ data.model <- specifyModel(Delt(Cl(Datos_A02)) ~
                              myBB(Datos_A02)  + myMACD(Datos_A02) + myEMA10(Datos_A02) + 
                              myEMA20(Datos_A02) + myEMA30(Datos_A02) + myEMA40(Datos_A02) + 
                              myEMA50(Datos_A02) + myEMA60(Datos_A02) + myEMA70(Datos_A02) + 
-                             mySAR(Datos_A02) + EMA(Delt(Cl(Datos_A02))) + runSD(Cl(Datos_A02)) + 
+                             mySAR(Datos_A02) + EMA(Delt(Cl(Datos_A02))) + 
+                             runSD(Cl(Datos_A02)) + 
                              RSI(Cl(Datos_A02), n=5)  + RSI(Cl(Datos_A02), n=10) + 
                              RSI(Cl(Datos_A02), n=15) + RSI(Cl(Datos_A02), n=20) + 
                              RSI(Cl(Datos_A02), n=25) + RSI(Cl(Datos_A02), n=30))
 
+rf <- buildModel(data.model,method='randomForest',
+                 training.per=c(start(GSPC),index(GSPC["1999-12-31"])),
+                 ntree=50, importance=T)
 
 DatoModelo <- as.data.frame(modelData(data.model))
 
