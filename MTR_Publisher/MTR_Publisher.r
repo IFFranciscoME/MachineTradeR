@@ -86,7 +86,9 @@ Mensajes_Random_Viernes <- c(
   "I have a magical box and it is better than yours",
   "I am so blue I'm greener than purple.",
   "My _spidey sense_ tells me I'll have to skip lunch today.",
-  "We should be concerned if the variable value for `radioactive` is `true`."
+  "We should be concerned if the variable value for `radioactive` is `true`.",
+  "Stephen Hawking held a party for time travellers, sending out the invitations after
+   the event had taken place. Nobody came"
 )
 
 # -- ---------------------------------------------------------------- AGRADECIMIENTO -- #

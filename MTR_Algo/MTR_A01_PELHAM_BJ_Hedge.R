@@ -104,7 +104,7 @@ H_Trade <- ifelse(Trade == "buy", "sell", "buy")
 LT   <- Lotes
 H_LT <- H_Lotes
 
-if(Trade == "buy"){
+if(Trade == "buy") {
 
   TP   <- Bid + TakeProfit/10000
   H_SL <- TP  - 4/10000

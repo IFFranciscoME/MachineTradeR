@@ -65,10 +65,7 @@ A05_TESTER_JN <- list(Email = "TesterJonesFX@gmail.com",
                       TPUID  = "d574516c-10fa-44a7-b7d2-1747decf637f")
 
 A05_TESTER_JN$token <- TP_GetToken(Email=A05_TESTER_JN$Email, Pass=A05_TESTER_JN$EmailPass)
-# 
-# A01_PELHAM_BJ <- A05_TESTER_JN
-# A01_PELHAM_BJ$token <- TP_GetToken(Email=A05_TESTER_JN$Email, Pass=A05_TESTER_JN$EmailPass)
-#   
+
 # ------------------------------------------------------------------------------------- #
 # -- OANDA API --------------------------------------------------------------------- -- #
 # ------------------------------------------------------------------------------------- #
