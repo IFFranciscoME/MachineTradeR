@@ -5,6 +5,8 @@
 # -- License: IF Francisco ME ----------------------------------------------------- -- #
 # ------------------------------------------------------------------------------------ #
 
+cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")
+
 # -- ETAPA 1 ---------------------------------------------------------------------- -- #
 # -- Informacion de Cuentas Involucradas ---------------------------------- Cuentas -- #
 # -- ------------------------------------------------------------------------------ -- #
@@ -82,6 +84,18 @@ if(length(A01_PELHAM_BJ$DatosTrade) != 0) {
 
     # -- Abrir operacion con los ultimos parametros
 
+    if(A01_PELHAM_BJ$DatosTrade$Trade == "buy"){
+      
+      OA_TP <- OA_Mkt + TakeProfit/100
+      OA_SL <- OA_Mkt - StopLoss/100
+      
+    } else {
+      
+      OA_TP <- OA_Mkt - TakeProfit/100
+      OA_SL <- OA_Mkt + StopLoss/100
+      
+    }
+    
     Orders <- NewOrder(AccountType = OA_At,
                        AccountID  = OA_Ai,
                        Token = OA_Ak,
