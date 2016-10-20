@@ -58,7 +58,7 @@ source('~/r_machinetrader/MTR_Collector/MTR_Collector.R', echo=TRUE)
 # source('C:/TradingPal/BitBucket/r_machinetrader/MTR_Algo/MTR_A01_PELHAM_BJ_Hedge.R')
 
 source('~/r_machinetrader/MTR_Algo/MTR_A01_PELHAM_BJ.R', echo=TRUE)
-source('~/r_machinetrader/MTR_Algo/MTR_A01_PELHAM_BJ_Hedge.R', echo=TRUE)
+# source('~/r_machinetrader/MTR_Algo/MTR_A01_PELHAM_BJ_Hedge.R', echo=TRUE)
 
 # -- ETAPA 5 ----------------------------------------------------------------------- -- #
 # -- Colocar operaciones con parametros generados por Algoritmos -------- MTR_Trader -- #
