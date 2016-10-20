@@ -7,7 +7,7 @@
 
 # -- Contrato Actual para Petroleo ------------------------------------------------- -- #
 
-FT_CL <- "FT_CL-Nov!!"
+FT_CL <- "FT_CL-Dec!!"
 
 # -- Inicializacion y Precios Historicos con OANDA --------------------------------- -- #
 
