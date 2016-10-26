@@ -14,11 +14,19 @@
 # -- ---------------------------------------------------- PELHAM_BJ (Pelham Jenkins) -- #
 # -- Metodologia Box Jenkins para seris de tiempo ---------------------------------- -- #
 
-A01_PELHAM_BJ <-list(Email  = "P.Box.Jenkins@gmail.com",
-                     EmailPass = "BoxJenkins1.",
-                     TPName = "Pelham Jenkins",
-                     TPPass = "BoxJenkins1.",
-                     TPUID  = "0e2bc5fb-35ee-4b4f-869c-ae94d5e40eae")
+# A01_PELHAM_BJ <-list(Email  = "P.Box.Jenkins@gmail.com",
+#                      EmailPass = "BoxJenkins1.",
+#                      TPName = "Pelham Jenkins",
+#                      TPPass = "BoxJenkins1.",
+#                      TPUID  = "0e2bc5fb-35ee-4b4f-869c-ae94d5e40eae")
+
+# A01_PELHAM_BJ$token <- TP_GetToken(Email=A01_PELHAM_BJ$Email, Pass=A01_PELHAM_BJ$EmailPass)
+
+A01_PELHAM_BJ <- list(Email  = "TesterJonesFX@gmail.com",
+                      EmailPass = "VanguardiaTesterJones1.",
+                      TPName = "Tester Jones",
+                      TPPass = "VanguardiaTesterJones1.",
+                      TPUID  = "d574516c-10fa-44a7-b7d2-1747decf637f")
 
 A01_PELHAM_BJ$token <- TP_GetToken(Email=A01_PELHAM_BJ$Email, Pass=A01_PELHAM_BJ$EmailPass)
 

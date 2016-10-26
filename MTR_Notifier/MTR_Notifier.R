@@ -43,13 +43,15 @@ if(length(A01_PELHAM_BJ$DatosTrade) != 0){
     SL = A01_PELHAM_BJ$DatosTrade$SL,
     TP = A01_PELHAM_BJ$DatosTrade$TP,
     LT = A01_PELHAM_BJ$DatosTrade$LT,
-    TY = A01_PELHAM_BJ$DatosTrade$Trade)
+    TY = A01_PELHAM_BJ$DatosTrade$Trade,
+    MD = A01_PELHAM_BJ$DatosTrade$MD)
   
-  Mensaje <- paste(paste(paste(paste(paste(paste(
+  Mensaje <- paste(paste(paste(paste(paste(paste(paste(
     paste("Algo 01 activado |", A01_PELHAM_BJ$DatosSMS$Inst),
     "| Dir Op1:"),toupper(A01_PELHAM_BJ$DatosSMS$TY)),
     "/ TP Op1:"), A01_PELHAM_BJ$DatosSMS$TP),
-    "/ SL Op1:"), A01_PELHAM_BJ$DatosSMS$SL)
+    "/ SL Op1:"), A01_PELHAM_BJ$DatosSMS$SL,
+    "/ Modelo:"), A01_PELHAM_BJ$DatosSMS$MD)
 
   postForm(Http3, .params = c(From = "+14072701470", To = Francisco, Body = Mensaje))
   

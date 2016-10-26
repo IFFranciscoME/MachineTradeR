@@ -15,7 +15,7 @@ OA_At <- "live"
 OA_Ai <- 9898116
 OA_Ak <- "697ccf8b096dd559886eb27b7fffa20b-090ea1867aed11343711996e967bb157"
 
-OA_In  <- "WTICO_USD"
+OA_In  <- paste(substr(Inst1,1,3),substr(Inst1,4,6),sep="_")
 A01_LT <- 1
 
 OA_Bid <- ActualPrice(AccountType = OA_At,Token = OA_Ak,Instrument = OA_In)$Bid 

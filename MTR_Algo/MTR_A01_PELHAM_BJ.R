@@ -109,10 +109,10 @@ PredRend <- round(predict(Modelo, n.ahead = 1)$pred[1],6)
 Inst  <- A01_PELHAM_BJ$Datos$Inst
 Trade <- ifelse(PredRend > PastRend, "buy","sell")
 
-TPBuy  <- TP_GetSymbol(Inst)$Bid + TakeProfit/100
-TPSell <- TP_GetSymbol(Inst)$Ask - TakeProfit/100
-SLBuy  <- TP_GetSymbol(Inst)$Bid - StopLoss/100
-SLSell <- TP_GetSymbol(Inst)$Ask + StopLoss/100
+TPBuy  <- TP_GetSymbol(Inst)$Bid + TakeProfit/10000
+TPSell <- TP_GetSymbol(Inst)$Ask - TakeProfit/10000
+SLBuy  <- TP_GetSymbol(Inst)$Bid - StopLoss/10000
+SLSell <- TP_GetSymbol(Inst)$Ask + StopLoss/10000
 
 A01_PELHAM_BJ$DatosTrade <- list(
                                 Inst  = Inst,

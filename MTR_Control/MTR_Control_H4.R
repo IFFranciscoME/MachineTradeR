@@ -53,7 +53,7 @@ source('~/r_machinetrader/MTR_Collector/MTR_Collector.R', echo=TRUE)
 # -- ETAPA 3 ----------------------------------------------------------------------- -- #
 # -- Ejecutar Algoritmos para generacion de senales ---------------------- MTR_Algos -- #
 # -- ------------------------------------------------------------------------------- -- #
-# 
+
 # source('C:/TradingPal/BitBucket/r_machinetrader/MTR_Algo/MTR_A01_PELHAM_BJ.R')
 # source('C:/TradingPal/BitBucket/r_machinetrader/MTR_Algo/MTR_A01_PELHAM_BJ_Hedge.R')
 

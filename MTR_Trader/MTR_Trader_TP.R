@@ -9,7 +9,7 @@
 # -- Trading para A01H_PELHAM_BJ_Hedge ------------------------------------------------ #
 # ------------------------------------------------------------------------------------- #
 
-# # Revisar si el codigo A01_PELHAM_BJ_Hedge genero senal de trading
+# Revisar si el codigo A01_PELHAM_BJ_Hedge genero senal de trading
 # if(length(A01_PELHAM_BJ$DatosTrade_H) != 0){
 # 
 # # -- Revisar si hay operaciones abiertas en cuenta de PELHAM_JENKINS
@@ -22,7 +22,7 @@
 #     A01_PELHAM_BJ$OpenTrades[which(A01_PELHAM_BJ$OpenTrades$symbol == "EURUSD"),]
 # 
 # } else {
-#   
+# 
 #   A01_PELHAM_BJ$OpenTrades <- data.frame(matrix(nrow=1,ncol=12,data=0))
 #   colnames(A01_PELHAM_BJ$OpenTrades) <- c("free_margin","id","isSelf","lots","margin",
 #                                           "op_type","open","sl","symbol","tp","user",
@@ -32,7 +32,7 @@
 # # -- Revisar si hay operaciones abiertas con EURUSD
 # if(sum(A01_PELHAM_BJ$OpenTrades$free_margin) !=0) {
 # 
-#   # -- Cerrar las 2 operaciones que siempre abre A01H_PELHAM_BJ_Hedge. 
+#   # -- Cerrar las 2 operaciones que siempre abre A01H_PELHAM_BJ_Hedge.
 #   # -- partiendo de los ultimos parametros obtenidos
 # 
 #   TP_CloseTrade(
@@ -45,7 +45,7 @@
 #     P1_tradeID = A01_PELHAM_BJ$OpenTrades$id[2],
 #     P2_userID  = A01_PELHAM_BJ$TPUID)
 # 
-#   # -- Abrir las 2 operaciones que siempre abre A01H_PELHAM_BJ_Hedge 
+#   # -- Abrir las 2 operaciones que siempre abre A01H_PELHAM_BJ_Hedge
 #   # -- Utilizando la informacion generada por el algoritmo.
 # 
 #   TP_OpenTrade(
@@ -92,7 +92,7 @@
 # ------------------------------------------------------------------------------------- #
 
 # Para revisar si se ejecuto el codigo A01_PELHAM_BJ
-if(length(A01_PELHAM_BJ$DatosTrade) != 0){ 
+if(length(A01_PELHAM_BJ$DatosTrade) != 0) { 
 
   # -- Revisar si hay operaciones abiertas en cuenta de Pelham Jenkins
   A01_PELHAM_BJ$OpenTrades <- TP_GetTrades(A01_PELHAM_BJ$TPUID)
