@@ -111,32 +111,41 @@ if(length(A01_PELHAM_BJ$DatosTrade) != 0) {
                                             "joint")
   }
   
-  # -- Cerrar operaciones abiertas
   if(A01_PELHAM_BJ$OpenTrades$free_margin !=0) {
-    
+
+    # -- --------------------------------------------
+    # -- Cerrar operaciones abiertas 
+    # -- --------------------------------------------
+
     A01_PELHAM_BJ$CloseTrades <- TP_CloseTrade(
-      P0_Token   = A01_PELHAM_BJ$token$Token,
+      P0_Token   = as.character(User_01$Token$Token),
       P1_tradeID = A01_PELHAM_BJ$OpenTrades$id[1],
       P2_userID  = A01_PELHAM_BJ$TPUID)
     
-    # -- Abrir operacion con los ultimos parametros
+    # -- --------------------------------------------
+    # -- Abrir operacion con parametros del algoritmo
+    # -- --------------------------------------------
+    
     A01_PELHAM_BJ$LastTrade   <- TP_OpenTrade(
-      P0_Token = as.character(A01_PELHAM_BJ$token$Token),
-      P1_symbol = A01_PELHAM_BJ$DatosTrade$Inst,
-      P2_sl = A01_PELHAM_BJ$DatosTrade$SL,
-      P3_tp = A01_PELHAM_BJ$DatosTrade$TP,
-      P4_lots = A01_PELHAM_BJ$DatosTrade$LT,
-      P5_op_type = A01_PELHAM_BJ$DatosTrade$Trade)
+      P0_Token = as.character(User_01$Token$Token),
+      P1_symbol = Inst_D,
+      P2_sl = Algo_01_Datos$Finales$SL,
+      P3_tp = Algo_01_Datos$Finales$TP,
+      P4_lots = Algo_01_Datos$Finales$LT,
+      P5_op_type = Algo_01_Datos$Finales$Trade)
     
   } else {
     
-    # -- Abrir operacion con los ultimos parametros
+    # -- --------------------------------------------
+    # -- Abrir operacion con parametros del algoritmo
+    # -- --------------------------------------------
+    
     A01_PELHAM_BJ$LastTrade   <- TP_OpenTrade(
-      P0_Token = as.character(A01_PELHAM_BJ$token$Token),
-      P1_symbol = A01_PELHAM_BJ$DatosTrade$Inst,
-      P2_sl = A01_PELHAM_BJ$DatosTrade$SL,
-      P3_tp = A01_PELHAM_BJ$DatosTrade$TP,
-      P4_lots = A01_PELHAM_BJ$DatosTrade$LT,
-      P5_op_type = A01_PELHAM_BJ$DatosTrade$Trade)  
+      P0_Token = as.character(User_01$Token$Token),
+      P1_symbol = Inst_D,
+      P2_sl = Algo_01_Datos$Finales$SL,
+      P3_tp = Algo_01_Datos$Finales$TP,
+      P4_lots = Algo_01_Datos$Finales$LT,
+      P5_op_type = Algo_01_Datos$Finales$Trade)  
   }
 }

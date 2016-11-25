@@ -1,0 +1,17 @@
+---
+# ----------------------------------------------------------------------------------------------- #
+# -- Desarrollador que Manteniene: FranciscoME -- francisco@tradingpal.com ------------------- -- #
+# -- Codigo: R_MachineTrader_ReadMe ---------------------------------------------------------- -- #
+# -- Licencia: Propiedad exclusiva de Trading Pal -------------------------------------------- -- #
+# -- Uso: Controlador general para Sistema D ------------------------------------------------- -- #
+# -- Dependencias: Lista de Paquetes de R, Conexion a internet, GitHub, OANDA API ------------ -- #
+# ----------------------------------------------------------------------------------------------- #
+---
+
+## Informacion de referencia
+
+- Desarrollador que Manteniene: FranciscoME -- francisco@tradingpal.com
+- Codigo: R_MachineTrader_ReadMe
+- Licencia: Propiedad exclusiva de FlareFX
+- Uso: Controlador general para Sistema D
+- Dependencias: Lista de Paquetes de R, Conexion a internet, GitHub, OANDA API
