@@ -55,28 +55,33 @@ downloader::source_url(DataProcessor,prompt=FALSE,quiet=TRUE)
 # -- Inicializador general de sistema ------------------- R_MachineTrader_Registro -- Registro -- #
 # -- ----------------------------------------------------------------------------------------- -- #
 
-source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/R_MachineTrader_Registro.R', echo=TRUE)
+# source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/R_MachineTrader_Registro.R', echo=TRUE)
+source('~/r_machinetrader/R_MachineTrader_Registro.R')
 
 # -- ETAPA 2 --------------------------------------------------------------------------------- -- #
 # -- Recolector de datos a utilizar en  el sistema -------------- 1_D_MT1_Colector -- Colector -- #
 # -- ----------------------------------------------------------------------------------------- -- #
 
-source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/D/D_MT1/1_D_MT1_Colector.R', echo=TRUE)
+# source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/D/D_MT1/1_D_MT1_Colector.R', echo=TRUE)
+source('~/r_machinetrader/D/D_MT1/1_D_MT1_Colector.R')
 
 # -- ETAPA 3 --------------------------------------------------------------------------------- -- #
 # -- Algoritmo 01 BoxJenkins --------------------------------------- 2_D_MT1_Algo -- Algoritmo -- #
 # -- ----------------------------------------------------------------------------------------- -- #
 
-source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/D/D_MT1/2_D_MT1_Algo.R', echo=TRUE)
+# source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/D/D_MT1/2_D_MT1_Algo.R', echo=TRUE)
+source('~/r_machinetrader/D/D_MT1/2_D_MT1_Algo.R')
 
 # -- ETAPA 4 --------------------------------------------------------------------------------- -- #
 # -- Trader para colocar operaciones ---------------------- R_MachineTrader_Trader -- Respaldo -- #
 # -- ----------------------------------------------------------------------------------------- -- #
 
-source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/R_MachineTrader_Trader.R', echo=TRUE)
+# source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/R_MachineTrader_Trader.R', echo=TRUE)
+source('~/r_machinetrader/R_MachineTrader_Trader.R')
 
 # -- ETAPA 5 --------------------------------------------------------------------------------- -- #
 # -- Mensajero para enviar senal ---------------------- R_MachineTrader_Mensajero -- Mensajero -- #
 # -- ----------------------------------------------------------------------------------------- -- #
 
-source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/R_MachineTrader_Mensajero.R', echo=TRUE)
+# source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/R_MachineTrader_Mensajero.R', echo=TRUE)
+source('~/r_machinetrader/R_MachineTrader_Mensajero.R')
