@@ -37,7 +37,7 @@ Francisco2 <- "+523314889409"
 
 if(exists("Algo_MT1_H4_Datos"))  {
   
-  Instrumento  <- Inst_H4
+  Instrumento  <- Inst_H4_MT1
   Precio_Ent   <- Algo_MT1_H4_Datos$Finales$Precio_Entrada
   StopLoss_p   <- Algo_MT1_H4_Datos$Finales$SL
   TakeProfit_p <- Algo_MT1_H4_Datos$Finales$TP
@@ -58,8 +58,8 @@ if(exists("Algo_MT1_H4_Datos"))  {
     "Op: ",toupper(DatosSMS$TY), " | ",
     "Inst: ", DatosSMS$Inst, " | ",
     "Ent: ", Precio_Ent, " | ",
-    "TP: ", DatosSMS$TP, "(",TakeProfit,")", " | ",
-    "SL: ", DatosSMS$SL, "(",StopLoss,")", " | " ,
+    "TP: ", DatosSMS$TP, "(",TakeProfit_MT1,")", " | ",
+    "SL: ", DatosSMS$SL, "(",StopLoss_MT1,")", " | " ,
     sep="")
 
   Mensaje <- paste("|Algo_01_H4| ", Msn, sep = " ")
@@ -95,8 +95,8 @@ if(exists("Algo_MT2_H4_Datos"))  {
     "Op: ",toupper(DatosSMS$TY), " | ",
     "Inst: ", DatosSMS$Inst, " | ",
     "Ent: ", Precio_Ent, " | ",
-    "TP: ", DatosSMS$TP, " (",TakeProfit,")", " | ",
-    "SL: ", DatosSMS$SL, " (",StopLoss,")", " | " ,
+    "TP: ", DatosSMS$TP, " (",TakeProfit_MT2,")", " | ",
+    "SL: ", DatosSMS$SL, " (",StopLoss_MT2,")", " | " ,
     sep="")
   
   Mensaje <- paste("|Algo_02_H4| ", Msn, sep = " ")

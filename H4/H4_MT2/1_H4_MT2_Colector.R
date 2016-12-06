@@ -8,21 +8,21 @@
 # ----------------------------------------------------------------------------------------------- #
 
 # -- Instrumento
-Inst_H4 <- "USD_JPY"
+Inst_H4_MT2 <- "USD_JPY"
 
 # -- Periodicidad
-Per <- "H4"
+Per_MT2 <- "H4"
 
 # -- Otros parametros
 OA_Da <- 17
 OA_Ta <- "America/Mexico_City" # Uso horario
 
-MultPip2 <- 100
+MultPip_MT2 <- 100
 
 # -- Precios
 Algo_MT2_H4_Datos <- list(
 
-  Precios_H_1 = HisPrices(OA_At,Per,OA_Da,OA_Ta,OA_Ak,Inst_H4,NULL,NULL,900),
-  Precios_A_1 = list(Bid = ActualPrice(OA_At,OA_Ak,Inst_H4)$Bid,
-                     Ask = ActualPrice(OA_At,OA_Ak,Inst_H4)$Ask)
+  Precios_H_MT2 = HisPrices(OA_At,Per_MT2,OA_Da,OA_Ta,OA_Ak,Inst_H4_MT2,NULL,NULL,900),
+  Precios_A_MT2 = list(Bid = ActualPrice(OA_At,OA_Ak,Inst_H4_MT2)$Bid,
+                       Ask = ActualPrice(OA_At,OA_Ak,Inst_H4_MT2)$Ask)
 )

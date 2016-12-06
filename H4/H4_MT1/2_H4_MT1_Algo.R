@@ -11,20 +11,20 @@
 # -- Valores provenientes de optimizacio y backtest ---------------------------------- ETAPA 0 -- #
 # -- ----------------------------------------------------------------------------------------- -- #
 
-Tam_Ventana   <- 78
-TakeProfit    <- 70
-StopLoss      <- 61
-Dinamica_Algo <- 0
-Lotes <- .1
+Tam_Ventana_MT1   <- 78
+TakeProfit_MT1    <- 70
+StopLoss_MT1      <- 61
+Dinamica_Algo_MT1 <- 0
+Lotes_MT1 <- .1
 
 # -- ----------------------------------------------------------------------------------------- -- #
 # -- Datos para utilizar en MODELO --------------------------------------------------- ETAPA 1 -- #
 # -- ----------------------------------------------------------------------------------------- -- #
 
-V1 <- as.numeric(length(Algo_MT1_H4_Datos$Precios_H_1[,1]) - Tam_Ventana)
-V2 <- as.numeric(length(Algo_MT1_H4_Datos$Precios_H_1[,1]))
+V1 <- as.numeric(length(Algo_MT1_H4_Datos$Precios_H_MT1[,1]) - Tam_Ventana_MT1)
+V2 <- as.numeric(length(Algo_MT1_H4_Datos$Precios_H_MT1[,1]))
 
-Datos <- Algo_MT1_H4_Datos$Precios_H_1[V1:V2,]
+Datos <- Algo_MT1_H4_Datos$Precios_H_MT1[V1:V2,]
 Datos <- data.frame(Datos$TimeStamp[-1], diff(log(Datos$Close)))
 colnames(Datos) <- c("TimeStamp","RendClose")
 
@@ -36,20 +36,20 @@ Valores <- list(list())
 
 d <- ADFTestedSeries(Datos,2,0.90)[1,3]
 
-facp <- AutoCorrelation(x=Datos$RendClose, type="partial", LagMax=Tam_Ventana, IncPlot=FALSE)
+facp <- AutoCorrelation(x=Datos$RendClose, type="partial", LagMax=Tam_Ventana_MT1, IncPlot=FALSE)
 
 if(any(facp$Sig_nc == 1)) {
-  p <- as.numeric(which.max(AutoCorrelation(Datos$RendClose, "partial", Tam_Ventana,FALSE)[,3]))
+  p <- as.numeric(which.max(AutoCorrelation(Datos$RendClose, "partial", Tam_Ventana_MT1,FALSE)[,3]))
 } else {
   Sub_Niveles <- rbind(facp[(facp$acf == min(facp$acf)),], facp[(facp$acf == max(facp$acf)),])
   Sub_Niveles$acf_abs <- abs(Sub_Niveles$acf)
   p <- Sub_Niveles[which.max(Sub_Niveles$acf_abs),"lag"]
 }
 
-fac <- AutoCorrelation(x=Datos$RendClose, type="correlation", LagMax=Tam_Ventana, IncPlot=FALSE)
+fac <- AutoCorrelation(x=Datos$RendClose, type="correlation", LagMax=Tam_Ventana_MT1, IncPlot=FALSE)
 
 if(any(fac$Sig_nc == 1)) {
-  q <- as.numeric(which.max(AutoCorrelation(Datos$RendClose, "correlation", Tam_Ventana,FALSE)[,3]))
+  q <- as.numeric(which.max(AutoCorrelation(Datos$RendClose, "correlation", Tam_Ventana_MT1,FALSE)[,3]))
 } else {
   Sub_Niveles <- rbind(fac[(fac$acf == min(fac$acf)),], fac[(fac$acf == max(fac$acf)),])
   Sub_Niveles$acf_abs <- abs(Sub_Niveles$acf)
@@ -107,25 +107,25 @@ colnames(Residuals) <- c("TimeStamp","ResidualValue")
 PastRend <- last(Datos$RendClose)
 PredRend <- predict(Modelo, n.ahead = 1)$pred[1]
 
-ifelse(Dinamica_Algo == 0,
+ifelse(Dinamica_Algo_MT1 == 0,
        PredSide  <- ifelse(PredRend > PastRend, "buy","sell") ,  # BoxJenkins Directo
        PredSide  <- ifelse(PredRend > PastRend, "sell","buy"))   # BoxJenkins Inverso
 
 ifelse(PredSide == "buy",
-       P_Entrada <- Algo_MT1_H4_Datos$Precios_A_1$Ask,
-       P_Entrada <- Algo_MT1_H4_Datos$Precios_A_1$Bid)
+       P_Entrada <- Algo_MT1_H4_Datos$Precios_A_MT1$Ask,
+       P_Entrada <- Algo_MT1_H4_Datos$Precios_A_MT1$Bid)
 
-Trade  <- PredSide
-TPBuy  <- Algo_MT1_H4_Datos$Precios_A_1$Ask + TakeProfit/MultPip1
-TPSell <- Algo_MT1_H4_Datos$Precios_A_1$Bid - TakeProfit/MultPip1
-SLBuy  <- Algo_MT1_H4_Datos$Precios_A_1$Ask - StopLoss/MultPip1
-SLSell <- Algo_MT1_H4_Datos$Precios_A_1$Bid + StopLoss/MultPip1
+Trade_MT1  <- PredSide
+TPBuy  <- Algo_MT1_H4_Datos$Precios_A_MT1$Ask + TakeProfit_MT1/MultPip_MT1
+TPSell <- Algo_MT1_H4_Datos$Precios_A_MT1$Bid - TakeProfit_MT1/MultPip_MT1
+SLBuy  <- Algo_MT1_H4_Datos$Precios_A_MT1$Ask - StopLoss_MT1/MultPip_MT1
+SLSell <- Algo_MT1_H4_Datos$Precios_A_MT1$Bid + StopLoss_MT1/MultPip_MT1
 
 Algo_MT1_H4_Datos$Finales <- list(
-                              Inst  = Inst_H4,
-                              Trade = Trade,
+                              Inst  = Inst_H4_MT1,
+                              Trade = Trade_MT1,
                               Precio_Entrada = P_Entrada,
-                              TP = ifelse(Trade == "buy", TPBuy, TPSell),
-                              SL = ifelse(Trade == "buy", SLBuy, SLSell),
-                              LT = Lotes,
+                              TP = ifelse(Trade_MT1 == "buy", TPBuy, TPSell),
+                              SL = ifelse(Trade_MT1 == "buy", SLBuy, SLSell),
+                              LT = Lotes_MT1,
                               MD = ModeloTxt)

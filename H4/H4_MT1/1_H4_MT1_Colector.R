@@ -8,22 +8,22 @@
 # ----------------------------------------------------------------------------------------------- #
 
 # -- Instrumento
-Inst_H4 <- "USD_CAD"
+Inst_H4_MT1 <- "USD_CAD"
 
 # -- Periodicidad
-Per <- "H4"
+Per_MT1 <- "H4"
 
 # -- Otros parametros
-OA_Da <- 17
-OA_Ta <- "America/Mexico_City" # Uso horario
+OA_Da_MT1 <- 17
+OA_Ta_MT1 <- "America/Mexico_City" # Uso horario
 
-MultPip1 <- 10000
+MultPip_MT1 <- 10000
 
 # -- Precios
 Algo_MT1_H4_Datos <- list(
 
-  Precios_H_1 = HisPrices(OA_At,Per,OA_Da,OA_Ta,OA_Ak,Inst_H4,NULL,NULL,900),
-  Precios_A_1 = list(Bid = ActualPrice(OA_At,OA_Ak,Inst_H4)$Bid,
-                     Ask = ActualPrice(OA_At,OA_Ak,Inst_H4)$Ask)
+  Precios_H_MT1 = HisPrices(OA_At,Per_MT1,OA_Da_MT1,OA_Ta_MT1,OA_Ak,Inst_H4_MT1,NULL,NULL,900),
+  Precios_A_MT1 = list(Bid = ActualPrice(OA_At,OA_Ak,Inst_H4_MT1)$Bid,
+                       Ask = ActualPrice(OA_At,OA_Ak,Inst_H4_MT1)$Ask)
 
 )
