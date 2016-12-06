@@ -1,7 +1,7 @@
 
 # ----------------------------------------------------------------------------------------------- #
 # -- Desarrollador que Manteniene: FranciscoME -- francisco@tradingpal.com ------------------- -- #
-# -- Codigo: 2_H4_MT1_Algo ------------------------------------------------------------------- -- #
+# -- Codigo: 2_H4_MT2_Algo ------------------------------------------------------------------- -- #
 # -- Licencia: Propiedad exclusiva de TradingPal --------------------------------------------- -- #
 # -- Uso: Algoritmo que genera la senal a enviar --------------------------------------------- -- #
 # -- Dependencias: Lista de Paquetes de R, Conexion a internet, GitHub, OANDA API ------------ -- #
@@ -13,7 +13,7 @@
 
 Tam_Ventana   <- 78
 TakeProfit    <- 70
-StopLoss      <- 61
+StopLoss      <- 24
 Dinamica_Algo <- 0
 Lotes <- .1
 
@@ -21,10 +21,10 @@ Lotes <- .1
 # -- Datos para utilizar en MODELO --------------------------------------------------- ETAPA 1 -- #
 # -- ----------------------------------------------------------------------------------------- -- #
 
-V1 <- as.numeric(length(Algo_MT1_H4_Datos$Precios_H_1[,1]) - Tam_Ventana)
-V2 <- as.numeric(length(Algo_MT1_H4_Datos$Precios_H_1[,1]))
+V1 <- as.numeric(length(Algo_MT2_H4_Datos$Precios_H_1[,1]) - Tam_Ventana)
+V2 <- as.numeric(length(Algo_MT2_H4_Datos$Precios_H_1[,1]))
 
-Datos <- Algo_MT1_H4_Datos$Precios_H_1[V1:V2,]
+Datos <- Algo_MT2_H4_Datos$Precios_H_1[V1:V2,]
 Datos <- data.frame(Datos$TimeStamp[-1], diff(log(Datos$Close)))
 colnames(Datos) <- c("TimeStamp","RendClose")
 
@@ -112,16 +112,16 @@ ifelse(Dinamica_Algo == 0,
        PredSide  <- ifelse(PredRend > PastRend, "sell","buy"))   # BoxJenkins Inverso
 
 ifelse(PredSide == "buy",
-       P_Entrada <- Algo_MT1_H4_Datos$Precios_A_1$Ask,
-       P_Entrada <- Algo_MT1_H4_Datos$Precios_A_1$Bid)
+       P_Entrada <- Algo_MT2_H4_Datos$Precios_A_1$Ask,
+       P_Entrada <- Algo_MT2_H4_Datos$Precios_A_1$Bid)
 
 Trade  <- PredSide
-TPBuy  <- Algo_MT1_H4_Datos$Precios_A_1$Ask + TakeProfit/MultPip1
-TPSell <- Algo_MT1_H4_Datos$Precios_A_1$Bid - TakeProfit/MultPip1
-SLBuy  <- Algo_MT1_H4_Datos$Precios_A_1$Ask - StopLoss/MultPip1
-SLSell <- Algo_MT1_H4_Datos$Precios_A_1$Bid + StopLoss/MultPip1
+TPBuy  <- Algo_MT2_H4_Datos$Precios_A_1$Ask + TakeProfit/MultPip2
+TPSell <- Algo_MT2_H4_Datos$Precios_A_1$Bid - TakeProfit/MultPip2
+SLBuy  <- Algo_MT2_H4_Datos$Precios_A_1$Ask - StopLoss/MultPip2
+SLSell <- Algo_MT2_H4_Datos$Precios_A_1$Bid + StopLoss/MultPip2
 
-Algo_MT1_H4_Datos$Finales <- list(
+Algo_MT2_H4_Datos$Finales <- list(
                               Inst  = Inst_H4,
                               Trade = Trade,
                               Precio_Entrada = P_Entrada,

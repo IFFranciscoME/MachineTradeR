@@ -26,68 +26,85 @@ Http2 <- paste(Http1,"@api.twilio.com/2010-04-01/Accounts", sep="")
 Http3 <- paste(paste(Http2,TL_Ai,sep="/"),"/Messages.XML",sep="")
 
 # ----------------------------------------------------------------------------------------------- #
-# -- Lista de distribucion ---------------------------------------------------------------------- #
+# -- Lista de distribucion ------------------------------------------------------------------- -- #
 # ----------------------------------------------------------------------------------------------- #
 
-Francisco <- "+528124168894"
-Donald <- "+528118807691"
-Chadi  <- "+528180855830"
-Chapa  <- "+528112769382"
-Choche <- "+528114140091"
-Luis   <- "+523314889409"
-Marcelo <- "+528115343753"
+Francisco  <- "+528124168894"
+Francisco2 <- "+523314889409"
+
+# -- ----------------------------------------------------------------------------------------- -- #
+# -- -------------------------------------------------------------------- Algo_MT1_H4 Activado -- #
 
 if(exists("Algo_MT1_H4_Datos"))  {
   
-  Instrumento <- Inst_H4
-  StopLoss    <- Algo_MT1_H4_Datos$Finales$SL
-  TakeProfit  <- Algo_MT1_H4_Datos$Finales$TP
+  Instrumento  <- Inst_H4
+  Precio_Ent   <- Algo_MT1_H4_Datos$Finales$Precio_Entrada
+  StopLoss_p   <- Algo_MT1_H4_Datos$Finales$SL
+  TakeProfit_p <- Algo_MT1_H4_Datos$Finales$TP
   Lotes <- Algo_MT1_H4_Datos$Finales$LT
   Trade <- Algo_MT1_H4_Datos$Finales$Trade
   MD <- Algo_MT1_H4_Datos$Finales$MD
   
-}
-
-if(exists("Algo_MT1_H8_Datos"))  {
-  
-  Instrumento <- Inst_H8
-  StopLoss    <- Algo_MT1_H8_Datos$Finales$SL
-  TakeProfit  <- Algo_MT1_H8_Datos$Finales$TP
-  Lotes <- Algo_MT1_H8_Datos$Finales$LT
-  Trade <- Algo_MT1_H8_Datos$Finales$Trade
-  MD <- Algo_MT1_H8_Datos$Finales$MD
-  
-}
-
-if(exists("Algo_MT1_D_Datos"))  {
-  
-  Instrumento <- Inst_D
-  StopLoss    <- Algo_MT1_D_Datos$Finales$SL
-  TakeProfit  <- Algo_MT1_D_Datos$Finales$TP
-  Lotes <- Algo_MT1_D_Datos$Finales$LT
-  Trade <- Algo_MT1_D_Datos$Finales$Trade
-  MD <- Algo_MT1_D_Datos$Finales$MD
-  
-} 
-
   DatosSMS <- list(
     Inst = Instrumento,
-    SL = StopLoss,
-    TP = TakeProfit,
+    PE = Precio_Ent,
+    SL = StopLoss_p,
+    TP = TakeProfit_p,
     LT = Lotes,
     TY = Trade,
     MD = MD)
   
   Msn <- paste(
-    "Op: ",toupper(DatosSMS$TY)," | ",
-    "Inst: ", DatosSMS$Inst," | ",
-    "Per: ",Per," | ",
-    "TP: ", DatosSMS$TP," | ",
-    "SL: ", DatosSMS$SL," | ", sep="")
+    "Op: ",toupper(DatosSMS$TY), " | ",
+    "Inst: ", DatosSMS$Inst, " | ",
+    "Ent: ", Precio_Ent, " | ",
+    "TP: ", DatosSMS$TP, "(",TakeProfit,")", " | ",
+    "SL: ", DatosSMS$SL, "(",StopLoss,")", " | " ,
+    sep="")
 
-  Mensaje <- paste("|| Prueba ||", Msn, sep = " ")
+  Mensaje <- paste("|Algo_01_H4| ", Msn, sep = " ")
 
   postForm(Http3, .params = c(From = "+14072701470", To = Francisco, Body = Mensaje))
+  postForm(Http3, .params = c(From = "+14072701470", To = Francisco2, Body = Mensaje))
+
+}
+
+# -- ----------------------------------------------------------------------------------------- -- #
+# -- -------------------------------------------------------------------- Algo_MT2_H4 Activado -- #
+
+if(exists("Algo_MT2_H4_Datos"))  {
+  
+  Instrumento <- Inst_H4
+  Precio_Ent  <- Algo_MT2_H4_Datos$Finales$Precio_Entrada
+  StopLoss_p    <- Algo_MT2_H4_Datos$Finales$SL
+  TakeProfit_p  <- Algo_MT2_H4_Datos$Finales$TP
+  Lotes <- Algo_MT2_H4_Datos$Finales$LT
+  Trade <- Algo_MT2_H4_Datos$Finales$Trade
+  MD <- Algo_MT2_H4_Datos$Finales$MD
+  
+  DatosSMS <- list(
+    Inst = Instrumento,
+    PE = Precio_Ent, 
+    SL = StopLoss_p,
+    TP = TakeProfit_p,
+    LT = Lotes,
+    TY = Trade,
+    MD = MD)
+  
+  Msn <- paste(
+    "Op: ",toupper(DatosSMS$TY), " | ",
+    "Inst: ", DatosSMS$Inst, " | ",
+    "Ent: ", Precio_Ent, " | ",
+    "TP: ", DatosSMS$TP, " (",TakeProfit,")", " | ",
+    "SL: ", DatosSMS$SL, " (",StopLoss,")", " | " ,
+    sep="")
+  
+  Mensaje <- paste("|Algo_02_H4| ", Msn, sep = " ")
+
+  postForm(Http3, .params = c(From = "+14072701470", To = Francisco, Body = Mensaje))
+  postForm(Http3, .params = c(From = "+14072701470", To = Francisco2, Body = Mensaje))
+
+}
 
 options(RCurlOptions = list(
   cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))

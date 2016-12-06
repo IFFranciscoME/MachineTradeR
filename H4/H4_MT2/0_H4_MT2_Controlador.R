@@ -1,7 +1,7 @@
 
 # ----------------------------------------------------------------------------------------------- #
 # -- Desarrollador que Manteniene: FranciscoME -- francisco@tradingpal.com ------------------- -- #
-# -- Codigo: 0_H4_MT1_Controlador ------------------------------------------------------------ -- #
+# -- Codigo: 0_H4_MT2_Controlador ------------------------------------------------------------ -- #
 # -- Licencia: Propiedad exclusiva de TradingPal --------------------------------------------- -- #
 # -- Uso: Controlador general para Sistema H4 ------------------------------------------------ -- #
 # -- Dependencias: Lista de Paquetes de R, Conexion a internet, GitHub, OANDA API ------------ -- #
@@ -59,18 +59,18 @@ source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/R_MachineTrader_Regist
 # source('~/r_machinetrader/R_MachineTrader_Registro.R')
 
 # -- ETAPA 2 --------------------------------------------------------------------------------- -- #
-# -- Recolector de datos a utilizar en  el sistema ------------- 1_H4_MT1_Colector -- Colector -- #
+# -- Recolector de datos a utilizar en  el sistema ------------- 1_H4_MT2_Colector -- Colector -- #
 # -- ----------------------------------------------------------------------------------------- -- #
 
-source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/H4/H4_MT1/1_H4_MT1_Colector.R', echo=TRUE)
-# source('~/r_machinetrader/H4/H4_MT1/1_H4_MT1_Colector.R')
+source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/H4/H4_MT2/1_H4_MT2_Colector.R', echo=TRUE)
+# source('~/r_machinetrader/H4/H4_MT2/1_H4_MT2_Colector.R')
 
 # -- ETAPA 3 --------------------------------------------------------------------------------- -- #
-# -- Algoritmo 01 BoxJenkins -------------------------------------- 2_H4_MT1_Algo -- Algoritmo -- #
+# -- Algoritmo 01 BoxJenkins -------------------------------------- 2_H4_MT2_Algo -- Algoritmo -- #
 # -- ----------------------------------------------------------------------------------------- -- #
 
-source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/H4/H4_MT1/2_H4_MT1_Algo.R', echo=TRUE)
-# source('~/r_machinetrader/H4/H4_MT1/2_H4_MT1_Algo.R')
+source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/H4/H4_MT2/2_H4_MT2_Algo.R', echo=TRUE)
+# source('~/r_machinetrader/H4/H4_MT2/2_H4_MT2_Algo.R')
 
 # -- ETAPA 4 --------------------------------------------------------------------------------- -- #
 # -- Trader para colocar operaciones ---------------------- R_MachineTrader_Trader -- Respaldo -- #

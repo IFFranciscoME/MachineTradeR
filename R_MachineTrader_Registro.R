@@ -11,14 +11,25 @@
 # -- TRADING PAL ----------------------------------------------------------------------------- -- #
 # ----------------------------------------------------------------------------------------------- #
 
+# -- ------------------------------------------------------------------------- User_00 para H4 -- #
+# ----------------------------------------------------------------------------------------------- #
+
+User_00 <- list(Email  = "benito.derman@gmail.com",
+                EmailPass = "BENDER1.",
+                TPName = "Benito Derman",
+                TPPass = "BENDER1.",
+                TPUID  = "a30fef87-e347-47d6-ad34-1d56c22dd2e7")
+
+User_00$Token <- TP_GetToken(Email=User_00$Email, Pass=User_00$TPPass)
+
 # -- ------------------------------------------------------------------------- User_01 para H4 -- #
 # ----------------------------------------------------------------------------------------------- #
 
-User_01 <- list(Email  = "P.Box.Jenkins@gmail.com",
-                EmailPass = "BoxJenkins1.",
-                TPName = "Pelham Jenkins",
-                TPPass = "BoxJenkins1.",
-                TPUID  = "0e2bc5fb-35ee-4b4f-869c-ae94d5e40eae")
+User_01 <- list(Email  = "Sonny.Romano.B@gmail.com",
+                EmailPass = "Sonny.Romano.Bay.",
+                TPName = "Sonny Romano",
+                TPPass = "Sonny.Romano.Bay.",
+                TPUID  = "dc68bca7-a8ff-4eb2-8e97-a2aef5642f4b")
 
 User_01$Token <- TP_GetToken(Email=User_01$Email, Pass=User_01$TPPass)
 
@@ -36,13 +47,29 @@ User_02$Token <- TP_GetToken(Email=User_02$Email, Pass=User_02$TPPass)
 # -- -------------------------------------------------------------------------- User_03 para D -- #
 # ----------------------------------------------------------------------------------------------- #
 
-User_03 <- list(Email  = "Sonny.Romano.B@gmail.com",
-                EmailPass = "Sonny.Romano.Bay.",
-                TPName = "Sonny Romano",
-                TPPass = "Sonny.Romano.Bay.",
-                TPUID  = "dc68bca7-a8ff-4eb2-8e97-a2aef5642f4b")
+User_03 <- list(Email  = "P.Box.Jenkins@gmail.com",
+                EmailPass = "BoxJenkins1.",
+                TPName = "Pelham Jenkins",
+                TPPass = "BoxJenkins1.",
+                TPUID  = "0e2bc5fb-35ee-4b4f-869c-ae94d5e40eae")
 
 User_03$Token <- TP_GetToken(Email=User_03$Email, Pass=User_03$TPPass)
+
+# -- -------------------------------------------------------------------- User_04 para Pruebas -- #
+# ----------------------------------------------------------------------------------------------- #
+
+User_04 <- list(Email  = "TesterJonesFX@gmail.com",
+                EmailPass = "VanguardiaTesterJones1.",
+                TPName = "Tester Jones",
+                TPPass = "VanguardiaTesterJones1.",
+                TPUID  = "d574516c-10fa-44a7-b7d2-1747decf637f")
+
+User_04$Token <- TP_GetToken(Email=User_04$Email, Pass=User_04$TPPass)
+
+User_00 <- User_04
+User_01 <- User_04
+User_02 <- User_04
+User_03 <- User_04
 
 # ----------------------------------------------------------------------------------------------- #
 # -- OANDA API ------------------------------------------------------------------------------- -- #

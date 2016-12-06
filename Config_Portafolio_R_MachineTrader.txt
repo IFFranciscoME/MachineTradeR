@@ -1,0 +1,36 @@
+
+# -- ------------------------------------------------ -- #
+# --  | Senales para H4 | 2016-06-01 : 2016-11-01 |   -- #
+# -- ------------------------------------------------ -- #
+
+# -- ------------------------------------------------ -- #
+# -- User_01 : H4_MT1 : Sonny -------------------------- #
+
+# -- Usuario: Sonny.Romano.B@gmail.com
+# -- Pass: Sonny.Romano.Bay.
+# -- UID: dc68bca7-a8ff-4eb2-8e97-a2aef5642f4b
+
+# -- USD_CAD
+# -- Beneficio Final: 3,985 pips en 4 meses.
+# -- Parametro 1: USD_CAD
+# -- Parametro 2: H4
+# -- Parametro 3: Tam_Ventana: VTam_H4[3] : 78 Periodos
+# -- Parametro 4: Dinamica_Algo: 0
+# -- Parametro 5: TP: 70
+# -- Parametro 6: SL: 61
+
+# -- --------------------------------------------------- #
+# -- User_02 : H4_MT2 : Robby -------------------------- #
+
+# -- Usuario: Robby.R.Bay@gmail.com
+# -- Pass: Robby.Romano.Bay
+# -- UID: 25a0a507-eb09-4daa-ba9b-7e46e28447d7
+
+# -- USD_JPY
+# -- Beneficio Final: 3,367 pips en 4 meses.
+# -- Parametro 1: USD_JPY
+# -- Parametro 2: H4
+# -- Parametro 3: Tam_Ventana: VTam_H4[3] : 78 Periodos
+# -- Parametro 4: Dinamica_Algo: 0
+# -- Parametro 5: TP: 70
+# -- Parametro 6: SL: 24
