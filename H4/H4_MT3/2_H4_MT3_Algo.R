@@ -1,7 +1,7 @@
 
 # ----------------------------------------------------------------------------------------------- #
 # -- Desarrollador que Manteniene: FranciscoME -- francisco@tradingpal.com ------------------- -- #
-# -- Codigo: 2_H4_MT2_Algo ------------------------------------------------------------------- -- #
+# -- Codigo: 2_H4_MT3_Algo ------------------------------------------------------------------- -- #
 # -- Licencia: Propiedad exclusiva de TradingPal --------------------------------------------- -- #
 # -- Uso: Algoritmo que genera la senal a enviar --------------------------------------------- -- #
 # -- Dependencias: Lista de Paquetes de R, Conexion a internet, GitHub, OANDA API ------------ -- #
@@ -11,20 +11,20 @@
 # -- Valores provenientes de optimizacio y backtest ---------------------------------- ETAPA 0 -- #
 # -- ----------------------------------------------------------------------------------------- -- #
 
-Tam_Ventana_MT2   <- 78
-TakeProfit_MT2    <- 70
-StopLoss_MT2      <- 24
-Dinamica_Algo_MT2 <- 0
-Lotes_MT2 <- .3
+Tam_Ventana_MT3   <- 132
+TakeProfit_MT3    <- 75
+StopLoss_MT3      <- 41
+Dinamica_Algo_MT3 <- 0
+Lotes_MT3 <- .3
 
 # -- ----------------------------------------------------------------------------------------- -- #
 # -- Datos para utilizar en MODELO --------------------------------------------------- ETAPA 1 -- #
 # -- ----------------------------------------------------------------------------------------- -- #
 
-V1 <- as.numeric(length(Algo_MT2_H4_Datos$Precios_H_MT2[,1]) - Tam_Ventana_MT2)
-V2 <- as.numeric(length(Algo_MT2_H4_Datos$Precios_H_MT2[,1]))
+V1 <- as.numeric(length(Algo_MT3_H4_Datos$Precios_H_MT3[,1]) - Tam_Ventana_MT3)
+V2 <- as.numeric(length(Algo_MT3_H4_Datos$Precios_H_MT3[,1]))
 
-Datos <- Algo_MT2_H4_Datos$Precios_H_MT2[V1:V2,]
+Datos <- Algo_MT3_H4_Datos$Precios_H_MT3[V1:V2,]
 Datos <- data.frame(Datos$TimeStamp[-1], diff(log(Datos$Close)))
 colnames(Datos) <- c("TimeStamp","RendClose")
 
@@ -36,20 +36,20 @@ Valores <- list(list())
 
 d <- ADFTestedSeries(Datos,2,0.90)[1,3]
 
-facp <- AutoCorrelation(x=Datos$RendClose, type="partial", LagMax=Tam_Ventana_MT2, IncPlot=FALSE)
+facp <- AutoCorrelation(x=Datos$RendClose, type="partial", LagMax=Tam_Ventana_MT3, IncPlot=FALSE)
 
 if(any(facp$Sig_nc == 1)) {
-  p <- as.numeric(which.max(AutoCorrelation(Datos$RendClose, "partial", Tam_Ventana_MT2,FALSE)[,3]))
+  p <- as.numeric(which.max(AutoCorrelation(Datos$RendClose, "partial", Tam_Ventana_MT3,FALSE)[,3]))
 } else {
   Sub_Niveles <- rbind(facp[(facp$acf == min(facp$acf)),], facp[(facp$acf == max(facp$acf)),])
   Sub_Niveles$acf_abs <- abs(Sub_Niveles$acf)
   p <- Sub_Niveles[which.max(Sub_Niveles$acf_abs),"lag"]
 }
 
-fac <- AutoCorrelation(x=Datos$RendClose, type="correlation", LagMax=Tam_Ventana_MT2, IncPlot=FALSE)
+fac <- AutoCorrelation(x=Datos$RendClose, type="correlation", LagMax=Tam_Ventana_MT3, IncPlot=FALSE)
 
 if(any(fac$Sig_nc == 1)) {
-  q <- as.numeric(which.max(AutoCorrelation(Datos$RendClose, "correlation", Tam_Ventana_MT2,FALSE)[,3]))
+  q <- as.numeric(which.max(AutoCorrelation(Datos$RendClose, "correlation", Tam_Ventana_MT3,FALSE)[,3]))
 } else {
   Sub_Niveles <- rbind(fac[(fac$acf == min(fac$acf)),], fac[(fac$acf == max(fac$acf)),])
   Sub_Niveles$acf_abs <- abs(Sub_Niveles$acf)
@@ -107,25 +107,25 @@ colnames(Residuals) <- c("TimeStamp","ResidualValue")
 PastRend <- last(Datos$RendClose)
 PredRend <- predict(Modelo, n.ahead = 1)$pred[1]
 
-ifelse(Dinamica_Algo_MT2 == 0,
+ifelse(Dinamica_Algo_MT3 == 0,
        PredSide  <- ifelse(PredRend > PastRend, "buy","sell") ,  # BoxJenkins Directo
        PredSide  <- ifelse(PredRend > PastRend, "sell","buy"))   # BoxJenkins Inverso
 
 ifelse(PredSide == "buy",
-       P_Entrada <- Algo_MT2_H4_Datos$Precios_A_MT2$Ask,
-       P_Entrada <- Algo_MT2_H4_Datos$Precios_A_MT2$Bid)
+       P_Entrada <- Algo_MT3_H4_Datos$Precios_A_MT3$Ask,
+       P_Entrada <- Algo_MT3_H4_Datos$Precios_A_MT3$Bid)
 
 Trade  <- PredSide
-TPBuy  <- Algo_MT2_H4_Datos$Precios_A_MT2$Ask + TakeProfit_MT2/MultPip_MT2
-TPSell <- Algo_MT2_H4_Datos$Precios_A_MT2$Bid - TakeProfit_MT2/MultPip_MT2
-SLBuy  <- Algo_MT2_H4_Datos$Precios_A_MT2$Ask - StopLoss_MT2/MultPip_MT2
-SLSell <- Algo_MT2_H4_Datos$Precios_A_MT2$Bid + StopLoss_MT2/MultPip_MT2
+TPBuy  <- Algo_MT3_H4_Datos$Precios_A_MT3$Ask + TakeProfit_MT3/MultPip_MT3
+TPSell <- Algo_MT3_H4_Datos$Precios_A_MT3$Bid - TakeProfit_MT3/MultPip_MT3
+SLBuy  <- Algo_MT3_H4_Datos$Precios_A_MT3$Ask - StopLoss_MT3/MultPip_MT3
+SLSell <- Algo_MT3_H4_Datos$Precios_A_MT3$Bid + StopLoss_MT3/MultPip_MT3
 
-Algo_MT2_H4_Datos$Finales <- list(
-                              Inst  = Inst_H4_MT2,
+Algo_MT3_H4_Datos$Finales <- list(
+                              Inst  = Inst_H4_MT3,
                               Trade = Trade,
                               Precio_Entrada = P_Entrada,
                               TP = ifelse(Trade == "buy", TPBuy, TPSell),
                               SL = ifelse(Trade == "buy", SLBuy, SLSell),
-                              LT = Lotes_MT2,
+                              LT = Lotes_MT3,
                               MD = ModeloTxt)

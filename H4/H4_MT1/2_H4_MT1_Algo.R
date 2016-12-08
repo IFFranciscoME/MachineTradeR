@@ -15,7 +15,7 @@ Tam_Ventana_MT1   <- 78
 TakeProfit_MT1    <- 70
 StopLoss_MT1      <- 61
 Dinamica_Algo_MT1 <- 0
-Lotes_MT1 <- .1
+Lotes_MT1 <- .3
 
 # -- ----------------------------------------------------------------------------------------- -- #
 # -- Datos para utilizar en MODELO --------------------------------------------------- ETAPA 1 -- #

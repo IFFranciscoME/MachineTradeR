@@ -74,7 +74,7 @@ if(exists("Algo_MT1_H4_Datos"))  {
 
 if(exists("Algo_MT2_H4_Datos"))  {
   
-  Instrumento <- Inst_H4
+  Instrumento <- Inst_H4_MT2
   Precio_Ent  <- Algo_MT2_H4_Datos$Finales$Precio_Entrada
   StopLoss_p    <- Algo_MT2_H4_Datos$Finales$SL
   TakeProfit_p  <- Algo_MT2_H4_Datos$Finales$TP
@@ -105,6 +105,44 @@ if(exists("Algo_MT2_H4_Datos"))  {
   postForm(Http3, .params = c(From = "+14072701470", To = Francisco2, Body = Mensaje))
 
 }
+
+# -- ----------------------------------------------------------------------------------------- -- #
+# -- -------------------------------------------------------------------- Algo_MT3_H4 Activado -- #
+
+if(exists("Algo_MT3_H4_Datos"))  {
+  
+  Instrumento <- Inst_H4_MT3
+  Precio_Ent  <- Algo_MT3_H4_Datos$Finales$Precio_Entrada
+  StopLoss_p    <- Algo_MT3_H4_Datos$Finales$SL
+  TakeProfit_p  <- Algo_MT3_H4_Datos$Finales$TP
+  Lotes <- Algo_MT3_H4_Datos$Finales$LT
+  Trade <- Algo_MT3_H4_Datos$Finales$Trade
+  MD <- Algo_MT3_H4_Datos$Finales$MD
+  
+  DatosSMS <- list(
+    Inst = Instrumento,
+    PE = Precio_Ent, 
+    SL = StopLoss_p,
+    TP = TakeProfit_p,
+    LT = Lotes,
+    TY = Trade,
+    MD = MD)
+  
+  Msn <- paste(
+    "Op: ",toupper(DatosSMS$TY), " | ",
+    "Inst: ", DatosSMS$Inst, " | ",
+    "Ent: ", Precio_Ent, " | ",
+    "TP: ", DatosSMS$TP, " (",TakeProfit_MT3,")", " | ",
+    "SL: ", DatosSMS$SL, " (",StopLoss_MT3,")", " | " ,
+    sep="")
+  
+  Mensaje <- paste("|Algo_02_H4| ", Msn, sep = " ")
+  
+  postForm(Http3, .params = c(From = "+14072701470", To = Francisco, Body = Mensaje))
+  postForm(Http3, .params = c(From = "+14072701470", To = Francisco2, Body = Mensaje))
+  
+}
+
 
 options(RCurlOptions = list(
   cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
