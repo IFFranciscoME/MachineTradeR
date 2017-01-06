@@ -27,11 +27,11 @@ options(TZ="America/Monterrey")
 # -- -------------------------------------------------------------------------------------------- #
 # -- --------------------------------------------------------------------- Paquetes a utilizar -- #
 
-pkg <- c("base","downloader","dplyr","fBasics","forecast","googlesheets","grid",
-         "gridExtra","httr","h2o","jsonlite","knitr","lmtest","lubridate","moments",
-         "matrixStats", "PerformanceAnalytics","plyr","quantmod","randomForest",
-         "reshape2","RCurl","stats","scales","tree","tseries",
-         "TTR","TSA","twitteR","XML","xts","xlsx","zoo")
+pkg <- c("base","downloader","dplyr","fBasics","forecast","grid",
+         "gridExtra","httr","jsonlite","lmtest","lubridate","moments",
+         "matrixStats", "PerformanceAnalytics","plyr","quantmod",
+         "reshape2","RCurl","stats","scales","tseries",
+         "TTR","TSA","XML","xts","zoo")
 
 inst <- pkg %in% installed.packages()
 if(length(pkg[!inst]) > 0) install.packages(pkg[!inst])
@@ -73,13 +73,20 @@ source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/H4/H4_MT1/2_H4_MT1_Alg
 # source('~/r_machinetrader/H4/H4_MT1/2_H4_MT1_Algo.R')
 
 # -- ETAPA 4 --------------------------------------------------------------------------------- -- #
-# -- Trader para colocar operaciones ---------------------- R_MachineTrader_Trader -- Respaldo -- #
+# -- Trader para colocar operaciones ------------------------ R_MachineTrader_Trader -- Trader -- #
 # -- ----------------------------------------------------------------------------------------- -- #
 
 source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/R_MachineTrader_Trader.R', echo=TRUE)
 # source('~/r_machinetrader/R_MachineTrader_Trader.R')
-
+ 
 # -- ETAPA 5 --------------------------------------------------------------------------------- -- #
+# -- Trader para colocar operaciones en GBB --------- R_MachineTrader_Trader_RDS -- Trader_RDS -- #
+# -- ----------------------------------------------------------------------------------------- -- #
+
+source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/R_MachineTrader_Trader_RDS.R', echo=TRUE)
+# source('~/r_machinetrader/R_MachineTrader_Trader_RDS.R')
+
+# -- ETAPA 6 --------------------------------------------------------------------------------- -- #
 # -- Mensajero para enviar senal ---------------------- R_MachineTrader_Mensajero -- Mensajero -- #
 # -- ----------------------------------------------------------------------------------------- -- #
 

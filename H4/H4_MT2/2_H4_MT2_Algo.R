@@ -11,11 +11,12 @@
 # -- Valores provenientes de optimizacio y backtest ---------------------------------- ETAPA 0 -- #
 # -- ----------------------------------------------------------------------------------------- -- #
 
+# -- "USD_JPY"
 Tam_Ventana_MT2   <- 78
 TakeProfit_MT2    <- 70
 StopLoss_MT2      <- 24
 Dinamica_Algo_MT2 <- 0
-Lotes_MT2 <- .3
+Lotes_MT2 <- 1.2
 
 # -- ----------------------------------------------------------------------------------------- -- #
 # -- Datos para utilizar en MODELO --------------------------------------------------- ETAPA 1 -- #
@@ -39,8 +40,12 @@ d <- ADFTestedSeries(Datos,2,0.90)[1,3]
 facp <- AutoCorrelation(x=Datos$RendClose, type="partial", LagMax=Tam_Ventana_MT2, IncPlot=FALSE)
 
 if(any(facp$Sig_nc == 1)) {
+  
+  # -- Resago mas significativo segun FACP
   p <- as.numeric(which.max(AutoCorrelation(Datos$RendClose, "partial", Tam_Ventana_MT2,FALSE)[,3]))
 } else {
+  
+  # -- Resago mas significativo segun metodo alternativo
   Sub_Niveles <- rbind(facp[(facp$acf == min(facp$acf)),], facp[(facp$acf == max(facp$acf)),])
   Sub_Niveles$acf_abs <- abs(Sub_Niveles$acf)
   p <- Sub_Niveles[which.max(Sub_Niveles$acf_abs),"lag"]
@@ -49,8 +54,12 @@ if(any(facp$Sig_nc == 1)) {
 fac <- AutoCorrelation(x=Datos$RendClose, type="correlation", LagMax=Tam_Ventana_MT2, IncPlot=FALSE)
 
 if(any(fac$Sig_nc == 1)) {
+  
+  # -- Resago mas significativo segun FAC
   q <- as.numeric(which.max(AutoCorrelation(Datos$RendClose, "correlation", Tam_Ventana_MT2,FALSE)[,3]))
 } else {
+  
+  # -- Resago mas significativo segun metodo alternativo
   Sub_Niveles <- rbind(fac[(fac$acf == min(fac$acf)),], fac[(fac$acf == max(fac$acf)),])
   Sub_Niveles$acf_abs <- abs(Sub_Niveles$acf)
   q <- Sub_Niveles[which.max(Sub_Niveles$acf_abs),"lag"]
@@ -115,7 +124,7 @@ ifelse(PredSide == "buy",
        P_Entrada <- Algo_MT2_H4_Datos$Precios_A_MT2$Ask,
        P_Entrada <- Algo_MT2_H4_Datos$Precios_A_MT2$Bid)
 
-Trade  <- PredSide
+Trade_MT2  <- PredSide
 TPBuy  <- Algo_MT2_H4_Datos$Precios_A_MT2$Ask + TakeProfit_MT2/MultPip_MT2
 TPSell <- Algo_MT2_H4_Datos$Precios_A_MT2$Bid - TakeProfit_MT2/MultPip_MT2
 SLBuy  <- Algo_MT2_H4_Datos$Precios_A_MT2$Ask - StopLoss_MT2/MultPip_MT2
@@ -123,9 +132,9 @@ SLSell <- Algo_MT2_H4_Datos$Precios_A_MT2$Bid + StopLoss_MT2/MultPip_MT2
 
 Algo_MT2_H4_Datos$Finales <- list(
                               Inst  = Inst_H4_MT2,
-                              Trade = Trade,
+                              Trade = Trade_MT2,
                               Precio_Entrada = P_Entrada,
-                              TP = ifelse(Trade == "buy", TPBuy, TPSell),
-                              SL = ifelse(Trade == "buy", SLBuy, SLSell),
+                              TP = ifelse(Trade_MT2 == "buy", TPBuy, TPSell),
+                              SL = ifelse(Trade_MT2 == "buy", SLBuy, SLSell),
                               LT = Lotes_MT2,
                               MD = ModeloTxt)

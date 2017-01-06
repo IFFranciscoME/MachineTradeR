@@ -136,7 +136,7 @@ if(exists("Algo_MT3_H4_Datos"))  {
     "SL: ", DatosSMS$SL, " (",StopLoss_MT3,")", " | " ,
     sep="")
   
-  Mensaje <- paste("|Algo_02_H4| ", Msn, sep = " ")
+  Mensaje <- paste("|Algo_03_H4| ", Msn, sep = " ")
   
   postForm(Http3, .params = c(From = "+14072701470", To = Francisco, Body = Mensaje))
   postForm(Http3, .params = c(From = "+14072701470", To = Francisco2, Body = Mensaje))

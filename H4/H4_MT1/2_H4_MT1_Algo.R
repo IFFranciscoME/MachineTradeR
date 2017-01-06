@@ -11,11 +11,12 @@
 # -- Valores provenientes de optimizacio y backtest ---------------------------------- ETAPA 0 -- #
 # -- ----------------------------------------------------------------------------------------- -- #
 
+# -- "USD_CAD"
 Tam_Ventana_MT1   <- 78
 TakeProfit_MT1    <- 70
 StopLoss_MT1      <- 61
 Dinamica_Algo_MT1 <- 0
-Lotes_MT1 <- .3
+Lotes_MT1 <- .6
 
 # -- ----------------------------------------------------------------------------------------- -- #
 # -- Datos para utilizar en MODELO --------------------------------------------------- ETAPA 1 -- #
@@ -39,8 +40,12 @@ d <- ADFTestedSeries(Datos,2,0.90)[1,3]
 facp <- AutoCorrelation(x=Datos$RendClose, type="partial", LagMax=Tam_Ventana_MT1, IncPlot=FALSE)
 
 if(any(facp$Sig_nc == 1)) {
+  
+  # -- Resago mas significativo segun FACP
   p <- as.numeric(which.max(AutoCorrelation(Datos$RendClose, "partial", Tam_Ventana_MT1,FALSE)[,3]))
 } else {
+  
+  # -- Resago mas significativo segun metodo alternativo
   Sub_Niveles <- rbind(facp[(facp$acf == min(facp$acf)),], facp[(facp$acf == max(facp$acf)),])
   Sub_Niveles$acf_abs <- abs(Sub_Niveles$acf)
   p <- Sub_Niveles[which.max(Sub_Niveles$acf_abs),"lag"]
@@ -49,13 +54,17 @@ if(any(facp$Sig_nc == 1)) {
 fac <- AutoCorrelation(x=Datos$RendClose, type="correlation", LagMax=Tam_Ventana_MT1, IncPlot=FALSE)
 
 if(any(fac$Sig_nc == 1)) {
+  
+  # -- Resago mas significativo segun FAC
   q <- as.numeric(which.max(AutoCorrelation(Datos$RendClose, "correlation", Tam_Ventana_MT1,FALSE)[,3]))
 } else {
+  # -- Resago mas significativo segun metodo alternativo
   Sub_Niveles <- rbind(fac[(fac$acf == min(fac$acf)),], fac[(fac$acf == max(fac$acf)),])
   Sub_Niveles$acf_abs <- abs(Sub_Niveles$acf)
   q <- Sub_Niveles[which.max(Sub_Niveles$acf_abs),"lag"]
 }
 
+  
 MENSAJE <- try(
   Modelo <- stats::arima(Datos$RendClose, order=c(p,d,q), method = "CSS"),
   silent = TRUE)

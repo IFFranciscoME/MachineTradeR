@@ -29,7 +29,7 @@ if(exists("Algo_MT1_H4_Datos"))  {
  
     Open_Trades_H4 <- data.frame(matrix(nrow=1,ncol=12,data=0))
     colnames(Open_Trades_H4) <- c("free_margin","id","isSelf","lots","margin", "op_type",
-                                 "open","sl", "symbol","tp","user","joint")
+                                 "open","sl","symbol","tp","user","joint")
 
   }
   
