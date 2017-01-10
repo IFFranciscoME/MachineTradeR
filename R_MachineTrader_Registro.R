@@ -78,7 +78,7 @@ User_03 <- User_04   # -- TESTER JONES en lugar de pelham jenkins
 # .. EN PRODUCCION
 # ............................................................................................... #
 # ............................................................................................... #
-User_02 <- User_02   # -- Robert Bay
+User_02 <- User_04  # -- TESTER JONES
 # ............................................................................................... #
 # ............................................................................................... #
 
@@ -106,4 +106,3 @@ TW_consumer_key <- "4TJeb1mqGw22VmxWd8w7gf3Tk"
 TW_consumer_secret <- "uvwY6vtdfxzbsbUOS14sHQMfZgKX0cRyAi7041XbdEkZWVKXhc"
 TW_access_token <- "3288299311-sk9rkLFG0bXoeZbVbV4mJN7lmLCuUqweMhkO7BV"
 TW_access_token_secret <- "FhGj0ab2j7b7UN5LLjgeZ3ZBeTyCrkt0T6dGe6IeYAoVj"
-

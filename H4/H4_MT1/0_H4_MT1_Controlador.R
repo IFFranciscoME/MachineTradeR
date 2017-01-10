@@ -14,42 +14,8 @@ rm(list=ls())
 # -- Inicializador general de sistema ----------------------------------- 0_H4_MT1_Controlador -- #
 # -- ----------------------------------------------------------------------------------------- -- #
 
-# -- Establecer el sistema de medicion de la computadora
-Sys.setlocale(category = "LC_ALL", locale = "")
-
-# -- Huso horario
-Sys.setenv(tz="America/Monterrey")
-options(tz="America/Monterrey")
-
-Sys.setenv(TZ="America/Monterrey")
-options(TZ="America/Monterrey")
-
-# -- -------------------------------------------------------------------------------------------- #
-# -- --------------------------------------------------------------------- Paquetes a utilizar -- #
-
-pkg <- c("base","downloader","dplyr","fBasics","forecast","grid",
-         "gridExtra","httr","jsonlite","lmtest","lubridate","moments",
-         "matrixStats", "PerformanceAnalytics","plyr","quantmod",
-         "reshape2","RCurl","stats","scales","tseries",
-         "TTR","TSA","XML","xts","zoo")
-
-inst <- pkg %in% installed.packages()
-if(length(pkg[!inst]) > 0) install.packages(pkg[!inst])
-instpackages <- lapply(pkg, library, character.only=TRUE)
-
-# -- -------------------------------------------------------------------------------------------- #
-# -- ------------------------------------------------------------ Cargar archivos desde GitHub -- #
-
-RawGitHub <- "https://raw.githubusercontent.com/IFFranciscoME/"
-
-ROandaAPI <- paste(RawGitHub,"ROandaAPI/master/ROandaAPI.R",sep="")
-downloader::source_url(ROandaAPI,prompt=FALSE,quiet=TRUE)
-
-RTradingPal   <- paste(RawGitHub,"RTradingPalAPI/master/RTradingPalAPI.R",sep="")
-downloader::source_url(RTradingPal,prompt=FALSE,quiet=TRUE)
-
-DataProcessor <- paste(RawGitHub,"DataProcessor/master/DataProcessor.R",sep="")
-downloader::source_url(DataProcessor,prompt=FALSE,quiet=TRUE)
+source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/R_MachineTrader_IniR.R', echo=TRUE)
+# source('~/r_machinetrader/R_MachineTrader_IniR.R')
 
 # -- ETAPA 1 --------------------------------------------------------------------------------- -- #
 # -- Inicializador general de sistema ------------------- R_MachineTrader_Registro -- Registro -- #
@@ -90,5 +56,5 @@ source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/R_MachineTrader_Trader
 # -- Mensajero para enviar senal ---------------------- R_MachineTrader_Mensajero -- Mensajero -- #
 # -- ----------------------------------------------------------------------------------------- -- #
 
-source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/R_MachineTrader_Mensajero.R', echo=TRUE)
+# source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/R_MachineTrader_Mensajero.R', echo=TRUE)
 # source('~/r_machinetrader/R_MachineTrader_Mensajero.R')
