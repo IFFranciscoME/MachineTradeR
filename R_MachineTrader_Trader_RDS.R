@@ -157,14 +157,13 @@ if(exists("Algo_MT3_H4_Datos"))  {
     Query_txt <- paste(paste("INSERT INTO", Tabla, Columnas, "VALUES", Q_Valores), ";", sep="")
     
     return(Query_txt)
-    
+
   }
-  
+
   txt_query  <- SQL_Insert_Senal(Q_Tabla, Q_Columnas, Q_ID, Q_TimeStamp, Q_Accion, Q_IN,
                                  Q_TP, Q_SL, Q_LT, Q_OR)
-  
-  res_query <- dbGetQuery(conn = DB_Con, statement = txt_query)
-  
-  dbDisconnect(DB_Con) # Cerrar conexion a DB
 
+  res_query <- dbGetQuery(conn = DB_Con, statement = txt_query)
+
+  dbDisconnect(DB_Con) # Cerrar conexion a DB
 }
