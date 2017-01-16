@@ -40,14 +40,17 @@ if(exists("Algo_MT1_H4_Datos"))  {
   Q_IN <- Inst_H4
   Q_TP <- Datos_H4$Finales$TP
   Q_SL <- Datos_H4$Finales$SL
+  Q_TP_P <- Datos_H4$Finales$TP_P
+  Q_SL_P <- Datos_H4$Finales$SL_P
   Q_LT <- Datos_H4$Finales$LT
-  Q_OR <- "R_MachineTrader"
+  Q_OR <- paste("R_MachineTrader_", Q_ID, sep="")
 
   Q_Tabla    <- "Tabla_Senales"
-  Q_Columnas <- "(ID_Senal,TimeStamp_Senal,Accion,Instrumento,TakeProfit,StopLoss,Lotes,Originador)"
+  Q_Columnas <- "(ID_Senal,TimeStamp_Senal,Accion,Instrumento,TakeProfit,StopLoss,
+                  TakeProfit_Pips,StopLoss_Pips,Lotes,Originador)"
   
   SQL_Insert_Senal <- function(Tabla, Columnas, Senal_ID, Senal_TimeStamp, Senal_Accion, Senal_In,
-                         Senal_TP, Senal_SL, Senal_LT, Senal_OR) {
+                               Senal_TP, Senal_SL, Senal_TP_Pips, Senal_SL_Pips, Senal_LT, Senal_OR) {
     
     Q_Valores <- paste("(",paste(paste("'",Senal_ID,"'",sep=""),
                                  paste("'",Senal_TimeStamp,"'",sep=""),
@@ -55,20 +58,22 @@ if(exists("Algo_MT1_H4_Datos"))  {
                                  paste("'",Senal_In,"'",sep=""),
                                  paste("'",Senal_TP,"'",sep=""),
                                  paste("'",Senal_SL,"'",sep=""),
+                                 paste("'",Senal_TP_Pips,"'",sep=""),
+                                 paste("'",Senal_SL_Pips,"'",sep=""),
                                  paste("'",Senal_LT,"'",sep=""),
                                  paste("'",Senal_OR,"'",sep=""), sep=", "), ")", sep="")
-    
+
     Query_txt <- paste(paste("INSERT INTO", Tabla, Columnas, "VALUES", Q_Valores), ";", sep="")
-    
+
     return(Query_txt)
-    
+
   }
-  
+
   txt_query  <- SQL_Insert_Senal(Q_Tabla, Q_Columnas, Q_ID, Q_TimeStamp, Q_Accion, Q_IN,
-                                 Q_TP, Q_SL, Q_LT, Q_OR)
+                                 Q_TP, Q_SL, Q_TP_P, Q_SL_P, Q_LT, Q_OR)
 
   res_query <- dbGetQuery(conn = DB_Con, statement = txt_query)
-  
+
   dbDisconnect(DB_Con) # Cerrar conexion a DB
 
 }
@@ -83,19 +88,22 @@ if(exists("Algo_MT2_H4_Datos"))  {
   Datos_H4 <- Algo_MT2_H4_Datos
   
   Q_ID <- as.numeric(Sys.time())
-  Q_TimeStamp <- last(Datos_H4$Precios_H_MT2$TimeStamp)
+  Q_TimeStamp <- as.character(last(Datos_H4$Precios_H_MT2$TimeStamp))
   Q_Accion <- Datos_H4$Finales$Trade
   Q_IN <- Inst_H4
   Q_TP <- Datos_H4$Finales$TP
   Q_SL <- Datos_H4$Finales$SL
+  Q_TP_P <- Datos_H4$Finales$TP_P
+  Q_SL_P <- Datos_H4$Finales$SL_P
   Q_LT <- Datos_H4$Finales$LT
-  Q_OR <- "R_MachineTrader"
+  Q_OR <- paste("R_MachineTrader_", Q_ID, sep="")
   
   Q_Tabla    <- "Tabla_Senales"
-  Q_Columnas <- "(ID_Senal,TimeStamp_Senal,Accion,Instrumento,TakeProfit,StopLoss,Lotes,Originador)"
+  Q_Columnas <- "(ID_Senal,TimeStamp_Senal,Accion,Instrumento,TakeProfit,StopLoss,
+                  TakeProfit_Pips,StopLoss_Pips,Lotes,Originador)"
   
   SQL_Insert_Senal <- function(Tabla, Columnas, Senal_ID, Senal_TimeStamp, Senal_Accion, Senal_In,
-                               Senal_TP, Senal_SL, Senal_LT, Senal_OR) {
+                               Senal_TP, Senal_SL, Senal_TP_Pips, Senal_SL_Pips, Senal_LT, Senal_OR) {
     
     Q_Valores <- paste("(",paste(paste("'",Senal_ID,"'",sep=""),
                                  paste("'",Senal_TimeStamp,"'",sep=""),
@@ -103,6 +111,8 @@ if(exists("Algo_MT2_H4_Datos"))  {
                                  paste("'",Senal_In,"'",sep=""),
                                  paste("'",Senal_TP,"'",sep=""),
                                  paste("'",Senal_SL,"'",sep=""),
+                                 paste("'",Senal_TP_Pips,"'",sep=""),
+                                 paste("'",Senal_SL_Pips,"'",sep=""),
                                  paste("'",Senal_LT,"'",sep=""),
                                  paste("'",Senal_OR,"'",sep=""), sep=", "), ")", sep="")
     
@@ -111,9 +121,9 @@ if(exists("Algo_MT2_H4_Datos"))  {
     return(Query_txt)
     
   }
-  
+
   txt_query  <- SQL_Insert_Senal(Q_Tabla, Q_Columnas, Q_ID, Q_TimeStamp, Q_Accion, Q_IN,
-                                 Q_TP, Q_SL, Q_LT, Q_OR)
+                                 Q_TP, Q_SL, Q_TP_P, Q_SL_P, Q_LT, Q_OR)
   
   res_query <- dbGetQuery(conn = DB_Con, statement = txt_query)
   
@@ -136,14 +146,17 @@ if(exists("Algo_MT3_H4_Datos"))  {
   Q_IN <- Inst_H4
   Q_TP <- Datos_H4$Finales$TP
   Q_SL <- Datos_H4$Finales$SL
+  Q_TP_P <- Datos_H4$Finales$TP_P
+  Q_SL_P <- Datos_H4$Finales$SL_P
   Q_LT <- Datos_H4$Finales$LT
-  Q_OR <- "R_MachineTrader"
+  Q_OR <- paste("R_MachineTrader_", Q_ID, sep="")
   
   Q_Tabla    <- "Tabla_Senales"
-  Q_Columnas <- "(ID_Senal,TimeStamp_Senal,Accion,Instrumento,TakeProfit,StopLoss,Lotes,Originador)"
+  Q_Columnas <- "(ID_Senal,TimeStamp_Senal,Accion,Instrumento,TakeProfit,StopLoss,
+                  TakeProfit_Pips,StopLoss_Pips,Lotes,Originador)"
   
   SQL_Insert_Senal <- function(Tabla, Columnas, Senal_ID, Senal_TimeStamp, Senal_Accion, Senal_In,
-                         Senal_TP, Senal_SL, Senal_LT, Senal_OR) {
+                               Senal_TP, Senal_SL, Senal_TP_Pips, Senal_SL_Pips, Senal_LT, Senal_OR) {
     
     Q_Valores <- paste("(",paste(paste("'",Senal_ID,"'",sep=""),
                                  paste("'",Senal_TimeStamp,"'",sep=""),
@@ -151,6 +164,8 @@ if(exists("Algo_MT3_H4_Datos"))  {
                                  paste("'",Senal_In,"'",sep=""),
                                  paste("'",Senal_TP,"'",sep=""),
                                  paste("'",Senal_SL,"'",sep=""),
+                                 paste("'",Senal_TP_Pips,"'",sep=""),
+                                 paste("'",Senal_SL_Pips,"'",sep=""),
                                  paste("'",Senal_LT,"'",sep=""),
                                  paste("'",Senal_OR,"'",sep=""), sep=", "), ")", sep="")
     
@@ -161,7 +176,7 @@ if(exists("Algo_MT3_H4_Datos"))  {
   }
 
   txt_query  <- SQL_Insert_Senal(Q_Tabla, Q_Columnas, Q_ID, Q_TimeStamp, Q_Accion, Q_IN,
-                                 Q_TP, Q_SL, Q_LT, Q_OR)
+                                 Q_TP, Q_SL, Q_TP_P, Q_SL_P, Q_LT, Q_OR)
 
   res_query <- dbGetQuery(conn = DB_Con, statement = txt_query)
 

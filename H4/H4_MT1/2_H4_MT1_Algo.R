@@ -16,7 +16,7 @@ Tam_Ventana_MT1   <- 78
 TakeProfit_MT1    <- 70
 StopLoss_MT1      <- 61
 Dinamica_Algo_MT1 <- 0
-Lotes_MT1 <- .6
+Lotes_MT1 <- .1
 
 # -- ----------------------------------------------------------------------------------------- -- #
 # -- Datos para utilizar en MODELO --------------------------------------------------- ETAPA 1 -- #
@@ -136,5 +136,7 @@ Algo_MT1_H4_Datos$Finales <- list(
                               Precio_Entrada = P_Entrada,
                               TP = ifelse(Trade_MT1 == "buy", TPBuy, TPSell),
                               SL = ifelse(Trade_MT1 == "buy", SLBuy, SLSell),
+                              TP_P = TakeProfit_MT1,
+                              SL_P = StopLoss_MT1,
                               LT = Lotes_MT1,
                               MD = ModeloTxt)

@@ -16,7 +16,7 @@ Tam_Ventana_MT3   <- 132
 TakeProfit_MT3    <- 75
 StopLoss_MT3      <- 41
 Dinamica_Algo_MT3 <- 0
-Lotes_MT3 <- 1.1
+Lotes_MT3 <- .1
 
 # -- ----------------------------------------------------------------------------------------- -- #
 # -- Datos para utilizar en MODELO --------------------------------------------------- ETAPA 1 -- #
@@ -136,5 +136,7 @@ Algo_MT3_H4_Datos$Finales <- list(
                               Precio_Entrada = P_Entrada,
                               TP = ifelse(Trade_MT3 == "buy", TPBuy, TPSell),
                               SL = ifelse(Trade_MT3 == "buy", SLBuy, SLSell),
+                              TP_P = TakeProfit_MT3,
+                              SL_P = StopLoss_MT3,
                               LT = Lotes_MT3,
                               MD = ModeloTxt)
