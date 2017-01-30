@@ -42,14 +42,14 @@ source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/H4/H4_MT1/2_H4_MT1_Alg
 # -- Trader para colocar operaciones ------------------------ R_MachineTrader_Trader -- Trader -- #
 # -- ----------------------------------------------------------------------------------------- -- #
 
-#source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/R_MachineTrader_Trader.R', echo=TRUE)
+source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/R_MachineTrader_Trader.R', echo=TRUE)
 # source('~/r_machinetrader/R_MachineTrader_Trader.R')
  
 # -- ETAPA 5 --------------------------------------------------------------------------------- -- #
 # -- Trader para colocar operaciones en GBB --------- R_MachineTrader_Trader_RDS -- Trader_RDS -- #
 # -- ----------------------------------------------------------------------------------------- -- #
 
-source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/R_MachineTrader_Trader_RDS.R', echo=TRUE)
+# source('C:/Trabajo/Repositorios/BitBucket/R_MachineTrader/R_MachineTrader_Trader_RDS.R', echo=TRUE)
 # source('~/r_machinetrader/R_MachineTrader_Trader_RDS.R')
 
 # -- ETAPA 6 --------------------------------------------------------------------------------- -- #

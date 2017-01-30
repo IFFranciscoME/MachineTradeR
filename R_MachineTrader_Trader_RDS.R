@@ -35,7 +35,7 @@ if(exists("Algo_MT1_H4_Datos"))  {
   Datos_H4 <- Algo_MT1_H4_Datos
 
   Q_ID <- as.numeric(Sys.time())
-  Q_TimeStamp <- last(Datos_H4$Precios_H_MT1$TimeStamp)
+  Q_TimeStamp <- as.character(last(Datos_H4$Precios_H_MT1$TimeStamp))
   Q_Accion <- Datos_H4$Finales$Trade
   Q_IN <- Inst_H4
   Q_TP <- Datos_H4$Finales$TP
@@ -141,7 +141,7 @@ if(exists("Algo_MT3_H4_Datos"))  {
   Datos_H4 <- Algo_MT3_H4_Datos
   
   Q_ID <- as.numeric(Sys.time())
-  Q_TimeStamp <- last(Datos_H4$Precios_H_MT3$TimeStamp)
+  Q_TimeStamp <- as.character(last(Datos_H4$Precios_H_MT3$TimeStamp))
   Q_Accion <- Datos_H4$Finales$Trade
   Q_IN <- Inst_H4
   Q_TP <- Datos_H4$Finales$TP

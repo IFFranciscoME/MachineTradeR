@@ -14,7 +14,7 @@ if(exists("Algo_MT1_H4_Datos"))  {
 
   # -- Definir Variables Particulares para H4
 
-  Inst_H4  <- gsub(x = Inst_H4_MT1, pattern = "_", replacement = "")
+  Inst_H4  <- paste(gsub(x = Inst_H4_MT1, pattern = "_", replacement = ""),"!!",sep="")
   User_H4  <- User_02
   Datos_H4 <- Algo_MT1_H4_Datos
 
@@ -32,25 +32,25 @@ if(exists("Algo_MT1_H4_Datos"))  {
                                  "open","sl","symbol","tp","user","joint")
 
   }
-  
+
   if(Open_Trades_H4$id !=0) {
 
     # -- --------------------------------------------
     # -- Cerrar operaciones abiertas 
     # -- --------------------------------------------
-    
+
     for(i in 1:length(Ops_Abiertas)) { 
     Closed_Trade <- TP_CloseTrade(
       P0_Token   = as.character(User_H4$Token$Token),
       P1_tradeID = Ops_Abiertas[i],
       P2_userID  = User_H4$TPUID)
     }
-    
+
     # -- --------------------------------------------
     # -- Abrir operacion con parametros del algoritmo
     # -- --------------------------------------------
 
-    Last_Trade   <- TP_OpenTrade(
+  Last_Trade   <- TP_OpenTrade(
       P0_Token = as.character(User_H4$Token$Token),
       P1_symbol = Inst_H4,
       P2_sl = Datos_H4$Finales$SL,
@@ -81,7 +81,7 @@ if(exists("Algo_MT2_H4_Datos"))  {
   
   # -- Definir Variables Particulares para H4
   
-  Inst_H4  <- gsub(x = Inst_H4_MT2, pattern = "_", replacement = "")
+  Inst_H4  <- paste(gsub(x = Inst_H4_MT2, pattern = "_", replacement = ""),"!!",sep="")
   User_H4  <- User_02
   Datos_H4 <- Algo_MT2_H4_Datos
   
@@ -148,7 +148,7 @@ if(exists("Algo_MT3_H4_Datos"))  {
   
   # -- Definir Variables Particulares para H4
   
-  Inst_H4  <- gsub(x = Inst_H4_MT3, pattern = "_", replacement = "")
+  Inst_H4  <- paste(gsub(x = Inst_H4_MT3, pattern = "_", replacement = ""),"!!",sep="")
   User_H4  <- User_02
   Datos_H4 <- Algo_MT3_H4_Datos
   
